@@ -19,6 +19,13 @@ export const login = async (data) =>
     body: JSON.stringify(data),
   })
 
+// Dashboard
+export const getDashboardStats = async () =>
+  await fetch(baseUrl + '/admin/dashboard', {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+
 // Employee
 export const getEmployees = async () =>
   await fetch(baseUrl + '/admin/employee', {
