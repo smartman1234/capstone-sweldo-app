@@ -11,6 +11,7 @@ import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
 import Job from './pages/admin/job'
 import Leave from './pages/admin/leave'
+import Payroll from './pages/admin/payroll'
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/leave',
         element: <Leave />
+      },
+      {
+        path: '/admin/payroll',
+        element: <Payroll />
       },
     ]
   }
