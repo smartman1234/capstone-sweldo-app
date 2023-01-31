@@ -1,8 +1,14 @@
-
+import ListDepartment from "../../components/admin/department/ListDepartment"
+import CreateDepartment from "../../components/admin/department/CreateDepartment"
+import SearchDepartment from "../../components/admin/department/SearchDepartment"
+import PaginationDepartment from "../../components/admin/department/PaginationDepartment"
 
 const Department = () => {
   return (<div>
-    <h1>List of Department</h1>
+    <CreateDepartment/>
+    <SearchDepartment/>
+    <ListDepartment/>
+    <PaginationDepartment/>
    </div>
  ) 
 
