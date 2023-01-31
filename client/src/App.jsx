@@ -8,6 +8,7 @@ import Layout from './components/layouts/Layout'
 
 // User
 import Dashboard from './pages/user/dashboard'
+import Calendar from './pages/user/calendar'
 
 // Admin
 import AdminDashboard from './pages/admin/admin_dashboard'
@@ -20,7 +21,6 @@ import AdminCalendar from './pages/admin/calendar'
 
 // 404
 import PageNotFound from './pages/404'
-
 
 const router = createBrowserRouter([
   {
@@ -36,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />,
+      },
+      {
+        path: '/calendar',
+        element: <Calendar />,
       },
 
       /*
