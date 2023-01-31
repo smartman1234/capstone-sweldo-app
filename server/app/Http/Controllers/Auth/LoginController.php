@@ -45,8 +45,21 @@ class LoginController extends Controller
             ], 400);
         }
 
+        // Get authenticated user
+        $user = $request->user();
+
+        // Create access token
+        $accessToken = $user->createToken('Personal Access Token')->accessToken;
+
         return response()->json([
-            'message' => 'Login successfully',
+            'user' => [
+                'id' => $user->id,
+                'email' => $user->email,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'is_admin' => $user->is_admin,
+                'access_token' => $accessToken,
+            ]
         ]);
     }
 }
