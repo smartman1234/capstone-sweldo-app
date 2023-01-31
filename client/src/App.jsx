@@ -21,6 +21,7 @@ import AdminCalendar from './pages/admin/calendar'
 
 // 404
 import PageNotFound from './pages/404'
+import SalaryHistory from './pages/user/salary_history'
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,10 @@ const router = createBrowserRouter([
         path: '/calendar',
         element: <Calendar />,
       },
-
+      {
+        path: '/salary-history',
+        element: <SalaryHistory />,
+      },
       /*
         Admin
       */
