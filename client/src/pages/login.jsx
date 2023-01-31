@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CustomButton from '../components/ui/buttons/CustomButton'
 import CustomInput from '../components/ui/inputs/CustomInput'
 import * as RestApi from '../utils/rest_api_util'
 
@@ -49,8 +50,8 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <div className='bg-white shadow p-5'>
+    <div className='bg-black/50 h-screen flex justify-center items-center p-5'>
+      <div className='bg-white w-full md:w-96 rounded-lg shadow-lg p-5'>
         <div className='mb-4'>
           <h1 className='text-3xl font-bold'>Sweldo App</h1>
         </div>
@@ -66,7 +67,9 @@ const Login = () => {
               setFormData({ ...formData, email: e.target.value })
             }
             error={
-              error !== undefined && error.type === 'email' ? error.message : null
+              error !== undefined && error.type === 'email'
+                ? error.message
+                : null
             }
           />
           <CustomInput
@@ -79,13 +82,20 @@ const Login = () => {
               setFormData({ ...formData, password: e.target.value })
             }
             error={
-              error !== undefined && error.type === 'password' ? error.message : null
+              error !== undefined && error.type === 'password'
+                ? error.message
+                : null
             }
           />
         </div>
         {/* Login */}
         <div>
-          <button onClick={handleSubmit}>Login</button>
+          <CustomButton
+            name='Login'
+            onClick={handleSubmit}
+            loading={loading}
+            fullWidth={true}
+          />
         </div>
       </div>
     </div>
