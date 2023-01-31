@@ -12,6 +12,7 @@ import Department from './pages/admin/department'
 import Job from './pages/admin/job'
 import Leave from './pages/admin/leave'
 import Payroll from './pages/admin/payroll'
+import AdminCalendar from './pages/admin/calendar'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/dashboard',
         element: <AdminDashboard />
+      },
+      {
+        path: '/admin/calendar',
+        element: <AdminCalendar />
       },
       {
         path: '/admin/employee',
