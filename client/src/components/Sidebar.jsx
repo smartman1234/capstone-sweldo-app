@@ -1,6 +1,14 @@
+import { useNavigate } from 'react-router-dom'
 import SidebarButton from './ui/buttons/SidebarButton'
 
 const Sidebar = ({ activeSidebar, toggleSidebar }) => {
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.clear()
+    navigate('/')
+  }
+
   return (
     <aside
       className={
@@ -60,7 +68,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
           <li className='flextext-white'>
             <button
               className='w-full flex space-x-5 text-black font-medium px-5 py-2.5 rounded hover:bg-blue-600 hover:text-white'
-              onClick={() => {}}
+              onClick={logout}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
