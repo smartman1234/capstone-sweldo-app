@@ -2,11 +2,12 @@ import AttendanceOverview from '../../components/admin/dashboard/AttendanceOverv
 import Statistics from '../../components/admin/dashboard/Statistics'
 
 const AdminDashboard = () => {
-  return <div>
-   <Statistics />
-   <AttendanceOverview />
-
-  </div>
+  return (
+    <div className=''>
+      <Statistics />
+      <AttendanceOverview />
+    </div>
+  )
 }
 
 export default AdminDashboard
