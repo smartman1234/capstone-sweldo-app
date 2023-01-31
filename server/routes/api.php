@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\JobController;
 
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -40,4 +41,10 @@ Route::group([
     Route::post('/department', [DepartmentController::class, 'store']);
     Route::get('/department/{id}', [DepartmentController::class, 'show']);
     Route::post('/department/{id}', [DepartmentController::class, 'update']);
+
+    // Department
+    Route::get('/job', [JobController::class, 'index']);
+    Route::post('/job', [JobController::class, 'store']);
+    Route::get('/job/{id}', [JobController::class, 'show']);
+    Route::post('/job/{id}', [JobController::class, 'update']);
 });
