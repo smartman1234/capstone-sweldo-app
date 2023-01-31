@@ -51,6 +51,9 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
             <SidebarButton name='Dashboard' to='/admin/dashboard' />
           </li>
           <li className='flex'>
+            <SidebarButton name='Calendar' to='/admin/calendar' />
+          </li>
+          <li className='flex'>
             <SidebarButton name='Employee' to='/admin/employee' />
           </li>
           <li className='flex'>
