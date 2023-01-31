@@ -1,5 +1,11 @@
+
+
 const Department = () => {
-  return <div>Department</div>
+  return (<div>
+    <h1>List of Department</h1>
+   </div>
+ ) 
+
 }
 
 export default Department
