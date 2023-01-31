@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::create([
             'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
             'first_name' => 'Admin',
             'last_name' => 'Account',
-            'password' => Hash::make('password'),
             'birthday' => new DateTime(),
             'gender' => 'male',
             'address' => 'test address',
@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
         ]);
         $testacc = \App\Models\User::create([
             'email' => 'test@gmail.com',
+            'password' => Hash::make('password'),
             'first_name' => 'Test',
             'last_name' => 'Account',
-            'password' => Hash::make('password'),
             'birthday' => new DateTime(),
             'gender' => 'male',
             'address' => 'test address',
