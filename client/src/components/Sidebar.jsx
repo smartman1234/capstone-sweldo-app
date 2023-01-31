@@ -1,3 +1,5 @@
+import SidebarButton from './ui/buttons/SidebarButton'
+
 const Sidebar = ({ activeSidebar, toggleSidebar }) => {
   return (
     <aside
@@ -37,7 +39,24 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
               Welcome, User
             </p>
           </li>
-          <li className='flex'>Dashboard</li>
+          <li className='flex'>
+            <SidebarButton name='Dashboard' to='/admin/dashboard' />
+          </li>
+          <li className='flex'>
+            <SidebarButton name='Employee' to='/admin/employee' />
+          </li>
+          <li className='flex'>
+            <SidebarButton name='Department' to='/admin/department' />
+          </li>
+          <li className='flex'>
+            <SidebarButton name='Job' to='/admin/job' />
+          </li>
+          <li className='flex'>
+            <SidebarButton name='Leave' to='/admin/leave' />
+          </li>
+          <li className='flex'>
+            <SidebarButton name='Payroll' to='/admin/payroll' />
+          </li>
           <li className='flextext-white'>
             <button
               className='w-full flex space-x-5 text-black font-medium px-5 py-2.5 rounded hover:bg-blue-600 hover:text-white'
