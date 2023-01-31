@@ -9,6 +9,7 @@ import Layout from './components/layouts/Layout'
 import AdminDashboard from './pages/admin/admin_dashboard'
 import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
+import Job from './pages/admin/job'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       {
         path: '/admin/department',
         element: <Department />
-      }
+      },
+      {
+        path: '/admin/job',
+        element: <Job />
+      },
     ]
   }
 ])
