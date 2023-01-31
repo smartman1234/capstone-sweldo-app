@@ -1,6 +1,6 @@
 import AddEmployee from '../../components/admin/employee/AddEmployee'
 import ListEmployee from '../../components/admin/employee/ListEmployee'
-import Pagination from '../../components/admin/employee/Pagination'
+import Pagination from '../../components/admin/employee/PaginationEmployee'
 import SearchEmployee from '../../components/admin/employee/SearchEmployee'
 
 const Employee = () => {
@@ -9,7 +9,7 @@ const Employee = () => {
       <AddEmployee />
       <SearchEmployee />
       <ListEmployee />
-      <Pagination />
+      <PaginationEmployee />
     </div>
   )
 }
