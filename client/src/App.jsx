@@ -22,6 +22,7 @@ import AdminCalendar from './pages/admin/calendar'
 // 404
 import PageNotFound from './pages/404'
 import SalaryHistory from './pages/user/salary_history'
+import Profile from './pages/user/profile'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/salary-history',
         element: <SalaryHistory />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
       /*
         Admin
