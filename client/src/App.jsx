@@ -37,55 +37,63 @@ const router = createBrowserRouter([
         User
       */
       {
-        path: '/dashboard',
+        path: 'dashboard',
         element: <Dashboard />,
       },
       {
-        path: '/calendar',
+        path: 'calendar',
         element: <Calendar />,
       },
       {
-        path: '/salary-history',
+        path: 'salary-history',
         element: <SalaryHistory />,
       },
       {
-        path: '/profile',
+        path: 'profile',
         element: <Profile />,
       },
       {
-        path: '/settings',
+        path: 'settings',
         element: <Settings />,
       },
       /*
         Admin
       */
       {
-        path: '/admin/dashboard',
+        path: 'admin/dashboard',
         element: <AdminDashboard />,
       },
       {
-        path: '/admin/calendar',
+        path: 'admin/calendar',
         element: <AdminCalendar />,
       },
       {
-        path: '/admin/employee',
+        path: 'admin/employee',
         element: <Employee />,
       },
       {
-        path: '/admin/department',
+        path: 'admin/department',
         element: <Department />,
       },
       {
-        path: '/admin/job',
+        path: 'admin/job',
         element: <Job />,
       },
       {
-        path: '/admin/leave',
+        path: 'admin/leave',
         element: <Leave />,
       },
       {
-        path: '/admin/payroll',
+        path: 'admin/payroll',
         element: <Payroll />,
+      },
+      {
+        path: 'admin/profile',
+        element: <Profile />,
+      },
+      {
+        path: 'admin/settings',
+        element: <Settings />,
       },
     ],
   },
