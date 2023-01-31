@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CustomButton from '../components/ui/buttons/CustomButton'
 import CustomInput from '../components/ui/inputs/CustomInput'
@@ -16,6 +16,20 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
   const [success, setSuccess] = useState()
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem('is_admin')
+    const token = localStorage.getItem('token')
+    if (token) {
+      if (isAdmin === '0') {
+        navigate('/dashboard')
+        return
+      }
+      navigate('/admin/dashboard')
+      return
+    }
+    // eslint-disable-next-line
+  }, [])
 
   const handleSubmit = async () => {
     setLoading(true)

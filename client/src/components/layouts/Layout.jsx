@@ -1,10 +1,22 @@
-import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 
 const Layout = () => {
+  const navigate = useNavigate()
+
   const [activeSidebar, setActiveSidebar] = useState(true)
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem('is_admin')
+    const token = localStorage.getItem('token')
+    if (!token || !isAdmin) {
+      navigate('/')
+      return
+    }
+    // eslint-disable-next-line
+  }, [])
 
   const toggleSidebar = () => {
     setActiveSidebar(!activeSidebar)
