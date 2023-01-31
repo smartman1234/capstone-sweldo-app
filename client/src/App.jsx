@@ -10,6 +10,7 @@ import AdminDashboard from './pages/admin/admin_dashboard'
 import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
 import Job from './pages/admin/job'
+import Leave from './pages/admin/leave'
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/job',
         element: <Job />
+      },
+      {
+        path: '/admin/leave',
+        element: <Leave />
       },
     ]
   }
