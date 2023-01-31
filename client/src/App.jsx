@@ -6,6 +6,10 @@ import Login from './pages/login'
 
 import Layout from './components/layouts/Layout'
 
+// User
+import Dashboard from './pages/user/dashboard'
+
+// Admin
 import AdminDashboard from './pages/admin/admin_dashboard'
 import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
@@ -13,18 +17,30 @@ import Job from './pages/admin/job'
 import Leave from './pages/admin/leave'
 import Payroll from './pages/admin/payroll'
 import AdminCalendar from './pages/admin/calendar'
+
+// 404
 import PageNotFound from './pages/404'
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Login />,
   },
-  // User
-  // Admin
   {
     element: <Layout />,
     children: [
+      /*
+        User
+      */
+      {
+        path: '/dashboard',
+        element: <Dashboard />,
+      },
+
+      /*
+        Admin
+      */
       {
         path: '/admin/dashboard',
         element: <AdminDashboard />,
