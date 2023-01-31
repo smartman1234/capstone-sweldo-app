@@ -1,6 +1,6 @@
 import AddEmployee from '../../components/admin/employee/AddEmployee'
 import ListEmployee from '../../components/admin/employee/ListEmployee'
-import Pagination from '../../components/admin/employee/PaginationEmployee'
+import PaginationEmployee from '../../components/admin/employee/PaginationEmployee'
 import SearchEmployee from '../../components/admin/employee/SearchEmployee'
 
 const Employee = () => {
