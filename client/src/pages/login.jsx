@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CustomButton from '../components/ui/buttons/CustomButton'
 import CustomInput from '../components/ui/inputs/CustomInput'
+import SuccessAlert from '../components/ui/alerts/SuccessAlert'
+import DangerAlert from '../components/ui/alerts/DangerAlert'
 import * as RestApi from '../utils/rest_api_util'
 
 const Login = () => {
@@ -87,6 +89,14 @@ const Login = () => {
                 : null
             }
           />
+          <DangerAlert
+            message={
+              error !== undefined && error.type === undefined
+                ? error.message
+                : null
+            }
+          />
+          <SuccessAlert message={success?.message} />
         </div>
         {/* Login */}
         <div>
