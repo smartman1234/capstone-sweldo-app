@@ -1,8 +1,18 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SidebarButton from './ui/buttons/SidebarButton'
 
 const Sidebar = ({ activeSidebar, toggleSidebar }) => {
   const navigate = useNavigate()
+
+  const [admin, setAdmin] = useState(false)
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem('is_admin')
+    if (isAdmin === '1') {
+      setAdmin(true)
+    }
+  }, [])
 
   const logout = () => {
     localStorage.clear()
@@ -47,26 +57,48 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
               Welcome, User
             </p>
           </li>
+          {admin === false ? (
+            <>
+              <li className='flex'>
+                <SidebarButton name='Dashboard' to='dashboard' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Calendar' to='calendar' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Salary History' to='salary-history' />
+              </li>
+            </>
+          ) : (
+            <>
+              <li className='flex'>
+                <SidebarButton name='Dashboard' to='admin/dashboard' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Calendar' to='admin/calendar' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Employee' to='admin/employee' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Department' to='admin/department' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Job' to='admin/job' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Leave' to='admin/leave' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Payroll' to='admin/payroll' />
+              </li>
+            </>
+          )}
           <li className='flex'>
-            <SidebarButton name='Dashboard' to='/admin/dashboard' />
+            <SidebarButton name='Profile' to='profile' />
           </li>
           <li className='flex'>
-            <SidebarButton name='Calendar' to='/admin/calendar' />
-          </li>
-          <li className='flex'>
-            <SidebarButton name='Employee' to='/admin/employee' />
-          </li>
-          <li className='flex'>
-            <SidebarButton name='Department' to='/admin/department' />
-          </li>
-          <li className='flex'>
-            <SidebarButton name='Job' to='/admin/job' />
-          </li>
-          <li className='flex'>
-            <SidebarButton name='Leave' to='/admin/leave' />
-          </li>
-          <li className='flex'>
-            <SidebarButton name='Payroll' to='/admin/payroll' />
+            <SidebarButton name='Settings' to='settings' />
           </li>
           <li className='flextext-white'>
             <button
