@@ -13,11 +13,12 @@ import Job from './pages/admin/job'
 import Leave from './pages/admin/leave'
 import Payroll from './pages/admin/payroll'
 import AdminCalendar from './pages/admin/calendar'
+import PageNotFound from './pages/404'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Login />
+    element: <Login />,
   },
   // User
   // Admin
@@ -26,34 +27,39 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/admin/dashboard',
-        element: <AdminDashboard />
+        element: <AdminDashboard />,
       },
       {
         path: '/admin/calendar',
-        element: <AdminCalendar />
+        element: <AdminCalendar />,
       },
       {
         path: '/admin/employee',
-        element: <Employee />
+        element: <Employee />,
       },
       {
         path: '/admin/department',
-        element: <Department />
+        element: <Department />,
       },
       {
         path: '/admin/job',
-        element: <Job />
+        element: <Job />,
       },
       {
         path: '/admin/leave',
-        element: <Leave />
+        element: <Leave />,
       },
       {
         path: '/admin/payroll',
-        element: <Payroll />
+        element: <Payroll />,
       },
-    ]
-  }
+    ],
+  },
+  // 404
+  {
+    path: '*',
+    element: <PageNotFound />,
+  },
 ])
 
 const App = () => {
