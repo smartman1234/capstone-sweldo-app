@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CustomInput from '../components/ui/inputs/CustomInput'
 import * as RestApi from '../utils/rest_api_util'
 
 const Login = () => {
@@ -48,39 +49,39 @@ const Login = () => {
   }
 
   return (
-    <div className=''>
-      <div>
+    <div>
+      <div className='bg-white shadow p-5'>
         <div className='mb-4'>
           <h1 className='text-3xl font-bold'>Sweldo App</h1>
         </div>
         {/* Input */}
         <div className='mb-8 space-y-4'>
-          <div>
-            <label htmlFor='username' className='block'>
-              Username
-            </label>
-            <input
-              type='text'
-              placeholder='Username'
-              className='border'
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor='password' className='block'>
-              Password
-            </label>
-            <input
-              type='password'
-              placeholder='Password'
-              className='border'
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-            />
-          </div>
+          <CustomInput
+            label='Email'
+            id='email'
+            type='email'
+            placeholder='Enter your email'
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'email' ? error.message : null
+            }
+          />
+          <CustomInput
+            label='Password'
+            id='password'
+            type='password'
+            placeholder='Enter your password'
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'password' ? error.message : null
+            }
+          />
         </div>
         {/* Login */}
         <div>
