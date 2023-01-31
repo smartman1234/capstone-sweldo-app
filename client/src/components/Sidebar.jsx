@@ -68,6 +68,12 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
               <li className='flex'>
                 <SidebarButton name='Salary History' to='salary-history' />
               </li>
+              <li className='flex'>
+                <SidebarButton name='Profile' to='profile' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Settings' to='settings' />
+              </li>
             </>
           ) : (
             <>
@@ -92,14 +98,14 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
               <li className='flex'>
                 <SidebarButton name='Payroll' to='admin/payroll' />
               </li>
+              <li className='flex'>
+                <SidebarButton name='Profile' to='admin/profile' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Settings' to='admin/settings' />
+              </li>
             </>
           )}
-          <li className='flex'>
-            <SidebarButton name='Profile' to='profile' />
-          </li>
-          <li className='flex'>
-            <SidebarButton name='Settings' to='settings' />
-          </li>
           <li className='flextext-white'>
             <button
               className='w-full flex space-x-5 text-black font-medium px-5 py-2.5 rounded hover:bg-blue-600 hover:text-white'
