@@ -6,8 +6,12 @@ const Payroll = () => {
   return (
     <div>
       <PageTitle title='Payroll' />
+
+      <div className="grid gap-5">
+
       <GeneratePayroll />
       <PayrollTable />
+      </div>
     </div>
   )
 }

@@ -1,13 +1,20 @@
 import React from 'react'
+import CustomButton from '../../ui/buttons/CustomButton'
+import CustomInput from '../../ui/inputs/CustomInput'
 import PageTitle from '../../ui/titles/PageTitle'
 
 const GeneratePayroll = () => {
   return (
-    <div>
-            <PageTitle title='GeneratePayroll'/>
 
+            <>
+        <div className="flex justify-end gap-5">
 
-    </div>
+        <input type='date' />
+        <CustomButton name='Generate Payroll'/>
+        <CustomButton name='Pay Slip'/>
+        </div>
+            </>
+
   )
 }
 
