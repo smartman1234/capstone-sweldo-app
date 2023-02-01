@@ -127,6 +127,13 @@ export const updateJob = async (id, data) =>
     body: JSON.stringify(data),
   })
 
+// Leave
+export const getLeaves = async () =>
+  await fetch(baseUrl + '/admin/leave', {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+
 // Profile
 export const getAdminProfile = async () =>
   await fetch(baseUrl + '/admin/profile', {
