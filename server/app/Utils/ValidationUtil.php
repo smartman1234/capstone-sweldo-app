@@ -84,4 +84,18 @@ class ValidationUtil
         }
         return null;
     }
+
+    public static function validatePhone(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter a Phone number';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        return null;
+    }
 }
