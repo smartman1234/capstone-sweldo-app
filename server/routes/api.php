@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
+use App\Http\Controllers\User\AttendanceController;
 
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -30,6 +31,10 @@ Route::group([
         'auth:api',
     ]
 ], function () {
+
+    // Attendance
+    Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn']);
+    Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut']);
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
