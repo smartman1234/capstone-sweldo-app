@@ -4,27 +4,30 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Login from './pages/login'
 
+// Layouts
 import UserLayout from './components/layouts/UserLayout'
+import AdminLayout from './components/layouts/AdminLayout'
 
 // User
 import Dashboard from './pages/user/dashboard'
 import Calendar from './pages/user/calendar'
+import SalaryHistory from './pages/user/salary_history'
+import Profile from './pages/user/profile'
+import Settings from './pages/user/settings'
 
 // Admin
 import AdminDashboard from './pages/admin/admin_dashboard'
+import AdminCalendar from './pages/admin/calendar'
 import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
 import Job from './pages/admin/job'
 import Leave from './pages/admin/leave'
 import Payroll from './pages/admin/payroll'
-import AdminCalendar from './pages/admin/calendar'
+import AdminProfile from './pages/admin/admin_profile'
+import AdminSettings from './pages/admin/admin_settings'
 
 // 404
 import PageNotFound from './pages/404'
-import SalaryHistory from './pages/user/salary_history'
-import Profile from './pages/user/profile'
-import Settings from './pages/user/settings'
-import AdminLayout from './components/layouts/AdminLayout'
 
 const router = createBrowserRouter([
   {
@@ -97,11 +100,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <Profile />,
+        element: <AdminProfile />,
       },
       {
         path: 'settings',
-        element: <Settings />,
+        element: <AdminSettings />,
       },
     ],
   },
