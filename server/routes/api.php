@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 // User
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\SettingsController;
 
 // Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -31,6 +32,9 @@ Route::group([
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::post('/profile', [ProfileController::class, 'update']);
+
+    // Settings
+    Route::post('/settings', [SettingsController::class, 'update']);
 });
 
 /*
