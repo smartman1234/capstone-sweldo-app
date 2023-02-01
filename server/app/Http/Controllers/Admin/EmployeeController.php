@@ -12,14 +12,14 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
-        // TODO: Return employees
-        
-
+        $employees = User::where('is_admin', 0)->paginate(10);
+        return response()->json([
+            'employees' => $employees,
+        ]);
     }
 
     public function store(Request $request)
     {
-        // TODO: Save employee
         $email = $request->email;
         $password = $request->password;
         $first_name = $request->first_name;
