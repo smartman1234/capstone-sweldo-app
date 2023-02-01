@@ -15,8 +15,22 @@ const Leave = () => {
   }, [])
 
   const getLeaves = async (page = 1) => {
+    if (formData.name !== '') {
+      searchLeaves(formData.name, page)
+      return
+    }
     try {
       const result = await RestApi.getLeaves(page)
+      const response = await result.json()
+      if (result.status === 200) {
+        setLeaves(response.leaves)
+      }
+    } catch (error) {}
+  }
+
+  const searchLeaves = async (name, page = 1) => {
+    try {
+      const result = await RestApi.searchLeaves(name, page)
       const response = await result.json()
       if (result.status === 200) {
         setLeaves(response.leaves)
@@ -33,7 +47,10 @@ const Leave = () => {
           type='text'
           placeholder='Search for employee name'
           value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          onChange={(e) => {
+            setFormData({ ...formData, name: e.target.value })
+            searchLeaves(e.target.value)
+          }}
         />
         <table className='w-full text-left'>
           <thead className='bg-gray-100 uppercase'>
