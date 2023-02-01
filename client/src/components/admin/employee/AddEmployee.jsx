@@ -3,6 +3,7 @@ import CustomButton from '../../ui/buttons/CustomButton'
 import CustomInput from '../../ui/inputs/CustomInput'
 import SuccessAlert from '../../ui/alerts/SuccessAlert'
 import * as RestApi from '../../../utils/rest_api_util'
+import PageTitle from '../../ui/titles/PageTitle'
 
 const AddEmployee = () => {
   const [showForm, setShowForm] = useState(false)
@@ -59,7 +60,7 @@ const AddEmployee = () => {
 
   return (
     <>
-      <div className='bg-slate-200  '>
+      <div className=''>
         <button
           className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
           onClick={toggleForm}
@@ -73,7 +74,7 @@ const AddEmployee = () => {
             <div className='bg-white w-full lg:w-1/2 rounded flex flex-col'>
               {/* Form title */}
               <div className='flex justify-between pt-5 px-5'>
-                <h1 title='Task List' />
+                <PageTitle title='Create user' />
                 <div>
                   <button
                     className='bg-blue-600 text-white font-medium p-2 rounded hover:bg-blue-500'
@@ -222,7 +223,7 @@ const AddEmployee = () => {
                     }
                   />
                 </div>
-               
+
                 <div className='col-span-2 flex justify-center'>
                   <CustomButton
                     name='Submit'
@@ -232,8 +233,7 @@ const AddEmployee = () => {
                   />
                 </div>
                 <div className='col-span-2 flex justify-center'>
-
-                   <SuccessAlert message={success?.message} />
+                  <SuccessAlert message={success?.message} />
                 </div>
               </div>
             </div>
