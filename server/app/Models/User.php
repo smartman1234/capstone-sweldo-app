@@ -30,4 +30,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Leave::class);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }
