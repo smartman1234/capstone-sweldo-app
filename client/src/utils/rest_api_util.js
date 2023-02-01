@@ -131,3 +131,11 @@ export const updateAdminProfile = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+
+// Settings
+export const updateAdminSettings = async (data) =>
+  await fetch(baseUrl + '/admin/settings', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
