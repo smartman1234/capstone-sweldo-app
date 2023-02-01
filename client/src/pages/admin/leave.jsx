@@ -3,6 +3,7 @@ import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import Pagination from '../../components/Pagination'
 import * as RestApi from '../../utils/rest_api_util'
+import ActionButton from '../../components/ui/buttons/ActionButton'
 
 const Leave = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const Leave = () => {
       const result = await RestApi.approveLeave(id)
       const response = await result.json()
       if (result.status === 200) {
-        // TODO
+        getLeaves(leaves.current_page)
       }
     } catch (error) {}
   }
@@ -53,7 +54,7 @@ const Leave = () => {
       const result = await RestApi.declineLeave(id)
       const response = await result.json()
       if (result.status === 200) {
-        // TODO
+        getLeaves(leaves.current_page)
       }
     } catch (error) {}
   }
@@ -93,9 +94,15 @@ const Leave = () => {
                     <td className='p-2.5'>{leave.name}</td>
                     <td className='p-2.5'>{leave.date}</td>
                     <td className='p-2.5'>{leave.status}</td>
-                    <td className='p-2.5'>
-                      <button onClick={() => approveLeave(leave.id)}>Approve</button>
-                      <button onClick={() => declineLeave(leave.id)}>Decline</button>
+                    <td className='p-2.5 space-x-4'>
+                      <ActionButton
+                        name='Approve'
+                        onClick={() => approveLeave(leave.id)}
+                      />
+                      <ActionButton
+                        name='Decline'
+                        onClick={() => declineLeave(leave.id)}
+                      />
                     </td>
                   </tr>
                 ))
