@@ -42,6 +42,19 @@ export const clockOut = async () =>
     headers: getHeaders(),
   })
 
+// Calendar
+export const getDailyTasks = async (timestamp) =>
+  await fetch(baseUrl + `/user/task/daily/${timestamp}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+export const addTask = async (data) =>
+  await fetch(baseUrl + '/user/task', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
+
 // Profile
 export const getProfile = async () =>
   await fetch(baseUrl + '/user/profile', {
