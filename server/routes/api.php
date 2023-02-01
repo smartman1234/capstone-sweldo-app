@@ -73,6 +73,8 @@ Route::group([
 
     // Leave
     Route::get('/leave', [LeaveController::class, 'index']);
+    Route::post('/leave/{id}/approve', [LeaveController::class, 'approve']);
+    Route::post('/leave/{id}/decline', [LeaveController::class, 'decline']);
 
     // Profile
     Route::get('/profile', [AdminProfileController::class, 'show']);
