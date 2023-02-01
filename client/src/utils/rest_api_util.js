@@ -164,6 +164,13 @@ export const declineLeave = async (id) =>
     headers: getHeaders(),
   })
 
+// Payroll
+export const getPayrolls = async (page) =>
+  await fetch(baseUrl + `/admin/payroll?page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+
 // Profile
 export const getAdminProfile = async () =>
   await fetch(baseUrl + '/admin/profile', {
