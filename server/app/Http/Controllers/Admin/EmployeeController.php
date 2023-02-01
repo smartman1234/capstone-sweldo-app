@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -107,6 +108,22 @@ class EmployeeController extends Controller
                 'type' => 'email'
             ], 400);
         }
+
+        // Create new user
+        $user = User::create([
+            'email' => $email,
+            'password' => Hash::make($password),
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'birthday' => $birthday,
+            'gender' => $gender,
+            'address' => $address,
+            'phone' => $phone,
+        ]);
+
+        return response()->json([
+            'message' => 'Successfully added a new user'
+        ]);
     }
 
     public function show(Request $request)
