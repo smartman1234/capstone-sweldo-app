@@ -46,4 +46,31 @@ class ValidationUtil
         return null;
     }
 
+    public static function validateLastName(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter your last name';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        if (preg_match("/[^A-Za-z]/", $value)) {
+            return 'Only letters are allowed';
+        }
+        return null;
+    }
+
+    public static function validateBirthday(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter your birth date';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        if (preg_match("/([012]?[1-9]|[12]0|3[01])\/(0?[1-9]|1[012])\/([0-9]{4})/", $value)) {
+            return 'Please put the correct birth date';
+        }
+        return null;
+    }
 }

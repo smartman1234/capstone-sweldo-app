@@ -102,7 +102,7 @@ const AddEmployee = () => {
                   label='Birth Date'
                   id='birthday'
                   type='date'
-                  placeholder='mm/dd/yyyy'
+                  placeholder='dd/mm/yyyy'
                   value={formData.birthday}
                   onChange={(e) => {
                     setFormData({ ...formData, birthday: e.target.value })
