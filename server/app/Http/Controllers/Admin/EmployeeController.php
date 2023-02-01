@@ -61,6 +61,15 @@ class EmployeeController extends Controller
                 'type' => 'last_name'
             ], 400);
         }
+
+        // Validate Birth Date
+        $result = ValidationUtil::validateBirthday($birthday);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'birthday'
+            ], 400);
+        }
     }
 
     public function show(Request $request)
