@@ -1,5 +1,8 @@
 import { useState } from 'react'
+import CustomButton from '../../ui/buttons/CustomButton'
 import CustomInput from '../../ui/inputs/CustomInput'
+import SuccessAlert from '../../ui/alerts/SuccessAlert'
+import * as RestApi from '../../../utils/rest_api_util'
 
 const AddEmployee = () => {
   const [showForm, setShowForm] = useState(false)
@@ -14,9 +17,46 @@ const AddEmployee = () => {
     phone: '',
   })
 
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState()
+  const [success, setSuccess] = useState()
+
   const toggleForm = () => {
     setShowForm(!showForm)
   }
+
+  const handleSubmit = async () => {
+    setLoading(true)
+    setError(undefined)
+    setSuccess(undefined)
+
+    try {
+      const result = await RestApi.addEmployee(formData)
+      const response = await result.json()
+      if (result.status === 400) {
+        setError(response)
+      }
+
+      if (result.status === 200) {
+        setFormData((prevData) => {
+          return {
+            ...prevData,
+            email: '',
+            password: '',
+            first_name: '',
+            last_name: '',
+            birthday: '',
+            gender: '',
+            address: '',
+            phone: '',
+          }
+        })
+        setSuccess(response)
+      }
+    } catch (error) {}
+    setLoading(false)
+  }
+
   return (
     <>
       <div className='bg-slate-200  '>
@@ -67,6 +107,11 @@ const AddEmployee = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, email: e.target.value })
                   }}
+                  error={
+                    error !== undefined && error.type === 'email'
+                      ? error.message
+                      : null
+                  }
                 />
                 <CustomInput
                   label='Password'
@@ -77,6 +122,11 @@ const AddEmployee = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, password: e.target.value })
                   }}
+                  error={
+                    error !== undefined && error.type === 'password'
+                      ? error.message
+                      : null
+                  }
                 />
                 <CustomInput
                   label='First Name'
@@ -87,6 +137,11 @@ const AddEmployee = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, first_name: e.target.value })
                   }}
+                  error={
+                    error !== undefined && error.type === 'first_name'
+                      ? error.message
+                      : null
+                  }
                 />
                 <CustomInput
                   label='Last Name'
@@ -97,6 +152,11 @@ const AddEmployee = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, last_name: e.target.value })
                   }}
+                  error={
+                    error !== undefined && error.type === 'last_name'
+                      ? error.message
+                      : null
+                  }
                 />
                 <CustomInput
                   label='Birth Date'
@@ -107,6 +167,11 @@ const AddEmployee = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, birthday: e.target.value })
                   }}
+                  error={
+                    error !== undefined && error.type === 'birthday'
+                      ? error.message
+                      : null
+                  }
                 />
                 <CustomInput
                   label='Gender'
@@ -117,6 +182,11 @@ const AddEmployee = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, gender: e.target.value })
                   }}
+                  error={
+                    error !== undefined && error.type === 'gender'
+                      ? error.message
+                      : null
+                  }
                 />
                 <div className='col-span-2'>
                   <CustomInput
@@ -128,6 +198,11 @@ const AddEmployee = () => {
                     onChange={(e) => {
                       setFormData({ ...formData, address: e.target.value })
                     }}
+                    error={
+                      error !== undefined && error.type === 'address'
+                        ? error.message
+                        : null
+                    }
                   />
                 </div>
                 <div className='col-span-2'>
@@ -140,7 +215,25 @@ const AddEmployee = () => {
                     onChange={(e) => {
                       setFormData({ ...formData, phone: e.target.value })
                     }}
+                    error={
+                      error !== undefined && error.type === 'phone'
+                        ? error.message
+                        : null
+                    }
                   />
+                </div>
+               
+                <div className='col-span-2 flex justify-center'>
+                  <CustomButton
+                    name='Submit'
+                    loading={loading}
+                    onClick={handleSubmit}
+                    fullWidth={true}
+                  />
+                </div>
+                <div className='col-span-2 flex justify-center'>
+
+                   <SuccessAlert message={success?.message} />
                 </div>
               </div>
             </div>

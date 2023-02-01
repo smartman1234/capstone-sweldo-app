@@ -83,7 +83,7 @@ class EmployeeController extends Controller
         }
 
         // Validate Address
-        $result = ValidationUtil::validateGender($address);
+        $result = ValidationUtil::validateAddress($address);
         if ($result != null) {
             return response()->json([
                 'message' => $result,
