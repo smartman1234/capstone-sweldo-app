@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import AttendanceOverview from '../../components/admin/dashboard/AttendanceOverview'
-import Statistics from '../../components/admin/dashboard/Statistics'
+import UserStatistics from '../../components/user/UserStatistics'
 import * as RestApi from '../../utils/rest_api_util'
 
 const UserDashboard = () => {
@@ -13,12 +13,12 @@ const UserDashboard = () => {
   })
 
   useEffect(() => {
-    getAdminDashboard()
+    getUserDashboard()
   }, [])
 
-  const getAdminDashboard = async () => {
+  const getUserDashboard = async () => {
     try {
-      const result = await RestApi.getAdminDashboardStats()
+      const result = await RestApi.getUserDashboardStats()
       const response = await result.json()
       if (result.status === 200) {
         setStats(response)
@@ -28,7 +28,7 @@ const UserDashboard = () => {
 
   return (
     <div className=''>
-      <Statistics
+      <UserStatistics
         monthly={stats.monthly}
         rate={stats.rate}
         leave={stats.leave}
