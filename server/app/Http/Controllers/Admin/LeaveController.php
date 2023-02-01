@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 
 class LeaveController extends Controller
@@ -34,6 +35,39 @@ class LeaveController extends Controller
         $leaves['data'] = $employeesName;
         return response()->json([
             'leaves' => $leaves,
+        ]);
+    }
+
+    public function approve(Request $request)
+    {
+        $id = $request->id;
+
+        // Validate id
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get leave
+        $leave = Leave::find($id);
+
+        // Not found
+        if ($leave == null) {
+            return response()->json([
+                'message' => 'Leave not found',
+            ], 400);
+        }
+
+        // Update
+        $leave->update([
+            'status' => 'approved'
+        ]);
+
+        return response()->json([
+            'message' => 'Leave updated successfully'
         ]);
     }
 }

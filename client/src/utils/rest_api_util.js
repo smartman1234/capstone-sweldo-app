@@ -138,6 +138,11 @@ export const searchLeaves = async (name, page) =>
     method: 'GET',
     headers: getHeaders(),
   })
+export const approveLeave = async (id) =>
+  await fetch(baseUrl + `/admin/leave/${id}/approve`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Profile
 export const getAdminProfile = async () =>
