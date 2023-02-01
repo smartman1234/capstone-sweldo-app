@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->hasMany(Attendance::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
     public function leaves()
     {
         return $this->hasMany(Leave::class);
