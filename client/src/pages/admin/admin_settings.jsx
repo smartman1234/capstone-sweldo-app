@@ -21,6 +21,15 @@ const AdminSettings = () => {
     setError(undefined)
     setSuccess(undefined)
 
+    if (formData.new_password !== formData.confirm_new_password) {
+      setError({
+        message: 'Confirm password does not match',
+        type: 'confirm_new_password',
+      })
+      setLoading(false)
+      return
+    }
+
     try {
       const result = await RestApi.updateAdminSettings(formData)
       const response = await result.json()
