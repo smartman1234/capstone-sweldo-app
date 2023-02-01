@@ -23,8 +23,8 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
                 <td className='p-2.5'>{employee.email}</td>
                 <td className='p-2.5'>{employee.first_name}</td>
                 <td className='p-2.5'>{employee.last_name}</td>
-                <td className='p-2.5'>Department</td>
-                <td className='p-2.5'>Job</td>
+                <td className='p-2.5'>{employee.department.name}</td>
+                <td className='p-2.5'>{employee.job.name}</td>
                 <td className='p-2.5 space-x-4'>
                   <ActionButton
                     name='View'

@@ -15,9 +15,13 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         if ($request->name == null) {
-            $employees = User::where('is_admin', 0)->paginate(10);
+            $employees = User::with('department')
+                ->with('job')
+                ->where('is_admin', 0)->paginate(10);
         } else {
-            $employees = User::where('is_admin', 0)
+            $employees = User::with('department')
+                ->with('job')
+                ->where('is_admin', 0)
                 ->where('first_name', 'LIKE', "%" . $request->name . "%")
                 ->orWhere('last_name', 'LIKE', "%" . $request->name . "%")
                 ->orWhere('email', 'LIKE', "%" . $request->name . "%")->paginate(10);
