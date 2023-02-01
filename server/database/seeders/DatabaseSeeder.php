@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Leave;
+use App\Models\User;
 use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::create([
+        User::create([
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'first_name' => 'Admin',
@@ -28,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'phone' => 'phone',
             'is_admin' => 1
         ]);
-        $testacc = \App\Models\User::create([
+        User::create([
             'email' => 'test@gmail.com',
             'password' => Hash::make('password'),
             'first_name' => 'Test',
@@ -38,6 +40,14 @@ class DatabaseSeeder extends Seeder
             'address' => 'test address',
             'phone' => 'phone',
         ]);
-        \App\Models\User::factory(100)->create();
+        User::factory(100)->create();
+
+        // Leaves
+        for ($i = 0; $i <= 30; $i++) {
+            Leave::create([
+                'user_id' => 2,
+                'date' => new DateTime()
+            ]);
+        }
     }
 }
