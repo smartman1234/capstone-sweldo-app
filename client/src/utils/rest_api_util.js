@@ -43,6 +43,11 @@ export const clockOut = async () =>
   })
 
 // Calendar
+export const getMonthlyTasks = async (timestamp) =>
+  await fetch(baseUrl + `/user/task/monthly/${timestamp}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 export const getDailyTasks = async (timestamp) =>
   await fetch(baseUrl + `/user/task/daily/${timestamp}`, {
     method: 'GET',

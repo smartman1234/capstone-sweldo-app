@@ -38,6 +38,7 @@ Route::group([
     Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut']);
 
     // Task
+    Route::get('/task/monthly/{timestamp}', [TaskController::class, 'getMonthlyTasks']);
     Route::get('/task/daily/{timestamp}', [TaskController::class, 'getDailyTasks']);
     Route::post('/task', [TaskController::class, 'store']);
     Route::post('/task/{id}/delete', [TaskController::class, 'destroy']);

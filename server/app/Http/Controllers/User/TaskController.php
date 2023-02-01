@@ -9,6 +9,43 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function getMonthlyTasks(Request $request)
+    {
+        $timestamp = $request->timestamp;
+
+        // Validate date
+        $result = ValidationUtil::validateTimestamp($timestamp);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+            ], 400);
+        }
+
+        // Get tasks in selected month
+        $tasks = $request->user()->tasks()->whereBetween(
+            'date',
+            [
+                Carbon::createFromTimestamp($timestamp)->addDay(1)->startOfMonth(),
+                Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
+            ]
+        )->get();
+
+        // Count tasks
+        $taskList = [];
+        foreach ($tasks as $task) {
+            $day = (int) Carbon::parse($task->date)->rawFormat('d');
+            if (isset($taskList[$day])) {
+                $taskList[$day]++;
+            } else {
+                $taskList[$day] = 1;
+            }
+        }
+
+        return response()->json([
+            'tasks' => $taskList
+        ]);
+    }
+
     public function getDailyTasks(Request $request)
     {
         $timestamp = $request->timestamp;
