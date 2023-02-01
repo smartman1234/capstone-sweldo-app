@@ -1,11 +1,11 @@
 import PageTitle from '../../components/ui/titles/PageTitle'
 
-const Payroll = () => {
+const AdminSettings = () => {
   return (
     <div>
-      <PageTitle title='Payroll' />
+      <PageTitle title='Settings' />
     </div>
   )
 }
 
-export default Payroll
+export default AdminSettings
