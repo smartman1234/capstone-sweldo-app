@@ -36,6 +36,14 @@ export const updateProfile = async (data) =>
     body: JSON.stringify(data),
   })
 
+// Settings
+export const updateSettings = async (data) =>
+  await fetch(baseUrl + '/user/settings', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
+
 /*
   Admin
 */
