@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+import SuccessAlert from '../../components/ui/alerts/SuccessAlert'
 import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
@@ -29,7 +30,9 @@ const AdminProfile = () => {
     try {
       const result = await RestApi.getAdminProfile()
       const response = await result.json()
-      setFormData(response.user)
+      if (result.status === 200) {
+        setFormData(response.user)
+      }
     } catch (error) {}
   }
 
@@ -39,6 +42,15 @@ const AdminProfile = () => {
     setSuccess(undefined)
 
     try {
+      const result = await RestApi.updateAdminProfile(formData)
+      const response = await result.json()
+      if (result.status === 200) {
+        setEdit(false)
+        setSuccess(response)
+      }
+      if (result.status === 400) {
+        setError(response)
+      }
     } catch (error) {}
     setLoading(false)
   }
@@ -57,7 +69,7 @@ const AdminProfile = () => {
           error={
             error !== undefined && error.type === 'email' ? error.message : null
           }
-          disabled={!edit}
+          disabled={true}
         />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <CustomInput
@@ -122,16 +134,8 @@ const AdminProfile = () => {
               value={formData.gender}
               disabled={!edit}
             >
-              <option
-                value='male'
-              >
-                Male
-              </option>
-              <option
-                value='female'
-              >
-                Female
-              </option>
+              <option value='male'>Male</option>
+              <option value='female'>Female</option>
             </select>
           </div>
         </div>
@@ -163,6 +167,7 @@ const AdminProfile = () => {
           }
           disabled={!edit}
         />
+        <SuccessAlert message={success?.message} />
       </div>
       {edit ? (
         <CustomButton
