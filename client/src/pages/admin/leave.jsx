@@ -72,7 +72,7 @@ const Leave = () => {
                     <td className='p-2.5'>{employee.date}</td>
                     <td className='p-2.5'>{employee.status}</td>
                     <td className='p-2.5'>
-                      <button onClick={() => {}}>Accept</button>
+                      <button onClick={() => {}}>Approve</button>
                       <button onClick={() => {}}>Decline</button>
                     </td>
                   </tr>
