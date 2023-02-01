@@ -70,4 +70,37 @@ class LeaveController extends Controller
             'message' => 'Leave updated successfully'
         ]);
     }
+
+    public function decline(Request $request)
+    {
+        $id = $request->id;
+
+        // Validate id
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get leave
+        $leave = Leave::find($id);
+
+        // Not found
+        if ($leave == null) {
+            return response()->json([
+                'message' => 'Leave not found',
+            ], 400);
+        }
+
+        // Update
+        $leave->update([
+            'status' => 'declined'
+        ]);
+
+        return response()->json([
+            'message' => 'Leave updated successfully'
+        ]);
+    }
 }

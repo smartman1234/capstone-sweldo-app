@@ -48,6 +48,16 @@ const Leave = () => {
     } catch (error) {}
   }
 
+  const declineLeave = async (id) => {
+    try {
+      const result = await RestApi.declineLeave(id)
+      const response = await result.json()
+      if (result.status === 200) {
+        // TODO
+      }
+    } catch (error) {}
+  }
+
   return (
     <div>
       <PageTitle title='Leave' />
@@ -83,7 +93,7 @@ const Leave = () => {
                     <td className='p-2.5'>{leave.status}</td>
                     <td className='p-2.5'>
                       <button onClick={() => approveLeave(leave.id)}>Approve</button>
-                      <button onClick={() => {}}>Decline</button>
+                      <button onClick={() => declineLeave(leave.id)}>Decline</button>
                     </td>
                   </tr>
                 ))

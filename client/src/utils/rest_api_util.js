@@ -143,6 +143,11 @@ export const approveLeave = async (id) =>
     method: 'POST',
     headers: getHeaders(),
   })
+export const declineLeave = async (id) =>
+  await fetch(baseUrl + `/admin/leave/${id}/decline`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Profile
 export const getAdminProfile = async () =>
