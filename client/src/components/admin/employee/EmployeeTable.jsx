@@ -36,7 +36,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
           ) : (
             <tr>
               <td colSpan='5' className='text-center p-2.5'>
-                0 Employee
+                No data available
               </td>
             </tr>
           ))}

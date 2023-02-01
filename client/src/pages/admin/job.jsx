@@ -10,7 +10,6 @@ import JobTable from '../../components/admin/job/JobTable'
 const Job = () => {
   const [formData, setFormData] = useState({
     name: '',
-
   })
   const [showAddForm, setShowAddForm] = useState(false)
 
@@ -57,7 +56,7 @@ const Job = () => {
           <CustomInput
             id='name'
             type='text'
-            placeholder='Search for Job Title'
+            placeholder='Search for job'
             value={formData.name}
             onChange={(e) => {
               setFormData({ ...formData, name: e.target.value })

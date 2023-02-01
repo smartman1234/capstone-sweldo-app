@@ -47,7 +47,7 @@ const Leave = () => {
         <CustomInput
           id='name'
           type='text'
-          placeholder='Search for employee name or email'
+          placeholder='Search for employee email or name'
           value={formData.name}
           onChange={(e) => {
             setFormData({ ...formData, name: e.target.value })

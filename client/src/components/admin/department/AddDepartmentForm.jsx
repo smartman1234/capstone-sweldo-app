@@ -61,7 +61,7 @@ const AddDepartmentForm = ({ toggleAddForm }) => {
           {/* Form */}
           <div className='mb-8 space-y-4'>
             <CustomInput
-              label='Department'
+              label='Name'
               id='name'
               type='text'
               placeholder='IT Department'

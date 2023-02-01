@@ -10,7 +10,6 @@ import EditDepartmentForm from '../../components/admin/department/EditDepartment
 const Department = () => {
   const [formData, setFormData] = useState({
     name: '',
-
   })
   const [showAddForm, setShowAddForm] = useState(false)
 
@@ -57,7 +56,7 @@ const Department = () => {
           <CustomInput
             id='name'
             type='text'
-            placeholder='Search for Department'
+            placeholder='Search for department'
             value={formData.name}
             onChange={(e) => {
               setFormData({ ...formData, name: e.target.value })
@@ -71,13 +70,16 @@ const Department = () => {
             Add
           </button>
         </div>
-        <DepartmentTable departments={departments} setSelectedDepartmentId={setSelectedDepartmentId} />
+        <DepartmentTable
+          departments={departments}
+          setSelectedDepartmentId={setSelectedDepartmentId}
+        />
         <Pagination pagination={departments} onClick={getDepartments} />
       </div>
       {showAddForm && <AddDepartmentForm toggleAddForm={toggleAddForm} />}
       {selectedDepartmentId !== undefined && (
         <EditDepartmentForm
-        selectedDepartmentId={selectedDepartmentId}
+          selectedDepartmentId={selectedDepartmentId}
           setSelectedDepartmentId={setSelectedDepartmentId}
         />
       )}

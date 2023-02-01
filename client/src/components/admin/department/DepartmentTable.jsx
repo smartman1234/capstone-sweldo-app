@@ -6,7 +6,7 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId }) => {
       <thead className='bg-gray-100 uppercase'>
         <tr>
           <th className='p-2.5'>#</th>
-          <th className='p-2.5'>Department</th>
+          <th className='p-2.5'>Name</th>
           <th className='p-2.5'>Action</th>
         </tr>
       </thead>
@@ -28,7 +28,7 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId }) => {
           ) : (
             <tr>
               <td colSpan='5' className='text-center p-2.5'>
-                0 Job Title
+                No data available
               </td>
             </tr>
           ))}

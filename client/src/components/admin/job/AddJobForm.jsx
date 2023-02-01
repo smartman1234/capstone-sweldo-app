@@ -35,7 +35,7 @@ const AddJobForm = ({ toggleAddForm }) => {
           {/* Form title */}
           <div className='flex justify-between'>
             <div className='mb-4'>
-              <h1 className='text-3xl font-bold'>Create Employee</h1>
+              <h1 className='text-3xl font-bold'>Create Job</h1>
             </div>
             <div>
               <button
@@ -62,7 +62,7 @@ const AddJobForm = ({ toggleAddForm }) => {
           {/* Form */}
           <div className='mb-8 space-y-4'>
             <CustomInput
-              label='Job'
+              label='Name'
               id='name'
               type='text'
               placeholder='Software Engineer'
@@ -80,7 +80,7 @@ const AddJobForm = ({ toggleAddForm }) => {
               label='Salary'
               id='salary'
               type='number'
-              placeholder='100000'
+              placeholder='5000'
               value={formData.salary}
               onChange={(e) =>
                 setFormData({ ...formData, salary: e.target.value })
@@ -91,7 +91,6 @@ const AddJobForm = ({ toggleAddForm }) => {
                   : null
               }
             />
-          
           </div>
           <CustomButton
             name='Create'
