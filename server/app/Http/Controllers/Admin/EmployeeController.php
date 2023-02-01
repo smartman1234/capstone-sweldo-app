@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
+use App\Models\Job;
 use App\Models\User;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
@@ -35,6 +37,8 @@ class EmployeeController extends Controller
         $gender = $request->gender;
         $address = $request->address;
         $phone = $request->phone;
+        $departmentId = $request->department;
+        $jobId = $request->job;
 
         // Validate Email
         $result = ValidationUtil::validateEmail($email);
@@ -108,12 +112,50 @@ class EmployeeController extends Controller
             ], 400);
         }
 
+        // Validate department id
+        $result = ValidationUtil::validateId($departmentId);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'department'
+            ], 400);
+        }
+
+        // Validate job id
+        $result = ValidationUtil::validateId($jobId);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'job'
+            ], 400);
+        }
+
         // Check if email already exist
         $user = User::where('email', $email)->first();
         if ($user != null) {
             return response()->json([
                 'message' => 'Email already exist',
                 'type' => 'email'
+            ], 400);
+        }
+
+        // Get department
+        $department = Department::find($departmentId);
+
+        // Not found
+        if ($department == null) {
+            return response()->json([
+                'message' => 'Department not found',
+            ], 400);
+        }
+
+        // Get job
+        $job = Job::find($jobId);
+
+        // Not found
+        if ($job == null) {
+            return response()->json([
+                'message' => 'Job not found',
             ], 400);
         }
 
@@ -127,6 +169,8 @@ class EmployeeController extends Controller
             'gender' => $gender,
             'address' => $address,
             'phone' => $phone,
+            'department_id' => $department->id,
+            'job_id' => $job->id,
         ]);
 
         return response()->json([

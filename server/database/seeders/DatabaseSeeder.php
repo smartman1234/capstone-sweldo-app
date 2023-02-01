@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Department;
+use App\Models\Job;
 use App\Models\Leave;
 use App\Models\User;
 use DateTime;
@@ -19,6 +21,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Department::create([
+            'name' => 'IT Department'
+        ]);
+
+        Department::create([
+            'name' => 'Marketing Department'
+        ]);
+
+        Job::create([
+            'name' => 'Software Engineer',
+            'salary' => 5000,
+        ]);
+
+        Job::create([
+            'name' => 'Junior Developer',
+            'salary' => 1000
+        ]);
+
         User::create([
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
@@ -28,7 +48,9 @@ class DatabaseSeeder extends Seeder
             'gender' => 'male',
             'address' => 'test address',
             'phone' => 'phone',
-            'is_admin' => 1
+            'is_admin' => 1,
+            'department_id' => 1,
+            'job_id' => 1,
         ]);
         User::create([
             'email' => 'test@gmail.com',
@@ -39,8 +61,10 @@ class DatabaseSeeder extends Seeder
             'gender' => 'male',
             'address' => 'test address',
             'phone' => 'phone',
+            'department_id' => 1,
+            'job_id' => 1,
         ]);
-        User::factory(100)->create();
+        // User::factory(100)->create();
 
         // Leaves
         for ($i = 0; $i <= 30; $i++) {

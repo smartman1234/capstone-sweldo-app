@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
@@ -13,9 +13,39 @@ const AddEmployeeForm = ({ toggleAddForm }) => {
     gender: 'male',
     address: '',
     phone: '',
+    department: '',
+    job: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
+
+  const [departments, setDepartments] = useState()
+  const [jobs, setJobs] = useState()
+
+  useEffect(() => {
+    getDepartments()
+    getJobs()
+  }, [])
+
+  const getDepartments = async (page = 1) => {
+    try {
+      const result = await RestApi.getDepartments(page)
+      const response = await result.json()
+      if (result.status === 200) {
+        setDepartments(response.departments)
+      }
+    } catch (error) {}
+  }
+
+  const getJobs = async (page = 1) => {
+    try {
+      const result = await RestApi.getJobs(page)
+      const response = await result.json()
+      if (result.status === 200) {
+        setJobs(response.jobs)
+      }
+    } catch (error) {}
+  }
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -194,6 +224,64 @@ const AddEmployeeForm = ({ toggleAddForm }) => {
                   : null
               }
             />
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+              <div>
+                <label
+                  htmlFor='department'
+                  className='block text-gray-700 text-sm font-medium mb-2'
+                >
+                  Department
+                </label>
+                <select
+                  className='w-full text-gray px-5 py-2.5 rounded border'
+                  id='department'
+                  value={formData.department !== '' ? formData.department : 'none'}
+                  onChange={(e) =>
+                    setFormData({ ...formData, department: e.target.value })
+                  }
+                >
+                  <option value='none' disabled>
+                    Select a department
+                  </option>
+                  {departments !== undefined &&
+                    (departments.data.length !== 0
+                      ? departments.data.map((department, index) => (
+                          <option key={index} value={department.id}>
+                            {department.name}
+                          </option>
+                        ))
+                      : null)}
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor='job'
+                  className='block text-gray-700 text-sm font-medium mb-2'
+                >
+                  Job
+                </label>
+                <select
+                  className='w-full text-gray px-5 py-2.5 rounded border'
+                  id='job'
+                  value={formData.job !== '' ? formData.job : 'none'}
+                  onChange={(e) =>
+                    setFormData({ ...formData, job: e.target.value })
+                  }
+                >
+                  <option value='none' disabled>
+                    Select a job
+                  </option>
+                  {jobs !== undefined &&
+                    (jobs.data.length !== 0
+                      ? jobs.data.map((job, index) => (
+                          <option key={index} value={job.id}>
+                            {job.name}
+                          </option>
+                        ))
+                      : null)}
+                </select>
+              </div>
+            </div>
           </div>
           <CustomButton
             name='Create'
