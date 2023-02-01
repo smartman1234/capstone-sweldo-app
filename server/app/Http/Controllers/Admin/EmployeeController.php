@@ -13,6 +13,7 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         // TODO: Return employees
+        
 
     }
 
