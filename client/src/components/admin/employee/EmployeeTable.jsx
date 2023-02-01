@@ -1,6 +1,6 @@
 import ActionButton from '../../ui/buttons/ActionButton'
 
-const EmployeeTable = ({ employees }) => {
+const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -28,7 +28,7 @@ const EmployeeTable = ({ employees }) => {
                 <td className='p-2.5 space-x-4'>
                   <ActionButton
                     name='View'
-                    onClick={() => {}}
+                    onClick={() => setSelectedEmployeeId(employee.id)}
                   />
                 </td>
               </tr>

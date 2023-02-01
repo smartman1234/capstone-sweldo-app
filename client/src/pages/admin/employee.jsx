@@ -5,15 +5,16 @@ import Pagination from '../../components/Pagination'
 import AddEmployeeForm from '../../components/admin/employee/AddEmployeeForm'
 import * as RestApi from '../../utils/rest_api_util'
 import EmployeeTable from '../../components/admin/employee/EmployeeTable'
+import EditEmployeeForm from '../../components/admin/employee/EditEmployeeForm'
 
 const Employee = () => {
   const [formData, setFormData] = useState({
     name: '',
   })
   const [showAddForm, setShowAddForm] = useState(false)
-  const [loading, setLoading] = useState(false)
 
   const [employees, setEmployees] = useState()
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState()
 
   useEffect(() => {
     getEmployees()
@@ -69,10 +70,19 @@ const Employee = () => {
             Add
           </button>
         </div>
-        <EmployeeTable employees={employees} />
+        <EmployeeTable
+          employees={employees}
+          setSelectedEmployeeId={setSelectedEmployeeId}
+        />
         <Pagination pagination={employees} onClick={getEmployees} />
       </div>
       {showAddForm && <AddEmployeeForm toggleAddForm={toggleAddForm} />}
+      {selectedEmployeeId !== undefined && (
+        <EditEmployeeForm
+          selectedEmployeeId={selectedEmployeeId}
+          setSelectedEmployeeId={setSelectedEmployeeId}
+        />
+      )}
     </div>
   )
 }
