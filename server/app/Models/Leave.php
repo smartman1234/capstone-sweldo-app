@@ -12,4 +12,9 @@ class Leave extends Model
     protected $fillable = [
         'date',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

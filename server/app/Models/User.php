@@ -25,4 +25,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class);
+    }
 }
