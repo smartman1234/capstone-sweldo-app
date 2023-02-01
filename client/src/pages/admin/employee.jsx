@@ -31,7 +31,15 @@ const Employee = () => {
     } catch (error) {}
   }
 
-  const searchEmployee = async (name, page = 1) => {}
+  const searchEmployee = async (name, page = 1) => {
+    try {
+      const result = await RestApi.searchEmployees(name, page)
+      const response = await result.json()
+      if (result.status === 200) {
+        setEmployees(response.employees)
+      }
+    } catch (error) {}
+  }
 
   const viewEmployee = async (id) => {}
 
