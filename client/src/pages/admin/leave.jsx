@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
+import ActionButton from '../../components/ui/buttons/ActionButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import Pagination from '../../components/Pagination'
 import * as RestApi from '../../utils/rest_api_util'
-import ActionButton from '../../components/ui/buttons/ActionButton'
 
 const Leave = () => {
   const [formData, setFormData] = useState({
