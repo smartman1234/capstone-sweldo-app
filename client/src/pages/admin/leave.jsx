@@ -75,14 +75,14 @@ const Leave = () => {
           <tbody>
             {leaves !== undefined &&
               (leaves.data.length !== 0 ? (
-                leaves.data.map((employee, index) => (
+                leaves.data.map((leave, index) => (
                   <tr key={index} className='border-b'>
                     <th className='p-2.5'>{leaves.from + index}</th>
-                    <td className='p-2.5'>{employee.name}</td>
-                    <td className='p-2.5'>{employee.date}</td>
-                    <td className='p-2.5'>{employee.status}</td>
+                    <td className='p-2.5'>{leave.name}</td>
+                    <td className='p-2.5'>{leave.date}</td>
+                    <td className='p-2.5'>{leave.status}</td>
                     <td className='p-2.5'>
-                      <button onClick={() => approveLeave(employee.id)}>Approve</button>
+                      <button onClick={() => approveLeave(leave.id)}>Approve</button>
                       <button onClick={() => {}}>Decline</button>
                     </td>
                   </tr>
