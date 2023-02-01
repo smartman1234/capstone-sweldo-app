@@ -114,6 +114,11 @@ export const getJobs = async () =>
     method: 'GET',
     headers: getHeaders(),
   })
+  export const searchJobs = async (name, page) =>
+  await fetch(baseUrl + `/admin/jobs?name=${name}&page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 export const addJob = async (data) =>
   await fetch(baseUrl + '/admin/job', {
     method: 'POST',

@@ -11,12 +11,18 @@ class JobController extends Controller
 {
     public function index(Request $request)
     {
-        // TODO: Return jobs
+        if ($request->name == null) {
+            $jobs = Job::paginate(10);
+        } else {
+            $jobs = Job::where('name', 'like', "%" . $request->name . "%")->paginate(10);
+        }
+        return response()->json([
+            'jobs' => $jobs,
+        ]);
     }
 
     public function store(Request $request)
     {
-        // TODO: Save job
         $name = $request->name;
 
         // Validate Job Title
@@ -40,6 +46,30 @@ class JobController extends Controller
     public function show(Request $request)
     {
         // TODO: Return job by id
+        $id = $request->id;
+
+        // Validate id
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get Job Title
+        $job = Job::find($id);
+
+        // Not found
+        if ($job == null) {
+            return response()->json([
+                'message' => 'Job Title not found',
+            ], 400);
+        }
+
+        return response()->json([
+            'job' => $job,
+        ]);
     }
 
     public function update(Request $request)

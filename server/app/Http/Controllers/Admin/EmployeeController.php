@@ -16,7 +16,7 @@ class EmployeeController extends Controller
             $employees = User::where('is_admin', 0)->paginate(10);
         } else {
             $employees = User::where('is_admin', 0)
-                ->where('first_name', 'like', "%" . $request->name . "%")
+                ->where('first_name', 'LIKE', "%" . $request->name . "%")
                 ->orWhere('last_name', 'LIKE', "%" . $request->name . "%")
                 ->orWhere('email', 'LIKE', "%" . $request->name . "%")->paginate(10);
         }

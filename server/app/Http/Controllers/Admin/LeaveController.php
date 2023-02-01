@@ -16,7 +16,7 @@ class LeaveController extends Controller
         } else {
             $leaves = Leave::with('user')
                 ->whereHas('user', function ($query) use ($request) {
-                    $query->where('first_name', 'like', "%" . $request->name . "%")
+                    $query->where('first_name', 'LIKE', "%" . $request->name . "%")
                         ->orWhere('last_name', 'LIKE', "%" . $request->name . "%")
                         ->orWhere('email', 'LIKE', "%" . $request->name . "%");
                 })
