@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\LeaveController;
+use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 
@@ -75,6 +76,9 @@ Route::group([
     Route::get('/leave', [LeaveController::class, 'index']);
     Route::post('/leave/{id}/approve', [LeaveController::class, 'approve']);
     Route::post('/leave/{id}/decline', [LeaveController::class, 'decline']);
+
+    // Payroll
+    Route::get('/payroll', [PayrollController::class, 'index']);
 
     // Profile
     Route::get('/profile', [AdminProfileController::class, 'show']);
