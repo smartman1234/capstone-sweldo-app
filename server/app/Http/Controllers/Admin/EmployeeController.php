@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -24,6 +25,15 @@ class EmployeeController extends Controller
         $gender = $request->gender;
         $address = $request->address;
         $phone = $request->phone;
+
+        // Validate Email
+        $result = ValidationUtil::validateEmail($email);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'email'
+            ], 400);
+        }
     }
 
     public function show(Request $request)
