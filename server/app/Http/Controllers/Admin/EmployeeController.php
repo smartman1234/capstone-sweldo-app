@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,68 @@ class EmployeeController extends Controller
             ], 400);
         }
 
+        // Validate First Name
+        $result = ValidationUtil::validateFirstName($first_name);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'first_name'
+            ], 400);
+        }
+
+        // Validate Last Name
+        $result = ValidationUtil::validateLastName($last_name);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'last_name'
+            ], 400);
+        }
+
+        // Validate Birth Date
+        $result = ValidationUtil::validateBirthday($birthday);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'birthday'
+            ], 400);
+        }
+
+        // Validate Gender
+        $result = ValidationUtil::validateGender($gender);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'gender'
+            ], 400);
+        }
+
+        // Validate Address
+        $result = ValidationUtil::validateGender($address);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'address'
+            ], 400);
+        }
+
+        // Validate Phone number
+        $result = ValidationUtil::validatePhone($phone);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'phone'
+            ], 400);
+        }
+
+        // Check if email already exist
+        $user = User::where('email', $email)->first();
+        if ($user != null) {
+            return response()->json([
+                'message' => 'Email already exist',
+                'type' => 'email'
+            ], 400);
+        }
     }
 
     public function show(Request $request)
