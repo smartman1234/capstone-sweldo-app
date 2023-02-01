@@ -19,6 +19,27 @@ export const login = async (data) =>
     body: JSON.stringify(data),
   })
 
+/*
+  User
+*/
+
+// Profile
+export const getProfile = async () =>
+  await fetch(baseUrl + '/user/profile', {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+export const updateProfile = async (data) =>
+  await fetch(baseUrl + '/user/profile', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
+
+/*
+  Admin
+*/
+
 // Dashboard
 export const getAdminDashboardStats = async () =>
   await fetch(baseUrl + '/admin/dashboard', {

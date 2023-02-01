@@ -53,7 +53,7 @@ const Login = () => {
         localStorage.setItem('is_admin', response.user.is_admin)
         localStorage.setItem('token', response.user.access_token)
         if (response.user.is_admin === 0) {
-          navigate('/dashboard')
+          navigate('/user/dashboard')
           return
         }
         navigate('/admin/dashboard')

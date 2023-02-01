@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState  } from 'react'
 import SuccessAlert from '../../components/ui/alerts/SuccessAlert'
 import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
