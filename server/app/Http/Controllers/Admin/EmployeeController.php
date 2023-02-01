@@ -52,6 +52,15 @@ class EmployeeController extends Controller
                 'type' => 'first_name'
             ], 400);
         }
+
+        // Validate Last Name
+        $result = ValidationUtil::validateLastName($last_name);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'last_name'
+            ], 400);
+        }
     }
 
     public function show(Request $request)
