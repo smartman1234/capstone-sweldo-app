@@ -13,8 +13,8 @@ const AddEmployeeForm = ({ toggleAddForm }) => {
     gender: 'male',
     address: '',
     phone: '',
-    department: '',
-    job: '',
+    department_id: '',
+    job_id: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
@@ -235,9 +235,9 @@ const AddEmployeeForm = ({ toggleAddForm }) => {
                 <select
                   className='w-full text-gray px-5 py-2.5 rounded border'
                   id='department'
-                  value={formData.department !== '' ? formData.department : 'none'}
+                  value={formData.department_id !== '' ? formData.department_id : 'none'}
                   onChange={(e) =>
-                    setFormData({ ...formData, department: e.target.value })
+                    setFormData({ ...formData, department_id: e.target.value })
                   }
                 >
                   <option value='none' disabled>
@@ -263,9 +263,9 @@ const AddEmployeeForm = ({ toggleAddForm }) => {
                 <select
                   className='w-full text-gray px-5 py-2.5 rounded border'
                   id='job'
-                  value={formData.job !== '' ? formData.job : 'none'}
+                  value={formData.job_id !== '' ? formData.job_id : 'none'}
                   onChange={(e) =>
-                    setFormData({ ...formData, job: e.target.value })
+                    setFormData({ ...formData, job_id: e.target.value })
                   }
                 >
                   <option value='none' disabled>

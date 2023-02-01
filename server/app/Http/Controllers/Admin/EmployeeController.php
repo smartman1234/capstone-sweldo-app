@@ -37,8 +37,8 @@ class EmployeeController extends Controller
         $gender = $request->gender;
         $address = $request->address;
         $phone = $request->phone;
-        $departmentId = $request->department;
-        $jobId = $request->job;
+        $departmentId = $request->department_id;
+        $jobId = $request->job_id;
 
         // Validate Email
         $result = ValidationUtil::validateEmail($email);
@@ -209,7 +209,6 @@ class EmployeeController extends Controller
     public function update(Request $request)
     {
         $id = $request->id;
-
         $email = $request->email;
         $first_name = $request->first_name;
         $last_name = $request->last_name;
