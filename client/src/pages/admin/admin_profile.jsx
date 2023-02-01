@@ -4,6 +4,8 @@ import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 
 const AdminProfile = () => {
+  const [edit, setEdit] = useState(false)
+
   const [formData, setFormData] = useState({
     email: '',
     first_name: '',
@@ -41,6 +43,7 @@ const AdminProfile = () => {
           error={
             error !== undefined && error.type === 'email' ? error.message : null
           }
+          disabled={!edit}
         />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <CustomInput
@@ -57,6 +60,7 @@ const AdminProfile = () => {
                 ? error.message
                 : null
             }
+            disabled={!edit}
           />
           <CustomInput
             label='Last Name'
@@ -72,6 +76,7 @@ const AdminProfile = () => {
                 ? error.message
                 : null
             }
+            disabled={!edit}
           />
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -88,6 +93,7 @@ const AdminProfile = () => {
                 ? error.message
                 : null
             }
+            disabled={!edit}
           />
           <div>
             <label
@@ -99,9 +105,20 @@ const AdminProfile = () => {
             <select
               className='w-full text-gray px-5 py-2.5 rounded border'
               id='gender'
+              disabled={!edit}
             >
-              <option selected={formData.gender === 'male' ? true : false} value='male'>Male</option>
-              <option selected={formData.gender === 'female' ? true : false} value='female'>Female</option>
+              <option
+                selected={formData.gender === 'male' ? true : false}
+                value='male'
+              >
+                Male
+              </option>
+              <option
+                selected={formData.gender === 'female' ? true : false}
+                value='female'
+              >
+                Female
+              </option>
             </select>
           </div>
         </div>
@@ -119,6 +136,7 @@ const AdminProfile = () => {
               ? error.message
               : null
           }
+          disabled={!edit}
         />
         <CustomInput
           label='Phone'
@@ -130,14 +148,23 @@ const AdminProfile = () => {
           error={
             error !== undefined && error.type === 'phone' ? error.message : null
           }
+          disabled={!edit}
         />
       </div>
-      <CustomButton
-        name='Update'
-        onClick={handleSubmit}
-        loading={loading}
-        fullWidth={true}
-      />
+      {edit ? (
+        <CustomButton
+          name='Update'
+          onClick={handleSubmit}
+          loading={loading}
+          fullWidth={true}
+        />
+      ) : (
+        <CustomButton
+          name='Edit'
+          onClick={() => setEdit(true)}
+          fullWidth={true}
+        />
+      )}
     </div>
   )
 }
