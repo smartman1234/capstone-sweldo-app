@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import Pagination from '../../components/Pagination'
-import { useEffect } from 'react'
+import * as RestApi from '../../utils/rest_api_util'
 
 const Leave = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,13 @@ const Leave = () => {
   }, [])
 
   const getLeaves = async () => {
-
+    try {
+      const result = await RestApi.getLeaves()
+      const response = await result.json()
+      if (result.status === 200) {
+        setLeaves(response.leaves)
+      }
+    } catch (error) {}
   }
 
   return (
@@ -45,16 +51,12 @@ const Leave = () => {
                 leaves.data.map((employee, index) => (
                   <tr key={index} className='border-b'>
                     <th className='p-2.5'>{leaves.from + index}</th>
-                    <td className='p-2.5'>{leaves.first_name} {leaves.last_name}</td>
+                    <td className='p-2.5'>{employee.name}</td>
                     <td className='p-2.5'>{employee.date}</td>
                     <td className='p-2.5'>{employee.status}</td>
                     <td className='p-2.5'>
-                      <button onClick={() => {}}>
-                        Accept
-                      </button>
-                      <button onClick={() => {}}>
-                        Decline
-                      </button>
+                      <button onClick={() => {}}>Accept</button>
+                      <button onClick={() => {}}>Decline</button>
                     </td>
                   </tr>
                 ))
