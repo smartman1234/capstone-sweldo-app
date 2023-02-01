@@ -23,6 +23,13 @@ export const login = async (data) =>
   User
 */
 
+// Dashboard
+export const getUserDashboardStats = async () =>
+  await fetch(baseUrl + '/user/dashboard', {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+
 // Attendance
 export const clockIn = async () =>
   await fetch(baseUrl + '/user/attendance/clock-in', {
