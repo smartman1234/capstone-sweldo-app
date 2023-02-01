@@ -34,6 +34,16 @@ class EmployeeController extends Controller
                 'type' => 'email'
             ], 400);
         }
+
+        // Validate Password
+        $result = ValidationUtil::validatePassword($password);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'password'
+            ], 400);
+        }
+
     }
 
     public function show(Request $request)
