@@ -154,6 +154,20 @@ class ValidationUtil
         return null;
     }
 
+    public function validateTaskName(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter your task name';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        if (preg_match("/[^A-Za-z0-9\s]/", $value)) {
+            return 'Only letters, numbers and space are allowed';
+        }
+        return null;
+    }
+
     public static function validateTimestamp(string $value = null)
     {
         if (empty($value)) {
