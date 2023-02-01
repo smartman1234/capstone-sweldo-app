@@ -1,4 +1,4 @@
-import { useEffect, useState  } from 'react'
+import { useEffect, useState } from 'react'
 import SuccessAlert from '../../components/ui/alerts/SuccessAlert'
 import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
@@ -131,6 +131,9 @@ const AdminProfile = () => {
               className='w-full text-gray px-5 py-2.5 rounded border'
               id='gender'
               value={formData.gender}
+              onChange={(e) =>
+                setFormData({ ...formData, gender: e.target.value })
+              }
               disabled={!edit}
             >
               <option value='male'>Male</option>
