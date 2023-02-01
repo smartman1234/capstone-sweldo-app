@@ -4,6 +4,17 @@ namespace App\Utils;
 
 class ValidationUtil
 {
+    public static function validateId(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Invalid id';
+        }
+        if (!is_numeric($value)) {
+            return 'Invalid id';
+        }
+        return null;
+    }
+
     public static function validateEmail(string $value = null)
     {
         if (empty($value)) {
