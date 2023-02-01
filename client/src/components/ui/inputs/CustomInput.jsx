@@ -9,7 +9,7 @@ const CustomInput = ({
   disabled = false
 }) => {
   return (
-    <div>
+    <div className='w-full'>
       {label !== undefined && (
         <label
           htmlFor={id}
