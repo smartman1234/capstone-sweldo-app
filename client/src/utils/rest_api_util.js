@@ -128,8 +128,8 @@ export const updateJob = async (id, data) =>
   })
 
 // Leave
-export const getLeaves = async () =>
-  await fetch(baseUrl + '/admin/leave', {
+export const getLeaves = async (page) =>
+  await fetch(baseUrl + `/admin/leave?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })

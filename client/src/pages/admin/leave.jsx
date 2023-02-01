@@ -14,9 +14,9 @@ const Leave = () => {
     getLeaves()
   }, [])
 
-  const getLeaves = async () => {
+  const getLeaves = async (page = 1) => {
     try {
-      const result = await RestApi.getLeaves()
+      const result = await RestApi.getLeaves(page)
       const response = await result.json()
       if (result.status === 200) {
         setLeaves(response.leaves)
@@ -69,7 +69,7 @@ const Leave = () => {
               ))}
           </tbody>
         </table>
-        <Pagination pagination={leaves} onClick={() => {}} />
+        <Pagination pagination={leaves} onClick={getLeaves} />
       </div>
     </div>
   )
