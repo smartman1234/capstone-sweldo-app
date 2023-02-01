@@ -82,16 +82,27 @@ class ValidationUtil
         if (strlen($value) > 255) {
             return 'Max 255 characters only';
         }
+        if ($value != 'male' && $value != 'female') {
+            return 'Invalid gender';
+        }
+        return null;
+    }
+
+    public static function validateAddress(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter an address';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
         return null;
     }
 
     public static function validatePhone(string $value = null)
     {
         if (empty($value)) {
-            return 'Please enter a Phone number';
-        }
-        if (strlen($value) > 255) {
-            return 'Max 255 characters only';
+            return 'Please enter a phone number';
         }
         if (strlen($value) > 255) {
             return 'Max 255 characters only';
