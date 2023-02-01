@@ -9,6 +9,8 @@ const Leave = () => {
   const [formData, setFormData] = useState({
     name: '',
   })
+  const [loading, setLoading] = useState(false)
+
   const [leaves, setLeaves] = useState()
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const Leave = () => {
   }
 
   const approveLeave = async (id) => {
+    setLoading(true)
     try {
       const result = await RestApi.approveLeave(id)
       const response = await result.json()
@@ -47,9 +50,11 @@ const Leave = () => {
         getLeaves(leaves.current_page)
       }
     } catch (error) {}
+    setLoading(false)
   }
 
   const declineLeave = async (id) => {
+    setLoading(true)
     try {
       const result = await RestApi.declineLeave(id)
       const response = await result.json()
@@ -57,6 +62,7 @@ const Leave = () => {
         getLeaves(leaves.current_page)
       }
     } catch (error) {}
+    setLoading(false)
   }
 
   return (
@@ -98,10 +104,12 @@ const Leave = () => {
                       <ActionButton
                         name='Approve'
                         onClick={() => approveLeave(leave.id)}
+                        loading={loading}
                       />
                       <ActionButton
                         name='Decline'
                         onClick={() => declineLeave(leave.id)}
+                        loading={loading}
                       />
                     </td>
                   </tr>
