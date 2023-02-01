@@ -26,6 +26,7 @@ class LeaveController extends Controller
         foreach ($leaves->items() as $item) {
             $employeesName[] = [
                 'id' => $item->id,
+                'email' => $item->user->email,
                 'name' => $item->user->first_name . ' ' . $item->user->last_name,
                 'date' => $item->date,
                 'status' => $item->status,

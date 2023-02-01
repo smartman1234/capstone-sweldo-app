@@ -65,7 +65,7 @@ const Leave = () => {
         <CustomInput
           id='name'
           type='text'
-          placeholder='Search for employee name'
+          placeholder='Search for employee name or email'
           value={formData.name}
           onChange={(e) => {
             setFormData({ ...formData, name: e.target.value })
@@ -76,7 +76,8 @@ const Leave = () => {
           <thead className='bg-gray-100 uppercase'>
             <tr>
               <th className='p-2.5'>#</th>
-              <th className='p-2.5'>Employee Name</th>
+              <th className='p-2.5'>Email</th>
+              <th className='p-2.5'>Name</th>
               <th className='p-2.5'>Date</th>
               <th className='p-2.5'>Status</th>
               <th className='p-2.5'>Action</th>
@@ -88,6 +89,7 @@ const Leave = () => {
                 leaves.data.map((leave, index) => (
                   <tr key={index} className='border-b'>
                     <th className='p-2.5'>{leaves.from + index}</th>
+                    <td className='p-2.5'>{leave.email}</td>
                     <td className='p-2.5'>{leave.name}</td>
                     <td className='p-2.5'>{leave.date}</td>
                     <td className='p-2.5'>{leave.status}</td>
