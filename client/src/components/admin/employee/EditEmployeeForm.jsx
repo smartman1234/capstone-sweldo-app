@@ -25,7 +25,7 @@ const EditEmployeeForm = ({ selectedEmployeeId, setSelectedEmployeeId }) => {
       const result = await RestApi.getEmployee(selectedEmployeeId)
       const response = await result.json()
       if (result.status === 200) {
-        console.log(response)
+        setFormData(response.employee)
       }
     } catch (error) {}
   }
@@ -35,7 +35,7 @@ const EditEmployeeForm = ({ selectedEmployeeId, setSelectedEmployeeId }) => {
     setError(undefined)
 
     try {
-      const result = await RestApi.addEmployee(formData)
+      const result = await RestApi.updateEmployee(selectedEmployeeId, formData)
       const response = await result.json()
       if (result.status === 200) {
         setSelectedEmployeeId(undefined)
@@ -194,7 +194,7 @@ const EditEmployeeForm = ({ selectedEmployeeId, setSelectedEmployeeId }) => {
             />
           </div>
           <CustomButton
-            name='Create'
+            name='Update'
             onClick={handleSubmit}
             loading={loading}
             fullWidth={true}
