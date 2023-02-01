@@ -31,7 +31,7 @@ class ValidationUtil
         }
         return null;
     }
-    
+
     public static function validateFirstName(string $value = null)
     {
         if (empty($value)) {
@@ -44,6 +44,6 @@ class ValidationUtil
             return 'Only letters are allowed';
         }
         return null;
-
+    }
 
 }
