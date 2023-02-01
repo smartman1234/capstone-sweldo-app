@@ -3,12 +3,14 @@ import ActionButton from '../../components/ui/buttons/ActionButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import Pagination from '../../components/Pagination'
+import AddEmployeeForm from '../../components/admin/employee/AddEmployeeForm'
 import * as RestApi from '../../utils/rest_api_util'
 
 const Employee = () => {
   const [formData, setFormData] = useState({
     name: '',
   })
+  const [showAddForm, setShowAddForm] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const [employees, setEmployees] = useState()
@@ -41,22 +43,34 @@ const Employee = () => {
     } catch (error) {}
   }
 
+  const toggleAddForm = () => {
+    setShowAddForm(!showAddForm)
+  }
+
   const viewEmployee = async (id) => {}
 
   return (
     <div>
       <PageTitle title='Employee' />
       <div className='space-y-4'>
-        <CustomInput
-          id='name'
-          type='text'
-          placeholder='Search for employee name or email'
-          value={formData.name}
-          onChange={(e) => {
-            setFormData({ ...formData, name: e.target.value })
-            searchEmployee(e.target.value)
-          }}
-        />
+        <div className='flex space-x-4'>
+          <CustomInput
+            id='name'
+            type='text'
+            placeholder='Search for employee name or email'
+            value={formData.name}
+            onChange={(e) => {
+              setFormData({ ...formData, name: e.target.value })
+              searchEmployee(e.target.value)
+            }}
+          />
+          <button
+            className='bg-blue-600 text-white font-medium px-5 py-2.5 rounded hover:bg-blue-700'
+            onClick={toggleAddForm}
+          >
+            Add
+          </button>
+        </div>
         <table className='w-full text-left'>
           <thead className='bg-gray-100 uppercase'>
             <tr>
@@ -100,6 +114,7 @@ const Employee = () => {
         </table>
         <Pagination pagination={employees} onClick={getEmployees} />
       </div>
+      {showAddForm && <AddEmployeeForm toggleAddForm={toggleAddForm} />}
     </div>
   )
 }
