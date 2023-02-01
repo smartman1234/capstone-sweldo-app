@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 
@@ -95,6 +96,15 @@ class EmployeeController extends Controller
             return response()->json([
                 'message' => $result,
                 'type' => 'phone'
+            ], 400);
+        }
+
+        // Check if email already exist
+        $user = User::where('email', $email)->first();
+        if ($user != null) {
+            return response()->json([
+                'message' => 'Email already exist',
+                'type' => 'email'
             ], 400);
         }
     }
