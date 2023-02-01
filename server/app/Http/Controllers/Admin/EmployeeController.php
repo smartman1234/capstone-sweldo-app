@@ -80,6 +80,14 @@ class EmployeeController extends Controller
             ], 400);
         }
 
+        // Validate Address
+        $result = ValidationUtil::validateGender($address);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'address'
+            ], 400);
+        }
     }
 
     public function show(Request $request)
