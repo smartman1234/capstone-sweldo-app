@@ -154,7 +154,7 @@ class ValidationUtil
         return null;
     }
 
-    public function validateTaskName(string $value = null)
+    public static function validateTaskName(string $value = null)
     {
         if (empty($value)) {
             return 'Please enter your task name';
