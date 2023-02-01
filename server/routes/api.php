@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
 
+// User
+use App\Http\Controllers\User\ProfileController;
+
+// Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\DepartmentController;
@@ -15,6 +19,18 @@ Route::post('/login', [LoginController::class, 'login']);
 /*
     User routes
 */
+
+Route::group([
+    'prefix' => '/user',
+    'middleware' => [
+        'auth:api',
+    ]
+], function () {
+
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::post('/profile', [ProfileController::class, 'update']);
+});
 
 /*
     Admin routes
