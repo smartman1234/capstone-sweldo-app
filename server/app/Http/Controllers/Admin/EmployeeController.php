@@ -70,6 +70,16 @@ class EmployeeController extends Controller
                 'type' => 'birthday'
             ], 400);
         }
+
+        // Validate Gender
+        $result = ValidationUtil::validateGender($gender);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'gender'
+            ], 400);
+        }
+
     }
 
     public function show(Request $request)
