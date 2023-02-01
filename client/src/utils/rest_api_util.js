@@ -23,6 +23,18 @@ export const login = async (data) =>
   User
 */
 
+// Attendance
+export const clockIn = async () =>
+  await fetch(baseUrl + '/user/attendance/clock-in', {
+    method: 'POST',
+    headers: getHeaders(),
+  })
+export const clockOut = async () =>
+  await fetch(baseUrl + '/user/attendance/clock-out', {
+    method: 'POST',
+    headers: getHeaders(),
+  })
+
 // Profile
 export const getProfile = async () =>
   await fetch(baseUrl + '/user/profile', {
