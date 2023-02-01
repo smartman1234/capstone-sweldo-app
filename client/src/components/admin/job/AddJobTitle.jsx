@@ -24,20 +24,23 @@ const AddJobTitle = () => {
     setError(undefined)
     setSuccess(undefined)
 
-    const result = await RestApi.addJob()
-    const response = await result.json()
-    if (result.status === 400) {
-      setError(response)
-    }
-    if (result.status === 200) {
-      setFormData((prevData) => {
-        return {
-          ...prevData,
-          name: '',
-        }
-      })
-      setSuccess(response)
-    }
+    try {
+      const result = await RestApi.addJob(formData)
+      const response = await result.json()
+      if (result.status === 400) {
+        setError(response)
+      }
+      if (result.status === 200) {
+        setFormData((prevData) => {
+          return {
+            ...prevData,
+            name: '',
+          }
+        })
+        setSuccess(response)
+      }
+    } catch (error) {}
+    setLoading(false)
   }
   return (
     <>
