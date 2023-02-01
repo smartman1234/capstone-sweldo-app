@@ -54,6 +54,11 @@ export const addTask = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+export const deleteTask = async (id) =>
+  await fetch(baseUrl + `/user/task/${id}/delete`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Profile
 export const getProfile = async () =>

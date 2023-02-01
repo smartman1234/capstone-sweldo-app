@@ -47,7 +47,15 @@ const TaskForm = ({ selectedDate, setSelectedDate }) => {
     setShowInput(false)
   }
 
-  const deleteTask = async (id) => {}
+  const deleteTask = async (id) => {
+    try {
+      const result = await RestApi.deleteTask(id)
+      if (result.status === 200) {
+        setDailyTasks(dailyTasks.filter((task) => task.id !== id))
+        // getMonthlyTasks(selectedDate)
+      }
+    } catch (error) {}
+  }
 
   return (
     <div className='bg-black/75 fixed top-0 left-0 z-10 w-full h-screen p-5'>
