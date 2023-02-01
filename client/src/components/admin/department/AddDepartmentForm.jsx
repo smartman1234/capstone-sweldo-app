@@ -3,10 +3,9 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const AddJobForm = ({ toggleAddForm }) => {
+const AddDepartmentForm = ({ toggleAddForm }) => {
   const [formData, setFormData] = useState({
     name: '',
-    salary: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
@@ -16,7 +15,7 @@ const AddJobForm = ({ toggleAddForm }) => {
     setError(undefined)
 
     try {
-      const result = await RestApi.addJob(formData)
+      const result = await RestApi.addDepartment(formData)
       const response = await result.json()
       if (result.status === 200) {
         toggleAddForm()
@@ -35,7 +34,7 @@ const AddJobForm = ({ toggleAddForm }) => {
           {/* Form title */}
           <div className='flex justify-between'>
             <div className='mb-4'>
-              <h1 className='text-3xl font-bold'>Create Employee</h1>
+              <h1 className='text-3xl font-bold'>Create Department</h1>
             </div>
             <div>
               <button
@@ -62,10 +61,10 @@ const AddJobForm = ({ toggleAddForm }) => {
           {/* Form */}
           <div className='mb-8 space-y-4'>
             <CustomInput
-              label='Job'
+              label='Department'
               id='name'
               type='text'
-              placeholder='Software Engineer'
+              placeholder='IT Department'
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
@@ -76,22 +75,6 @@ const AddJobForm = ({ toggleAddForm }) => {
                   : null
               }
             />
-            <CustomInput
-              label='Salary'
-              id='salary'
-              type='number'
-              placeholder='100000'
-              value={formData.salary}
-              onChange={(e) =>
-                setFormData({ ...formData, salary: e.target.value })
-              }
-              error={
-                error !== undefined && error.type === 'salary'
-                  ? error.message
-                  : null
-              }
-            />
-          
           </div>
           <CustomButton
             name='Create'
@@ -105,4 +88,4 @@ const AddJobForm = ({ toggleAddForm }) => {
   )
 }
 
-export default AddJobForm
+export default AddDepartmentForm

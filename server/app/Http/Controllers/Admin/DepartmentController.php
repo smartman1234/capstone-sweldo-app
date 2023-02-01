@@ -11,7 +11,17 @@ class DepartmentController extends Controller
 {
     public function index(Request $request)
     {
-        // TODO: Return departments
+        // Search Department
+
+        if ($request->name == null) {
+            $departments = Department::paginate(10);
+        } else {
+            $departments = Department::where('name', 'LIKE', "%" . $request->name . "%")->paginate(10);
+        }
+        return response()->json([
+            'departments' => $departments,
+        ]);
+    
     }
 
     public function store(Request $request)
@@ -19,7 +29,7 @@ class DepartmentController extends Controller
         // TODO: Save department
         $name = $request->name;
 
-        // Validate Job Title
+        // Validate Department 
         $result = ValidationUtil::validateDepartment($name);
         if ($result != null) {
             return response()->json([
@@ -39,11 +49,72 @@ class DepartmentController extends Controller
 
     public function show(Request $request)
     {
-        // TODO: Return department by id
+        $id = $request->id;
+
+        // Validate id
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get Department
+        $job = Department::find($id);
+
+        // Not found
+        if ($job == null) {
+            return response()->json([
+                'message' => 'Job Title not found',
+            ], 400);
+        }
+
+        return response()->json([
+            'job' => $job,
+        ]);
     }
 
     public function update(Request $request)
     {
-        // TODO: Update department by id
+        $id = $request->id;
+
+        $name = $request->name;
+
+        // Validate Id of Department
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Validate Department
+        $result = ValidationUtil::validateDepartment($name);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'name'
+            ], 400);
+        }
+      
+        // Get Department
+        $department = Department::find($id);
+
+        // Not found
+        if ($department == null) {
+            return response()->json([
+                'message' => 'Department not found',
+            ], 400);
+        }
+
+        $department->update([
+            'name' => $name,
+        ]);
+
+        return response()->json([
+            'message' => 'Department updated successfully'
+        ]);
     }
 }

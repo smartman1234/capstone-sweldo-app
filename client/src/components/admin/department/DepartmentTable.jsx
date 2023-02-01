@@ -1,28 +1,26 @@
 import ActionButton from '../../ui/buttons/ActionButton'
 
-const JobTable = ({ jobs, setSelectedJobId }) => {
+const DepartmentTable = ({ departments, setSelectedDepartmentId }) => {
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
         <tr>
           <th className='p-2.5'>#</th>
-          <th className='p-2.5'>Job Title</th>
-          <th className='p-2.5'>Salary</th>
+          <th className='p-2.5'>Department</th>
           <th className='p-2.5'>Action</th>
         </tr>
       </thead>
       <tbody>
-        {jobs !== undefined &&
-          (jobs.data.length !== 0 ? (
-            jobs.data.map((job, index) => (
+        {departments !== undefined &&
+          (departments.data.length !== 0 ? (
+            departments.data.map((department, index) => (
               <tr key={index} className='border-b'>
-                <th className='p-2.5'>{jobs.from + index}</th>
-                <td className='p-2.5'>{job.name}</td>
-                <td className='p-2.5'>{job.salary}</td>
+                <th className='p-2.5'>{departments.from + index}</th>
+                <td className='p-2.5'>{department.name}</td>
                 <td className='p-2.5 space-x-4'>
                   <ActionButton
                     name='View'
-                    onClick={() => setSelectedJobId(job.id)}
+                    onClick={() => setSelectedDepartmentId(department.id)}
                   />
                 </td>
               </tr>
@@ -39,4 +37,4 @@ const JobTable = ({ jobs, setSelectedJobId }) => {
   )
 }
 
-export default JobTable
+export default DepartmentTable

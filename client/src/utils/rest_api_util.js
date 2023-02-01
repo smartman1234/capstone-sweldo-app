@@ -90,6 +90,11 @@ export const getDepartments = async () =>
     method: 'GET',
     headers: getHeaders(),
   })
+export const searchDepartments = async (name, page) =>
+  await fetch(baseUrl + `/admin/job?name=${name}&page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 export const addDepartment = async (data) =>
   await fetch(baseUrl + '/admin/department', {
     method: 'POST',
@@ -114,8 +119,8 @@ export const getJobs = async () =>
     method: 'GET',
     headers: getHeaders(),
   })
-  export const searchJobs = async (name, page) =>
-  await fetch(baseUrl + `/admin/jobs?name=${name}&page=${page}`, {
+export const searchJobs = async (name, page) =>
+  await fetch(baseUrl + `/admin/job?name=${name}&page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })

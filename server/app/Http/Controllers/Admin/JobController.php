@@ -14,7 +14,7 @@ class JobController extends Controller
         if ($request->name == null) {
             $jobs = Job::paginate(10);
         } else {
-            $jobs = Job::where('name', 'like', "%" . $request->name . "%")->paginate(10);
+            $jobs = Job::where('name', 'LIKE', "%" . $request->name . "%")->paginate(10);
         }
         return response()->json([
             'jobs' => $jobs,
@@ -24,6 +24,7 @@ class JobController extends Controller
     public function store(Request $request)
     {
         $name = $request->name;
+        $salary = $request->salary;
 
         // Validate Job Title
         $result = ValidationUtil::validateJobTitle($name);
@@ -36,6 +37,7 @@ class JobController extends Controller
 
         $job = Job::create([
             'name' => $name,
+            'salary' => $salary,
         ]);
 
         return response()->json([
@@ -45,7 +47,6 @@ class JobController extends Controller
 
     public function show(Request $request)
     {
-        // TODO: Return job by id
         $id = $request->id;
 
         // Validate id
@@ -75,5 +76,56 @@ class JobController extends Controller
     public function update(Request $request)
     {
         // TODO: Update job by id
+
+        $id = $request->id;
+
+        $name = $request->name;
+        $salary = $request->salary;
+
+
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Validate Job
+        $result = ValidationUtil::validateJobTitle($name);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'name'
+            ], 400);
+        }
+
+        // Validate Salary
+        $result = ValidationUtil::validateSalary($salary);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'salary'
+            ], 400);
+        }
+
+        // Get Job
+        $job = Job::find($id);
+
+        // Not found
+        if ($job == null) {
+            return response()->json([
+                'message' => 'Job not found',
+            ], 400);
+        }
+
+        $job->update([
+            'name' => $name,
+            'salary' => $salary,
+        ]);
+
+        return response()->json([
+            'message' => 'Job updated successfully'
+        ]);
     }
 }

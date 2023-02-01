@@ -10,6 +10,7 @@ import JobTable from '../../components/admin/job/JobTable'
 const Job = () => {
   const [formData, setFormData] = useState({
     name: '',
+
   })
   const [showAddForm, setShowAddForm] = useState(false)
 
@@ -30,8 +31,6 @@ const Job = () => {
       const response = await result.json()
       if (result.status === 200) {
         setJobs(response.jobs)
-
-
       }
     } catch (error) {}
   }
@@ -52,13 +51,13 @@ const Job = () => {
 
   return (
     <div>
-      <PageTitle title='Job Title' />
+      <PageTitle title='Job' />
       <div className='space-y-4'>
         <div className='flex space-x-4'>
           <CustomInput
             id='name'
             type='text'
-            placeholder='Search for employee name or email'
+            placeholder='Search for Job Title'
             value={formData.name}
             onChange={(e) => {
               setFormData({ ...formData, name: e.target.value })
@@ -72,17 +71,14 @@ const Job = () => {
             Add
           </button>
         </div>
-        <JobTable
-          jobs={jobs}
-          setSelectedJobId={setSelectedJobId}
-        />
+        <JobTable jobs={jobs} setSelectedJobId={setSelectedJobId} />
         <Pagination pagination={jobs} onClick={getJobs} />
       </div>
       {showAddForm && <AddJobForm toggleAddForm={toggleAddForm} />}
       {selectedJobId !== undefined && (
         <EditJobForm
-        selectedJobId={selectedJobId}
-        setSelectedJobId={setSelectedJobId}
+          selectedJobId={selectedJobId}
+          setSelectedJobId={setSelectedJobId}
         />
       )}
     </div>
