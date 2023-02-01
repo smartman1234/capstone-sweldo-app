@@ -4,7 +4,7 @@ import AttendanceOverview from '../../components/admin/dashboard/AttendanceOverv
 import Statistics from '../../components/admin/dashboard/Statistics'
 import * as RestApi from '../../utils/rest_api_util'
 
-const AdminDashboard = () => {
+const UserDashboard = () => {
   const [stats, setStats] = useState({
     monthly: 0,
     rate: 0,
@@ -39,4 +39,4 @@ const AdminDashboard = () => {
   )
 }
 
-export default AdminDashboard
+export default UserDashboard

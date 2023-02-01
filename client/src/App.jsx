@@ -9,7 +9,7 @@ import UserLayout from './components/layouts/UserLayout'
 import AdminLayout from './components/layouts/AdminLayout'
 
 // User
-import Dashboard from './pages/user/dashboard'
+import UserDashboard from './pages/user/dashboard'
 import Calendar from './pages/user/calendar'
 import SalaryHistory from './pages/user/salary_history'
 import Profile from './pages/user/profile'
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       */
       {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: <UserDashboard />,
       },
       {
         path: 'calendar',
