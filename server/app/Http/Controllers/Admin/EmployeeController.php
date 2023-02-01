@@ -217,6 +217,8 @@ class EmployeeController extends Controller
         $gender = $request->gender;
         $address = $request->address;
         $phone = $request->phone;
+        $departmentId = $request->department_id;
+        $jobId = $request->job_id;
 
         // Validate id
         $result = ValidationUtil::validateId($id);
@@ -290,6 +292,24 @@ class EmployeeController extends Controller
             ], 400);
         }
 
+        // Validate department id
+        $result = ValidationUtil::validateId($departmentId);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'department'
+            ], 400);
+        }
+
+        // Validate job id
+        $result = ValidationUtil::validateId($jobId);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'job'
+            ], 400);
+        }
+
         // Get employee
         $employee = User::find($id);
 
@@ -297,6 +317,26 @@ class EmployeeController extends Controller
         if ($employee == null) {
             return response()->json([
                 'message' => 'Employee not found',
+            ], 400);
+        }
+
+        // Get department
+        $department = Department::find($departmentId);
+
+        // Not found
+        if ($department == null) {
+            return response()->json([
+                'message' => 'Department not found',
+            ], 400);
+        }
+
+        // Get job
+        $job = Job::find($jobId);
+
+        // Not found
+        if ($job == null) {
+            return response()->json([
+                'message' => 'Job not found',
             ], 400);
         }
 
@@ -309,6 +349,8 @@ class EmployeeController extends Controller
             'gender' => $gender,
             'address' => $address,
             'phone' => $phone,
+            'department_id' => $department->id,
+            'job_id' => $job->id,
         ]);
 
         return response()->json([
