@@ -1,5 +1,11 @@
+import PageTitle from '../../components/ui/titles/PageTitle'
+
 const Payroll = () => {
-  return <div>Payroll</div>
+  return (
+    <div>
+      <PageTitle title='Payroll' />
+    </div>
+  )
 }
 
 export default Payroll

@@ -1,5 +1,11 @@
+import PageTitle from '../../components/ui/titles/PageTitle'
+
 const AdminSettings = () => {
-  return <div>Admin Settings</div>
+  return (
+    <div>
+      <PageTitle title='Settings' />
+    </div>
+  )
 }
 
 export default AdminSettings
