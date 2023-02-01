@@ -49,7 +49,7 @@ const EditJobForm = ({ selectedJobId, setSelectedJobId }) => {
           {/* Form title */}
           <div className='flex justify-between'>
             <div className='mb-4'>
-              <h1 className='text-3xl font-bold'>Edit Job Title</h1>
+              <h1 className='text-3xl font-bold'>Edit Job</h1>
             </div>
             <div>
               <button
@@ -76,7 +76,7 @@ const EditJobForm = ({ selectedJobId, setSelectedJobId }) => {
           {/* Form */}
           <div className='mb-8 space-y-4'>
             <CustomInput
-              label='Job Title'
+              label='Name'
               id='name'
               type='text'
               placeholder='Software Engineer'

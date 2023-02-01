@@ -48,7 +48,7 @@ const EditDepartmentForm = ({ selectedDepartmentId, setSelectedDepartmentId }) =
           {/* Form title */}
           <div className='flex justify-between'>
             <div className='mb-4'>
-              <h1 className='text-3xl font-bold'>Edit Job Title</h1>
+              <h1 className='text-3xl font-bold'>Edit Department</h1>
             </div>
             <div>
               <button

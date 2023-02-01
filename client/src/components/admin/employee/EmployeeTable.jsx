@@ -7,8 +7,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Email</th>
-          <th className='p-2.5'>First Name</th>
-          <th className='p-2.5'>Last Name</th>
+          <th className='p-2.5'>Name</th>
           <th className='p-2.5'>Department</th>
           <th className='p-2.5'>Job</th>
           <th className='p-2.5'>Action</th>
@@ -21,8 +20,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
               <tr key={index} className='border-b'>
                 <th className='p-2.5'>{employees.from + index}</th>
                 <td className='p-2.5'>{employee.email}</td>
-                <td className='p-2.5'>{employee.first_name}</td>
-                <td className='p-2.5'>{employee.last_name}</td>
+                <td className='p-2.5'>{employee.first_name} {employee.last_name}</td>
                 <td className='p-2.5'>{employee.department.name}</td>
                 <td className='p-2.5'>{employee.job.name}</td>
                 <td className='p-2.5 space-x-4'>
@@ -36,7 +34,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
           ) : (
             <tr>
               <td colSpan='5' className='text-center p-2.5'>
-                0 Employee
+                No data available
               </td>
             </tr>
           ))}

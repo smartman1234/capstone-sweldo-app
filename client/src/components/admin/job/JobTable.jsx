@@ -6,7 +6,7 @@ const JobTable = ({ jobs, setSelectedJobId }) => {
       <thead className='bg-gray-100 uppercase'>
         <tr>
           <th className='p-2.5'>#</th>
-          <th className='p-2.5'>Job Title</th>
+          <th className='p-2.5'>Name</th>
           <th className='p-2.5'>Salary</th>
           <th className='p-2.5'>Action</th>
         </tr>
@@ -30,7 +30,7 @@ const JobTable = ({ jobs, setSelectedJobId }) => {
           ) : (
             <tr>
               <td colSpan='5' className='text-center p-2.5'>
-                0 Job Title
+                No data available
               </td>
             </tr>
           ))}
