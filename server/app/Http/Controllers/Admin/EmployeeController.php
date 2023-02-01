@@ -10,11 +10,13 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         // TODO: Return employees
+
     }
 
     public function store(Request $request)
     {
         // TODO: Save employee
+        
     }
 
     public function show(Request $request)

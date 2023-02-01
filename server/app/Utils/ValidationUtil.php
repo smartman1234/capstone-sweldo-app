@@ -31,4 +31,19 @@ class ValidationUtil
         }
         return null;
     }
+    
+    public static function validateFirstName(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter your first name';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        if (preg_match("/[^A-Za-z]/", $value)) {
+            return 'Only letters are allowed';
+        }
+        return null;
+
+
 }
