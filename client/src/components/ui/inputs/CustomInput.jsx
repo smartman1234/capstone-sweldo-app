@@ -6,6 +6,7 @@ const CustomInput = ({
   value,
   onChange,
   error,
+  disabled = false
 }) => {
   return (
     <div>
@@ -28,6 +29,7 @@ const CustomInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        disabled={disabled}
       />
       {error && <span className='text-sm text-red-500'>{error}</span>}
     </div>
