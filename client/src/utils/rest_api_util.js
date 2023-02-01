@@ -91,7 +91,7 @@ export const getDepartments = async () =>
     headers: getHeaders(),
   })
 export const searchDepartments = async (name, page) =>
-  await fetch(baseUrl + `/admin/job?name=${name}&page=${page}`, {
+  await fetch(baseUrl + `/admin/department?name=${name}&page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
