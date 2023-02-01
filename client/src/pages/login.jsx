@@ -22,7 +22,7 @@ const Login = () => {
     const token = localStorage.getItem('token')
     if (token) {
       if (isAdmin === '0') {
-        navigate('/dashboard')
+        navigate('/user/dashboard')
         return
       }
       navigate('/admin/dashboard')

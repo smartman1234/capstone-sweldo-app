@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 
-const Layout = () => {
+const UserLayout = () => {
   const navigate = useNavigate()
 
   const [activeSidebar, setActiveSidebar] = useState(true)
@@ -13,6 +13,10 @@ const Layout = () => {
     const token = localStorage.getItem('token')
     if (!token || !isAdmin) {
       navigate('/')
+      return
+    }
+    if (isAdmin === '1') {
+      navigate('/admin/dashboard')
       return
     }
     // eslint-disable-next-line
@@ -32,10 +36,7 @@ const Layout = () => {
             : 'w-full transition-all duration-300'
         }
       >
-        <Navbar
-          activeSidebar={activeSidebar}
-          toggleSidebar={toggleSidebar}
-        />
+        <Navbar activeSidebar={activeSidebar} toggleSidebar={toggleSidebar} />
         <div className='p-5'>
           <Outlet />
         </div>
@@ -44,4 +45,4 @@ const Layout = () => {
   )
 }
 
-export default Layout
+export default UserLayout

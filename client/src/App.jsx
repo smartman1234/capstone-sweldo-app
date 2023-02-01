@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Login from './pages/login'
 
-import Layout from './components/layouts/Layout'
+import UserLayout from './components/layouts/UserLayout'
 
 // User
 import Dashboard from './pages/user/dashboard'
@@ -24,6 +24,7 @@ import PageNotFound from './pages/404'
 import SalaryHistory from './pages/user/salary_history'
 import Profile from './pages/user/profile'
 import Settings from './pages/user/settings'
+import AdminLayout from './components/layouts/AdminLayout'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    element: <Layout />,
+    path: 'user',
+    element: <UserLayout />,
     children: [
       /*
         User
@@ -56,43 +58,49 @@ const router = createBrowserRouter([
         path: 'settings',
         element: <Settings />,
       },
-      /*
-        Admin
-      */
+    ],
+  },
+  /*
+    Admin
+  */
+  {
+    path: 'admin',
+    element: <AdminLayout />,
+    children: [
       {
-        path: 'admin/dashboard',
+        path: 'dashboard',
         element: <AdminDashboard />,
       },
       {
-        path: 'admin/calendar',
+        path: 'calendar',
         element: <AdminCalendar />,
       },
       {
-        path: 'admin/employee',
+        path: 'employee',
         element: <Employee />,
       },
       {
-        path: 'admin/department',
+        path: 'department',
         element: <Department />,
       },
       {
-        path: 'admin/job',
+        path: 'job',
         element: <Job />,
       },
       {
-        path: 'admin/leave',
+        path: 'leave',
         element: <Leave />,
       },
       {
-        path: 'admin/payroll',
+        path: 'payroll',
         element: <Payroll />,
       },
       {
-        path: 'admin/profile',
+        path: 'profile',
         element: <Profile />,
       },
       {
-        path: 'admin/settings',
+        path: 'settings',
         element: <Settings />,
       },
     ],

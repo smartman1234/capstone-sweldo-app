@@ -78,31 +78,31 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
           ) : (
             <>
               <li className='flex'>
-                <SidebarButton name='Dashboard' to='admin/dashboard' />
+                <SidebarButton name='Dashboard' to='dashboard' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Calendar' to='admin/calendar' />
+                <SidebarButton name='Calendar' to='calendar' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Employee' to='admin/employee' />
+                <SidebarButton name='Employee' to='employee' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Department' to='admin/department' />
+                <SidebarButton name='Department' to='department' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Job' to='admin/job' />
+                <SidebarButton name='Job' to='job' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Leave' to='admin/leave' />
+                <SidebarButton name='Leave' to='leave' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Payroll' to='admin/payroll' />
+                <SidebarButton name='Payroll' to='payroll' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Profile' to='admin/profile' />
+                <SidebarButton name='Profile' to='profile' />
               </li>
               <li className='flex'>
-                <SidebarButton name='Settings' to='admin/settings' />
+                <SidebarButton name='Settings' to='settings' />
               </li>
             </>
           )}
