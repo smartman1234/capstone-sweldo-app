@@ -88,6 +88,15 @@ class EmployeeController extends Controller
                 'type' => 'address'
             ], 400);
         }
+
+        // Validate Phone number
+        $result = ValidationUtil::validatePhone($phone);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'phone'
+            ], 400);
+        }
     }
 
     public function show(Request $request)
