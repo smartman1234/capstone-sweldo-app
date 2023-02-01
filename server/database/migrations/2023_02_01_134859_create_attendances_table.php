@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->timestamp('clock_in');
-            $table->timestamp('clock_out');
+            $table->timestamp('clock_in')->nullable();
+            $table->timestamp('clock_out')->nullable();
             $table->timestamps();
         });
     }
