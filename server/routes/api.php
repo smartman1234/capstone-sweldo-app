@@ -9,10 +9,11 @@ use App\Http\Controllers\User\ProfileController;
 
 // Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminSettingsController;
 
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -68,4 +69,7 @@ Route::group([
     // Profile
     Route::get('/profile', [AdminProfileController::class, 'show']);
     Route::post('/profile', [AdminProfileController::class, 'update']);
+
+    // Settings
+    Route::post('/settings', [AdminSettingsController::class, 'update']);
 });
