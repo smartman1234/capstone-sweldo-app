@@ -56,8 +56,8 @@ export const getAdminDashboardStats = async () =>
   })
 
 // Employee
-export const getEmployees = async () =>
-  await fetch(baseUrl + '/admin/employee', {
+export const getEmployees = async (page) =>
+  await fetch(baseUrl + `/admin/employee?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
