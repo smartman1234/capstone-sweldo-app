@@ -97,3 +97,16 @@ export const updateJob = async (id, data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+
+// Profile
+export const getAdminProfile = async () =>
+  await fetch(baseUrl + '/admin/profile', {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+export const updateAdminProfile = async (data) =>
+  await fetch(baseUrl + '/admin/profile', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })

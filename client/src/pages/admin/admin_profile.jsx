@@ -1,7 +1,9 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
+import * as RestApi from '../../utils/rest_api_util'
 
 const AdminProfile = () => {
   const [edit, setEdit] = useState(false)
@@ -18,6 +20,18 @@ const AdminProfile = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
   const [success, setSuccess] = useState()
+
+  useEffect(() => {
+    getAdminProfile()
+  }, [])
+
+  const getAdminProfile = async () => {
+    try {
+      const result = await RestApi.getAdminProfile()
+      const response = await result.json()
+      setFormData(response.user)
+    } catch (error) {}
+  }
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -105,16 +119,15 @@ const AdminProfile = () => {
             <select
               className='w-full text-gray px-5 py-2.5 rounded border'
               id='gender'
+              value={formData.gender}
               disabled={!edit}
             >
               <option
-                selected={formData.gender === 'male' ? true : false}
                 value='male'
               >
                 Male
               </option>
               <option
-                selected={formData.gender === 'female' ? true : false}
                 value='female'
               >
                 Female
