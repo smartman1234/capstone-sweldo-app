@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 
@@ -69,6 +70,9 @@ Route::group([
     Route::post('/job', [JobController::class, 'store']);
     Route::get('/job/{id}', [JobController::class, 'show']);
     Route::post('/job/{id}', [JobController::class, 'update']);
+
+    // Leave
+    Route::get('/leave', [LeaveController::class, 'index']);
 
     // Profile
     Route::get('/profile', [AdminProfileController::class, 'show']);
