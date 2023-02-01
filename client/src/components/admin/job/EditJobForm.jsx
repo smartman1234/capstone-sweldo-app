@@ -6,6 +6,7 @@ import * as RestApi from '../../../utils/rest_api_util'
 const EditJobForm = ({ selectedJobId, setSelectedJobId }) => {
   const [formData, setFormData] = useState({
     name: '',
+    salary: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
@@ -85,6 +86,21 @@ const EditJobForm = ({ selectedJobId, setSelectedJobId }) => {
               }
               error={
                 error !== undefined && error.type === 'name'
+                  ? error.message
+                  : null
+              }
+            />
+            <CustomInput
+              label='Salary'
+              id='salary'
+              type='text'
+              placeholder='100000'
+              value={formData.salary}
+              onChange={(e) =>
+                setFormData({ ...formData, salary: e.target.value })
+              }
+              error={
+                error !== undefined && error.type === 'salary'
                   ? error.message
                   : null
               }
