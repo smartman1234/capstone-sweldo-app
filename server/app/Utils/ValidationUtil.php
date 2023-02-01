@@ -131,4 +131,15 @@ class ValidationUtil
         }
         return null;
     }
+
+    public static function validateDepartment(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter a Department';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        return null;
+    }
 }
