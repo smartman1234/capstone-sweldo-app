@@ -120,4 +120,15 @@ class ValidationUtil
         }
         return null;
     }
+
+    public static function validateJobTitle(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter a Job Title';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        return null;
+    }
 }
