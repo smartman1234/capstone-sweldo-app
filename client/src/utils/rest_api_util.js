@@ -24,7 +24,7 @@ export const login = async (data) =>
 */
 
 // Dashboard
-export const getUserDashboardStats = async () =>
+export const getDashboardStats = async () =>
   await fetch(baseUrl + '/user/dashboard', {
     method: 'GET',
     headers: getHeaders(),

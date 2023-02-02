@@ -13,12 +13,12 @@ const UserDashboard = () => {
   })
 
   useEffect(() => {
-    getUserDashboard()
+    getDashboardStats()
   }, [])
 
-  const getUserDashboard = async () => {
+  const getDashboardStats = async () => {
     try {
-      const result = await RestApi.getUserDashboardStats()
+      const result = await RestApi.getDashboardStats()
       const response = await result.json()
       if (result.status === 200) {
         setStats(response)
