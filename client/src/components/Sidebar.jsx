@@ -108,7 +108,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
           )}
           <li className='flextext-white'>
             <button
-              className='w-full flex space-x-5 text-black font-medium px-5 py-2.5 rounded hover:bg-blue-600 hover:text-white'
+              className='w-full flex space-x-4 text-black font-medium px-5 py-2.5 rounded hover:bg-blue-600 hover:text-white'
               onClick={logout}
             >
               <svg
