@@ -65,6 +65,19 @@ export const deleteTask = async (id) =>
     headers: getHeaders(),
   })
 
+// Leave
+export const getLeaves = async (page) =>
+  await fetch(baseUrl + `/admin/leave?page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+export const addLeave = async (data) =>
+  await fetch(baseUrl + '/admin/leave', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
+
 // Salary history
 export const getSalaryHistory = async (page) =>
   await fetch(baseUrl + `/user/salary-history?page=${page}`, {
@@ -221,12 +234,12 @@ export const updateDeduction = async (id, data) =>
   })
 
 // Leave
-export const getLeaves = async (page) =>
+export const getAdminLeaves = async (page) =>
   await fetch(baseUrl + `/admin/leave?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
-export const searchLeaves = async (name, page) =>
+export const searchAdminLeaves = async (name, page) =>
   await fetch(baseUrl + `/admin/leave?name=${name}&page=${page}`, {
     method: 'GET',
     headers: getHeaders(),

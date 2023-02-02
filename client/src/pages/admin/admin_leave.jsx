@@ -22,7 +22,7 @@ const AdminLeave = () => {
       return
     }
     try {
-      const result = await RestApi.getLeaves(page)
+      const result = await RestApi.getAdminLeaves(page)
       const response = await result.json()
       if (result.status === 200) {
         setLeaves(response.leaves)
@@ -32,7 +32,7 @@ const AdminLeave = () => {
 
   const searchLeaves = async (name, page = 1) => {
     try {
-      const result = await RestApi.searchLeaves(name, page)
+      const result = await RestApi.searchAdminLeaves(name, page)
       const response = await result.json()
       if (result.status === 200) {
         setLeaves(response.leaves)
