@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\User\AttendanceController;
+use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\SalaryHistoryController;
 use App\Http\Controllers\User\TaskController;
 
@@ -33,6 +34,9 @@ Route::group([
         'auth:api',
     ]
 ], function () {
+
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     // Attendance
     Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn']);
