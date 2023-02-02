@@ -11,8 +11,6 @@ class DepartmentController extends Controller
 {
     public function index(Request $request)
     {
-        // Search Department
-
         if ($request->name == null) {
             $departments = Department::paginate(10);
         } else {
@@ -21,15 +19,13 @@ class DepartmentController extends Controller
         return response()->json([
             'departments' => $departments,
         ]);
-    
     }
 
     public function store(Request $request)
     {
-        // TODO: Save department
         $name = $request->name;
 
-        // Validate Department 
+        // Validate department 
         $result = ValidationUtil::validateDepartment($name);
         if ($result != null) {
             return response()->json([
@@ -38,7 +34,8 @@ class DepartmentController extends Controller
             ], 400);
         }
 
-        $department = Department::create([
+        // Create department
+        Department::create([
             'name' => $name,
         ]);
 
@@ -60,25 +57,24 @@ class DepartmentController extends Controller
             ], 400);
         }
 
-        // Get Department
-        $job = Department::find($id);
+        // Get department
+        $department = Department::find($id);
 
         // Not found
-        if ($job == null) {
+        if ($department == null) {
             return response()->json([
-                'message' => 'Job Title not found',
+                'message' => 'Department not found',
             ], 400);
         }
 
         return response()->json([
-            'job' => $job,
+            'job' => $department,
         ]);
     }
 
     public function update(Request $request)
     {
         $id = $request->id;
-
         $name = $request->name;
 
         // Validate Id of Department
@@ -98,7 +94,7 @@ class DepartmentController extends Controller
                 'type' => 'name'
             ], 400);
         }
-      
+
         // Get Department
         $department = Department::find($id);
 
@@ -109,6 +105,7 @@ class DepartmentController extends Controller
             ], 400);
         }
 
+        // Update
         $department->update([
             'name' => $name,
         ]);

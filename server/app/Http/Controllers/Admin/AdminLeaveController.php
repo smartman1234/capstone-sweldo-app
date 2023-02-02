@@ -7,7 +7,7 @@ use App\Models\Leave;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 
-class LeaveController extends Controller
+class AdminLeaveController extends Controller
 {
     public function index(Request $request)
     {

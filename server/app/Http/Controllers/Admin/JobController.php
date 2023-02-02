@@ -26,7 +26,7 @@ class JobController extends Controller
         $name = $request->name;
         $salary = $request->salary;
 
-        // Validate Job Title
+        // Validate job
         $result = ValidationUtil::validateJobTitle($name);
         if ($result != null) {
             return response()->json([
@@ -35,7 +35,17 @@ class JobController extends Controller
             ], 400);
         }
 
-        $job = Job::create([
+        // Validate salary
+        $result = ValidationUtil::validateSalary($salary);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'salary'
+            ], 400);
+        }
+
+        // Create
+        Job::create([
             'name' => $name,
             'salary' => $salary,
         ]);
@@ -58,13 +68,13 @@ class JobController extends Controller
             ], 400);
         }
 
-        // Get Job Title
+        // Get job
         $job = Job::find($id);
 
         // Not found
         if ($job == null) {
             return response()->json([
-                'message' => 'Job Title not found',
+                'message' => 'Job not found',
             ], 400);
         }
 
@@ -75,14 +85,11 @@ class JobController extends Controller
 
     public function update(Request $request)
     {
-        // TODO: Update job by id
-
         $id = $request->id;
-
         $name = $request->name;
         $salary = $request->salary;
 
-
+        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -91,7 +98,7 @@ class JobController extends Controller
             ], 400);
         }
 
-        // Validate Job
+        // Validate job
         $result = ValidationUtil::validateJobTitle($name);
         if ($result != null) {
             return response()->json([
@@ -100,7 +107,7 @@ class JobController extends Controller
             ], 400);
         }
 
-        // Validate Salary
+        // Validate salary
         $result = ValidationUtil::validateSalary($salary);
         if ($result != null) {
             return response()->json([
@@ -109,7 +116,7 @@ class JobController extends Controller
             ], 400);
         }
 
-        // Get Job
+        // Get job
         $job = Job::find($id);
 
         // Not found
@@ -119,6 +126,7 @@ class JobController extends Controller
             ], 400);
         }
 
+        // Update
         $job->update([
             'name' => $name,
             'salary' => $salary,
