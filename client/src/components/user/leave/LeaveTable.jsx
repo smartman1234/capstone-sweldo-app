@@ -18,10 +18,7 @@ const LeaveTable = ({ departments, setSelectedDepartmentId }) => {
                 <th className='p-2.5'>{departments.from + index}</th>
                 <td className='p-2.5'>{department.name}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ActionButton
-                    name='View'
-                    onClick={() => setSelectedDepartmentId(department.id)}
-                  />
+                  Pending
                 </td>
               </tr>
             ))

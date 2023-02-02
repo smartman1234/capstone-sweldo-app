@@ -4,8 +4,7 @@ import PageTitle from '../../components/ui/titles/PageTitle'
 import Pagination from '../../components/Pagination'
 import * as RestApi from '../../utils/rest_api_util'
 import DepartmentTable from '../../components/admin/department/DepartmentTable'
-import AddDepartmentForm from '../../components/admin/department/AddDepartmentForm'
-import EditDepartmentForm from '../../components/admin/department/EditDepartmentForm'
+import AddLeaveForm from '../../components/user/leave/AddLeaveForm'
 
 const Leave = () => {
   const [formData, setFormData] = useState({
@@ -13,36 +12,25 @@ const Leave = () => {
   })
   const [showAddForm, setShowAddForm] = useState(false)
 
-  const [departments, setDepartments] = useState()
-  const [selectedDepartmentId, setSelectedDepartmentId] = useState()
+  const [leaves, setleaves] = useState()
+  const [selectedLeaveId, setSelectedLeaveId] = useState()
 
   useEffect(() => {
-    getDepartments()
+    getLeaves()
   }, [])
 
-  const getDepartments = async (page = 1) => {
-    if (formData.name !== '') {
-      searchDepartments(formData.name, page)
-      return
-    }
+  const getLeaves = async (page = 1) => {
+  
     try {
       const result = await RestApi.getLeaves(page)
       const response = await result.json()
       if (result.status === 200) {
-        setDepartments(response.departments)
+        setleaves(response.leaves)
       }
     } catch (error) {}
   }
 
-  const searchDepartments = async (name, page = 1) => {
-    try {
-      const result = await RestApi.searchDepartments(name, page)
-      const response = await result.json()
-      if (result.status === 200) {
-        setDepartments(response.departments)
-      }
-    } catch (error) {}
-  }
+
 
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm)
@@ -50,7 +38,7 @@ const Leave = () => {
 
   return (
     <div>
-      <PageTitle title='Department' />
+      <PageTitle title='Leave' />
       <div className='space-y-4'>
         <div className='flex space-x-4'>
          
@@ -62,18 +50,13 @@ const Leave = () => {
           </button>
         </div>
         <DepartmentTable
-          departments={departments}
-          setSelectedDepartmentId={setSelectedDepartmentId}
+          leaves={leaves}
+          setSelectedLeaveId={setSelectedLeaveId}
         />
-        <Pagination pagination={departments} onClick={getDepartments} />
+        <Pagination pagination={leaves} onClick={getLeaves} />
       </div>
-      {showAddForm && <AddDepartmentForm toggleAddForm={toggleAddForm} />}
-      {selectedDepartmentId !== undefined && (
-        <EditDepartmentForm
-          selectedDepartmentId={selectedDepartmentId}
-          setSelectedDepartmentId={setSelectedDepartmentId}
-        />
-      )}
+      {showAddForm && <AddLeaveForm toggleAddForm={toggleAddForm} />}
+
     </div>
   )
 }
