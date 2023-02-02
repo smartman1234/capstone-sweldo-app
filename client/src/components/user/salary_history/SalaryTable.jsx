@@ -13,7 +13,7 @@ const SalaryTable = ({ salaries }) => {
           <th className='p-2.5'>Date</th>
           <th className='p-2.5'>Total Hours</th>
           <th className='p-2.5'>Deduction</th>
-          <th className='p-2.5'>Earning</th>
+          <th className='p-2.5'>Earnings</th>
         </tr>
       </thead>
       <tbody>
