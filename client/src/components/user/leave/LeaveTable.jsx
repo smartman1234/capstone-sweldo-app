@@ -1,22 +1,24 @@
 import ActionButton from '../../ui/buttons/ActionButton'
 
-const LeaveTable = ({ departments, setSelectedDepartmentId }) => {
+const LeaveTable = ({ leaves }) => {
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
         <tr>
           <th className='p-2.5'>#</th>
-          <th className='p-2.5'>Name</th>
+          <th className='p-2.5'>Date</th>
+          <th className='p-2.5'>Status</th>
           <th className='p-2.5'>Action</th>
         </tr>
       </thead>
       <tbody>
-        {departments !== undefined &&
-          (departments.data.length !== 0 ? (
-            departments.data.map((department, index) => (
+        {leaves !== undefined &&
+          (leaves.data.length !== 0 ? (
+            leaves.data.map((leave, index) => (
               <tr key={index} className='border-b'>
-                <th className='p-2.5'>{departments.from + index}</th>
-                <td className='p-2.5'>{department.name}</td>
+                <th className='p-2.5'>{leaves.from + index}</th>
+                <td className='p-2.5'>{leave.date}</td>
+                <td className='p-2.5'>{leave.name}</td>
                 <td className='p-2.5 space-x-4'>
                   Pending
                 </td>

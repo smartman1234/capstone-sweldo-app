@@ -3,8 +3,8 @@ import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import Pagination from '../../components/Pagination'
 import * as RestApi from '../../utils/rest_api_util'
-import DepartmentTable from '../../components/admin/department/DepartmentTable'
 import AddLeaveForm from '../../components/user/leave/AddLeaveForm'
+import LeaveTable from '../../components/user/leave/LeaveTable'
 
 const Leave = () => {
   const [formData, setFormData] = useState({
@@ -49,9 +49,8 @@ const Leave = () => {
             Add
           </button>
         </div>
-        <DepartmentTable
+        <LeaveTable
           leaves={leaves}
-          setSelectedLeaveId={setSelectedLeaveId}
         />
         <Pagination pagination={leaves} onClick={getLeaves} />
       </div>

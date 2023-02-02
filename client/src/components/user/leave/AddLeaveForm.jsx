@@ -34,7 +34,7 @@ const AddLeaveForm = ({ toggleAddForm }) => {
           {/* Form title */}
           <div className='flex justify-between'>
             <div className='mb-4'>
-              <h1 className='text-3xl font-bold'>Create Department</h1>
+              <h1 className='text-3xl font-bold'>Create a Request for Leave</h1>
             </div>
             <div>
               <button
@@ -61,20 +61,21 @@ const AddLeaveForm = ({ toggleAddForm }) => {
           {/* Form */}
           <div className='mb-8 space-y-4'>
             <CustomInput
-              label='Name'
-              id='name'
-              type='text'
-              placeholder='IT Department'
-              value={formData.name}
+              label='Date'
+              id='date'
+              type='date'
+              placeholder='mm/dd/yy'
+              value={formData.date}
               onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
+                setFormData({ ...formData, date: e.target.value })
               }
               error={
-                error !== undefined && error.type === 'name'
+                error !== undefined && error.type === 'date'
                   ? error.message
                   : null
               }
             />
+          
           </div>
           <CustomButton
             name='Create'
