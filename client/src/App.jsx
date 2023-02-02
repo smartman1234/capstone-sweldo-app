@@ -22,6 +22,7 @@ import AdminCalendar from './pages/admin/calendar'
 import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
 import Job from './pages/admin/job'
+import Deduction from './pages/admin/deduction'
 import AdminLeave from './pages/admin/admin_leave'
 import Payroll from './pages/admin/payroll'
 import AdminProfile from './pages/admin/admin_profile'
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: 'job',
         element: <Job />,
+      },
+      {
+        path: 'deduction',
+        element: <Deduction />,
       },
       {
         path: 'leave',
