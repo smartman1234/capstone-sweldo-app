@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
+use App\Http\Controllers\Admin\DeductionController;
 use App\Http\Controllers\User\AttendanceController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\SalaryHistoryController;
@@ -91,6 +92,12 @@ Route::group([
     Route::post('/job', [JobController::class, 'store']);
     Route::get('/job/{id}', [JobController::class, 'show']);
     Route::post('/job/{id}', [JobController::class, 'update']);
+
+    // Deduction
+    Route::get('/deduction', [DeductionController::class, 'index']);
+    Route::post('/deduction', [DeductionController::class, 'store']);
+    Route::get('/deduction/{id}', [DeductionController::class, 'show']);
+    Route::post('/deduction/{id}', [DeductionController::class, 'update']);
 
     // Leave
     Route::get('/leave', [LeaveController::class, 'index']);
