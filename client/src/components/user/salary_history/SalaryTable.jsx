@@ -12,14 +12,14 @@ const SalaryTable = ({ salaries }) => {
       </thead>
       <tbody>
         {salaries !== undefined &&
-          (salaries.length !== 0 ? (
-            salaries.map((salary, index) => (
+          (salaries.data.length !== 0 ? (
+            salaries.data.map((salary, index) => (
               <tr key={index} className='border-b'>
-                <th className='p-2.5'>{index + 1}</th>
-                <td className='p-2.5'>{salary.date}</td>
-                <td className='p-2.5'>{salary.totalHours}</td>
-                <td className='p-2.5'>Deduction</td>
-                <td className='p-2.5'>{salary.totalHours * salary.rate}</td>                
+                <th className='p-2.5'>{salaries.from + index}</th>
+                <td className='p-2.5'>{salary.created_at}</td>
+                <td className='p-2.5'>{salary.total_hours}</td>
+                <td className='p-2.5'>{salary.deductions}</td>
+                <td className='p-2.5'>{salary.earnings}</td>
               </tr>
             ))
           ) : (
