@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Deduction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -41,8 +42,11 @@ class DashboardController extends Controller
         // Get total leaves
         $leave = $user->leaves()->count();
 
+        // Get all deductions
+        $deductions = Deduction::sum('amount');
+
         // Expected salary
-        $expectedSalary = $monthly * $rate;
+        $expectedSalary = ($monthly * $rate) - $deductions;
 
         // Get attendance today
         $attendance = $user->attendances()->where('created_at', '>=', Carbon::now()->startOfDay())->first();
