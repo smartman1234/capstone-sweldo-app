@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pay_slips', function (Blueprint $table) {
+        Schema::create('payslips', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->float('total_hours');
             $table->float('deductions');
-            $table->float('earnings');
+            $table->float('earning');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pay_slips');
+        Schema::dropIfExists('payslips');
     }
 };
