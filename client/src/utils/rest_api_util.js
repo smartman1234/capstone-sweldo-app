@@ -256,8 +256,8 @@ export const declineLeave = async (id) =>
   })
 
 // Payroll
-export const getPayrolls = async (page) =>
-  await fetch(baseUrl + `/admin/payroll?page=${page}`, {
+export const getPayrolls = async (timestamp, page) =>
+  await fetch(baseUrl + `/admin/payroll?timestamp=${timestamp}&page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
