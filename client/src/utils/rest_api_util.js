@@ -191,6 +191,35 @@ export const updateJob = async (id, data) =>
     body: JSON.stringify(data),
   })
 
+// Deduction
+export const getDeductions = async (page) =>
+  await fetch(baseUrl + `/admin/deduction?page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+export const searchDeductions = async (name, page) =>
+  await fetch(baseUrl + `/admin/deduction?name=${name}&page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+export const addDeduction = async (data) =>
+  await fetch(baseUrl + '/admin/deduction', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
+export const getDeduction = async (id) =>
+  await fetch(baseUrl + `/admin/deduction/${id}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+export const updateDeduction = async (id, data) =>
+  await fetch(baseUrl + `/admin/deduction/${id}`, {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
+
 // Leave
 export const getLeaves = async (page) =>
   await fetch(baseUrl + `/admin/leave?page=${page}`, {
