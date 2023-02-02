@@ -24,20 +24,12 @@ export const options = {
   },
 }
 
-const labels = ['Jan 29', 'Jan 28', 'Jan 29', 'Jan 30', 'Jan 31']
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Work Hours',
-      data: [5, 8, 6, 5, 10],
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-}
-
-const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
+const AttendanceOverview = ({
+  getDashboardStats,
+  clockIn,
+  clockOut,
+  chartData,
+}) => {
   const [loading, setLoading] = useState(false)
   const [attendanceFilter, setAttendanceFilter] = useState('weekly')
 
@@ -116,7 +108,7 @@ const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
         </div>
       </div>
       <div className='h-96'>
-        <Bar options={options} data={data} />
+        <Bar options={options} data={chartData} />
       </div>
     </div>
   )

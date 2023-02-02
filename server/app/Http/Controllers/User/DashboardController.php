@@ -55,6 +55,22 @@ class DashboardController extends Controller
             $clockOut = $attendance->clock_out;
         }
 
+        // Previous attendance
+        $previousAttendances = [];
+        for ($day = 1; $day <= 5; $day++) {
+            $attendance = $user->attendances()->whereBetween(
+                'created_at',
+                [
+                    Carbon::now()->subDay($day)->startOfDay(),
+                    Carbon::now()->subDay($day)->endOfDay()
+                ]
+            )->first();
+            if ($attendance != null) {
+                $previousAttendances['labels'][] = Carbon::now()->subDay($day)->rawFormat('M d');
+                $previousAttendances['data'][] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
+            }
+        }
+
         return response()->json([
             'monthly' => $monthly,
             'rate' => $rate,
@@ -62,6 +78,7 @@ class DashboardController extends Controller
             'expectedSalary' => $expectedSalary,
             'clockIn' => $clockIn,
             'clockOut' => $clockOut,
+            'previousAttendances' => $previousAttendances,
         ]);
     }
 }

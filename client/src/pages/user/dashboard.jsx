@@ -13,6 +13,12 @@ const UserDashboard = () => {
     expectedSalary: 0,
     clockIn: null,
     clockOut: null,
+    // previousAttendances: null,
+  })
+
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [],
   })
 
   useEffect(() => {
@@ -25,6 +31,17 @@ const UserDashboard = () => {
       const response = await result.json()
       if (result.status === 200) {
         setStats(response)
+        setChartData({
+          ...chartData,
+          labels: response.previousAttendances.labels.reverse(),
+          datasets: [
+            {
+              label: 'Work Hours',
+              data: response.previousAttendances.data.reverse(),
+              backgroundColor: 'rgba(53, 162, 235, 0.5)'
+            }
+          ]
+        })
       }
     } catch (error) {}
   }
@@ -43,6 +60,7 @@ const UserDashboard = () => {
           getDashboardStats={getDashboardStats}
           clockIn={stats.clockIn}
           clockOut={stats.clockOut}
+          chartData={chartData}
         />
       </div>
     </div>
