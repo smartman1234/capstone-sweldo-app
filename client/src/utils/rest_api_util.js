@@ -66,8 +66,8 @@ export const deleteTask = async (id) =>
   })
 
 // Salary history
-export const getSalaryHistory = async () =>
-  await fetch(baseUrl + '/user/salary-history', {
+export const getSalaryHistory = async (page) =>
+  await fetch(baseUrl + `/user/salary-history?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
@@ -134,8 +134,8 @@ export const updateEmployee = async (id, data) =>
   })
 
 // Department
-export const getDepartments = async () =>
-  await fetch(baseUrl + '/admin/department', {
+export const getDepartments = async (page) =>
+  await fetch(baseUrl + `/admin/department?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
@@ -163,8 +163,8 @@ export const updateDepartment = async (id, data) =>
   })
 
 // Job
-export const getJobs = async () =>
-  await fetch(baseUrl + '/admin/job', {
+export const getJobs = async (page) =>
+  await fetch(baseUrl + `/admin/job?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
