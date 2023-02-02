@@ -8,7 +8,7 @@ const PayrollTable = () => {
             <th className='p-2.5'>Name</th>
             <th className='p-2.5'>Total Hours</th>
             <th className='p-2.5'>Deduction</th>
-            <th className='p-2.5'>Earning</th>
+            <th className='p-2.5'>Earnings</th>
             <th className='p-2.5'>Action</th>
           </tr>
         </thead>
