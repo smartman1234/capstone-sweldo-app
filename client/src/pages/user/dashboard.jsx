@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
-import AttendanceOverview from '../../components/admin/dashboard/AttendanceOverview'
+import AttendanceOverview from '../../components/user/dashboard/AttendanceOverview'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import StatisticCard from '../../components/ui/cards/StatisticCard'
 import * as RestApi from '../../utils/rest_api_util'
