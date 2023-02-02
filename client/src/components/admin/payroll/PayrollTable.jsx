@@ -1,4 +1,4 @@
-const PayrollTable = () => {
+const PayrollTable = ({ payrolls }) => {
   return (
     <div>
       <table className='w-full text-left'>
@@ -13,13 +13,24 @@ const PayrollTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className='p-2.5'>1</td>
-            <td className='p-2.5'>John Doe</td>
-            <td className='p-2.5'>462</td>
-            <td className='p-2.5'>352</td>
-            <td className='p-2.5'>700</td>
-          </tr>
+          {payrolls !== undefined &&
+            (payrolls.data.length !== 0 ? (
+              payrolls.data.map((employee, index) => (
+                <tr key={index} className='border-b'>
+                  <th className='p-2.5'>{payrolls.from + index}</th>
+                  <td className='p-2.5'>{employee.name}</td>
+                  <td className='p-2.5'>{employee.totalHours}</td>
+                  <td className='p-2.5'>{employee.deductions}</td>
+                  <td className='p-2.5'>{employee.earnings}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan='5' className='text-center p-2.5'>
+                  No data available
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
