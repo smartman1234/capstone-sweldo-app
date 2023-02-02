@@ -5,7 +5,7 @@ import Pagination from '../../components/Pagination'
 import LeaveTable from '../../components/admin/leave/LeaveTable'
 import * as RestApi from '../../utils/rest_api_util'
 
-const Leave = () => {
+const AdminLeave = () => {
   const [formData, setFormData] = useState({
     name: '',
   })
@@ -64,4 +64,4 @@ const Leave = () => {
   )
 }
 
-export default Leave
+export default AdminLeave

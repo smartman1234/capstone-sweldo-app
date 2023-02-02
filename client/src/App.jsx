@@ -11,6 +11,7 @@ import AdminLayout from './components/layouts/AdminLayout'
 // User
 import UserDashboard from './pages/user/dashboard'
 import Calendar from './pages/user/calendar'
+import Leave from './pages/user/leave'
 import SalaryHistory from './pages/user/salary_history'
 import Profile from './pages/user/profile'
 import Settings from './pages/user/settings'
@@ -21,7 +22,7 @@ import AdminCalendar from './pages/admin/calendar'
 import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
 import Job from './pages/admin/job'
-import Leave from './pages/admin/leave'
+import AdminLeave from './pages/admin/admin_leave'
 import Payroll from './pages/admin/payroll'
 import AdminProfile from './pages/admin/admin_profile'
 import AdminSettings from './pages/admin/admin_settings'
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: 'calendar',
         element: <Calendar />,
+      },
+      {
+        path: 'leave',
+        element: <Leave />,
       },
       {
         path: 'salary-history',
@@ -92,7 +97,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'leave',
-        element: <Leave />,
+        element: <AdminLeave />,
       },
       {
         path: 'payroll',
