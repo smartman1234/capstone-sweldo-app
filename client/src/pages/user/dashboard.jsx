@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import AttendanceOverview from '../../components/admin/dashboard/AttendanceOverview'
 import PageTitle from '../../components/ui/titles/PageTitle'
-import UserStatistics from '../../components/user/UserStatistics'
+import StatisticCard from '../../components/ui/cards/StatisticCard'
 import * as RestApi from '../../utils/rest_api_util'
 
 const UserDashboard = () => {
@@ -12,7 +12,7 @@ const UserDashboard = () => {
     leave: 0,
     expectedSalary: 0,
     clockIn: null,
-    clockOut: null
+    clockOut: null,
   })
 
   useEffect(() => {
@@ -32,13 +32,19 @@ const UserDashboard = () => {
   return (
     <div>
       <PageTitle title='Dashboard' />
-      <UserStatistics
-        monthly={stats.monthly}
-        rate={stats.rate}
-        leave={stats.leave}
-        expectedSalary={stats.expectedSalary}
-      />
-      <AttendanceOverview getDashboardStats={getDashboardStats} clockIn={stats.clockIn} clockOut={stats.clockOut} />
+      <div className='space-y-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+          <StatisticCard name='Monthly' value={stats.monthly} />
+          <StatisticCard name='Rate' value={stats.rate} />
+          <StatisticCard name='Leave' value={stats.leave} />
+          <StatisticCard name='Expected Salary' value={stats.expectedSalary} />
+        </div>
+        <AttendanceOverview
+          getDashboardStats={getDashboardStats}
+          clockIn={stats.clockIn}
+          clockOut={stats.clockOut}
+        />
+      </div>
     </div>
   )
 }

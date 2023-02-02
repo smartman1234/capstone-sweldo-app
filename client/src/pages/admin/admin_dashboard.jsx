@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import AttendanceOverview from '../../components/admin/dashboard/AttendanceOverview'
-import Statistics from '../../components/admin/dashboard/Statistics'
+import StatisticCard from '../../components/ui/cards/StatisticCard'
+import PageTitle from '../../components/ui/titles/PageTitle'
 import * as RestApi from '../../utils/rest_api_util'
 
 const AdminDashboard = () => {
@@ -27,14 +28,16 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className=''>
-      <Statistics
-        totalEmployee={stats.totalEmployee}
-        totalPresent={stats.totalPresent}
-        totalLate={stats.totalLate}
-        totalOnLeave={stats.totalOnLeave}
-      />
-      <AttendanceOverview />
+    <div>
+      <PageTitle title='Dashboard' />
+      <div className='space-y-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+          <StatisticCard name='Total Employee' value={stats.totalEmployee} />
+          <StatisticCard name='Present' value={stats.totalPresent} />
+          <StatisticCard name='Late' value={stats.totalLate} />
+          <StatisticCard name='On Leave' value={stats.totalOnLeave} />
+        </div>
+      </div>
     </div>
   )
 }
