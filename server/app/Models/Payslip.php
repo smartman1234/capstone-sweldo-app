@@ -13,7 +13,7 @@ class Payslip extends Model
         'user_id',
         'total_hours',
         'deductions',
-        'earning',
+        'earnings',
     ];
 
     public function user()
