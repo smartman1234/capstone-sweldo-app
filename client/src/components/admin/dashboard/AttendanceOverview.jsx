@@ -7,7 +7,6 @@ const AttendanceOverview = ({ isClockIn }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
   const [success, setSuccess] = useState()
-  const [toggle, setToggle] = useState(false)
 
   const clockIn = async () => {
     setLoading(true)

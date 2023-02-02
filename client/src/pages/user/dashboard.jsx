@@ -22,6 +22,7 @@ const UserDashboard = () => {
       const result = await RestApi.getDashboardStats()
       const response = await result.json()
       if (result.status === 200) {
+        setIsClockIn(response.isClockIn)
         setStats(response)
       }
     } catch (error) {}
