@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\AdminLeaveController;
 use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
+use App\Http\Controllers\User\LeaveController;
 
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -48,6 +49,10 @@ Route::group([
     Route::get('/task/daily/{timestamp}', [TaskController::class, 'getDailyTasks']);
     Route::post('/task', [TaskController::class, 'store']);
     Route::post('/task/{id}/delete', [TaskController::class, 'destroy']);
+
+    // Leave
+    Route::get('/leave', [LeaveController::class, 'index']);
+    Route::post('/leave', [LeaveController::class, 'store']);
 
     // Salary history
     Route::get('/salary-history', [SalaryHistoryController::class, 'index']);
