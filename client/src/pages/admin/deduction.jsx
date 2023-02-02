@@ -77,7 +77,7 @@ const Deduction = () => {
         <Pagination pagination={deductions} onClick={getDeductions} />
       </div>
       {showAddForm && <AddDeductionForm toggleAddForm={toggleAddForm} />}
-      {setSelectedDeductionId !== undefined && (
+      {selectedDeductionId !== undefined && (
         <EditDeductionForm
           selectedDeductionId={selectedDeductionId}
           setSelectedDeductionId={setSelectedDeductionId}

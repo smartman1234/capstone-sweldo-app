@@ -26,7 +26,7 @@ class DeductionController extends Controller
         $name = $request->name;
         $amount = $request->amount;
 
-        // Validate job
+        // Validate deduction
         $result = ValidationUtil::validateDeductionName($name);
         if ($result != null) {
             return response()->json([
@@ -35,7 +35,7 @@ class DeductionController extends Controller
             ], 400);
         }
 
-        // Validate salary
+        // Validate amount
         $result = ValidationUtil::validateDeductionAmount($amount);
         if ($result != null) {
             return response()->json([
@@ -68,7 +68,7 @@ class DeductionController extends Controller
             ], 400);
         }
 
-        // Get job
+        // Get deduction
         $deduction = Deduction::find($id);
 
         // Not found
@@ -98,7 +98,7 @@ class DeductionController extends Controller
             ], 400);
         }
 
-        // Validate job
+        // Validate deduction
         $result = ValidationUtil::validateDeductionName($name);
         if ($result != null) {
             return response()->json([
@@ -107,7 +107,7 @@ class DeductionController extends Controller
             ], 400);
         }
 
-        // Validate salary
+        // Validate amount
         $result = ValidationUtil::validateDeductionAmount($amount);
         if ($result != null) {
             return response()->json([
@@ -116,7 +116,7 @@ class DeductionController extends Controller
             ], 400);
         }
 
-        // Get job
+        // Get deduction
         $deduction = Deduction::find($id);
 
         // Not found
