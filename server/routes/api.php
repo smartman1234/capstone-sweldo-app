@@ -5,23 +5,23 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
 // User
-use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\AttendanceController;
+use App\Http\Controllers\User\TaskController;
 use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\User\SalaryHistoryController;
+use App\Http\Controllers\User\ProfileController;
 
 // Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\JobController;
-use App\Http\Controllers\Admin\LeaveController;
+use App\Http\Controllers\Admin\DeductionController;
+use App\Http\Controllers\Admin\AdminLeaveController;
 use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
-use App\Http\Controllers\Admin\DeductionController;
-use App\Http\Controllers\User\AttendanceController;
-use App\Http\Controllers\User\DashboardController;
-use App\Http\Controllers\User\SalaryHistoryController;
-use App\Http\Controllers\User\TaskController;
 
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -100,9 +100,9 @@ Route::group([
     Route::post('/deduction/{id}', [DeductionController::class, 'update']);
 
     // Leave
-    Route::get('/leave', [LeaveController::class, 'index']);
-    Route::post('/leave/{id}/approve', [LeaveController::class, 'approve']);
-    Route::post('/leave/{id}/decline', [LeaveController::class, 'decline']);
+    Route::get('/leave', [AdminLeaveController::class, 'index']);
+    Route::post('/leave/{id}/approve', [AdminLeaveController::class, 'approve']);
+    Route::post('/leave/{id}/decline', [AdminLeaveController::class, 'decline']);
 
     // Payroll
     Route::get('/payroll', [PayrollController::class, 'index']);
