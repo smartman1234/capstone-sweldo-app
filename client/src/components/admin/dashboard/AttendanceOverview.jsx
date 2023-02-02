@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import SuccessAlert from '../../ui/alerts/SuccessAlert'
+import DangerAlert from '../../ui/alerts/DangerAlert'
 
 const AttendanceOverview = ({ isClockIn }) => {
   const [loading, setLoading] = useState(false)
@@ -52,6 +53,7 @@ const AttendanceOverview = ({ isClockIn }) => {
           <div>
             <CustomButton name='Clock In' onClick={clockIn} loading={loading} />
             <SuccessAlert message={success?.message} />
+            <DangerAlert message={error?.message} />
           </div>
         )}
       </div>
