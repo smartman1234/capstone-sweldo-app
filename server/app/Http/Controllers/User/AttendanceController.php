@@ -60,18 +60,12 @@ class AttendanceController extends Controller
 
         // Previous attendance
         $previousAttendances = [];
-        for ($day = 1; $day <= 5; $day++) {
-            $attendance = $user->attendances()->whereBetween(
-                'created_at',
-                [
-                    Carbon::now()->subDay($day)->startOfDay(),
-                    Carbon::now()->subDay($day)->endOfDay()
-                ]
-            )->first();
-            if ($attendance != null) {
-                $previousAttendances['labels'][] = Carbon::now()->subDay($day)->rawFormat('M d');
-                $previousAttendances['data'][] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
-            }
+
+        // Take latest 7 only
+        $attendances = $user->attendances()->get()->sortByDesc('created_at')->take(7);
+        foreach ($attendances as $attendance) {
+            $previousAttendances['labels'][] = Carbon::parse($attendance->created_at)->rawFormat('M d');
+            $previousAttendances['data'][] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
         }
 
         return response()->json([

@@ -113,7 +113,7 @@ const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
             )}
           </div>
         </div>
-        <div className='flex justify-between items-center'>
+        {/* <div className='flex justify-between items-center'>
           <div>
             <h1>⏱ Tracked Time</h1>
             <span className='text-3xl font-bold'>7h 30m</span>
@@ -130,7 +130,7 @@ const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
               <option value='yearly'>Yearly</option>
             </select>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className='h-96'>
         <Bar options={options} data={chartData} />
