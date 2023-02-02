@@ -5,6 +5,7 @@ import UserStatistics from '../../components/user/UserStatistics'
 import * as RestApi from '../../utils/rest_api_util'
 
 const UserDashboard = () => {
+  const [isClockIn, setIsClockIn] = useState()
   const [stats, setStats] = useState({
     monthly: 0,
     rate: 0,
@@ -34,7 +35,7 @@ const UserDashboard = () => {
         leave={stats.leave}
         expectedSalary={stats.expectedSalary}
       />
-      <AttendanceOverview />
+      <AttendanceOverview isClockIn={isClockIn}/>
     </div>
   )
 }
