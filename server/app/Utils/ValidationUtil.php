@@ -178,4 +178,26 @@ class ValidationUtil
         }
         return null;
     }
+
+    public static function validateDeductionName(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter a Deduction name';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        return null;
+    }
+
+    public static function validateDeductionAmount(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter a Deduction amount';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        return null;
+    }
 }
