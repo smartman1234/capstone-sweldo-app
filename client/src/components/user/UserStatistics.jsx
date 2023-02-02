@@ -1,11 +1,6 @@
 import React from 'react'
 
-const UserStatistics = ({
-  monthly,
-  rate,
-  leave,
-  expectedSalary,
-}) => {
+const UserStatistics = ({ monthly, rate, leave, expectedSalary }) => {
   return (
     <div>
       <div className='bg-slate-200 m-5 p-5'>
