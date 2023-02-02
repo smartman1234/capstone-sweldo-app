@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\User\AttendanceController;
+use App\Http\Controllers\User\SalaryHistoryController;
 use App\Http\Controllers\User\TaskController;
 
 Route::post('/login', [LoginController::class, 'login']);
@@ -42,6 +43,9 @@ Route::group([
     Route::get('/task/daily/{timestamp}', [TaskController::class, 'getDailyTasks']);
     Route::post('/task', [TaskController::class, 'store']);
     Route::post('/task/{id}/delete', [TaskController::class, 'destroy']);
+
+    // Salary history
+    Route::get('/salary-history', [SalaryHistoryController::class, 'index']);
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
