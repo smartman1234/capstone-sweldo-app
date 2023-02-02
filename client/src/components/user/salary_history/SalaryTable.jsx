@@ -1,4 +1,10 @@
 const SalaryTable = ({ salaries }) => {
+  const convertDate = (created_at) => {
+    const date = new Date(Date.parse(created_at))
+    const month = date.toLocaleString('default', { month: 'short' })
+    return month + ' ' + date.getFullYear()
+  }
+
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -16,7 +22,7 @@ const SalaryTable = ({ salaries }) => {
             salaries.data.map((salary, index) => (
               <tr key={index} className='border-b'>
                 <th className='p-2.5'>{salaries.from + index}</th>
-                <td className='p-2.5'>{salary.created_at}</td>
+                <td className='p-2.5'>{convertDate(salary.created_at)}</td>
                 <td className='p-2.5'>{salary.total_hours}</td>
                 <td className='p-2.5'>{salary.deductions}</td>
                 <td className='p-2.5'>{salary.earnings}</td>
