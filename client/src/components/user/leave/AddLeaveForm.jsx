@@ -5,7 +5,7 @@ import * as RestApi from '../../../utils/rest_api_util'
 
 const AddLeaveForm = ({ toggleAddForm }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    date: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
@@ -15,7 +15,7 @@ const AddLeaveForm = ({ toggleAddForm }) => {
     setError(undefined)
 
     try {
-      const result = await RestApi.addDepartment(formData)
+      const result = await RestApi.addLeave(formData)
       const response = await result.json()
       if (result.status === 200) {
         toggleAddForm()

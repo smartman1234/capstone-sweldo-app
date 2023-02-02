@@ -8,7 +8,6 @@ const LeaveTable = ({ leaves }) => {
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Date</th>
           <th className='p-2.5'>Status</th>
-          <th className='p-2.5'>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -18,10 +17,7 @@ const LeaveTable = ({ leaves }) => {
               <tr key={index} className='border-b'>
                 <th className='p-2.5'>{leaves.from + index}</th>
                 <td className='p-2.5'>{leave.date}</td>
-                <td className='p-2.5'>{leave.name}</td>
-                <td className='p-2.5 space-x-4'>
-                  Pending
-                </td>
+                <td className='p-2.5'>{leave.status}</td>
               </tr>
             ))
           ) : (

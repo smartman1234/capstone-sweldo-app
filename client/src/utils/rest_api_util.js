@@ -72,12 +72,12 @@ export const deleteTask = async (id) =>
 
 // Leave
 export const getLeaves = async (page) =>
-  await fetch(baseUrl + `/admin/leave?page=${page}`, {
+  await fetch(baseUrl + `/user/leave?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
 export const addLeave = async (data) =>
-  await fetch(baseUrl + '/admin/leave', {
+  await fetch(baseUrl + '/user/leave', {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify(data),
