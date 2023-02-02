@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
+    public function payslips()
+    {
+        return $this->hasMany(Payslip::class);
+    }
+
     public function leaves()
     {
         return $this->hasMany(Leave::class);
