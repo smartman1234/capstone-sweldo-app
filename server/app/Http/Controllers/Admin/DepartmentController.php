@@ -25,7 +25,7 @@ class DepartmentController extends Controller
     {
         $name = $request->name;
 
-        // Validate Department 
+        // Validate department 
         $result = ValidationUtil::validateDepartment($name);
         if ($result != null) {
             return response()->json([
@@ -57,7 +57,7 @@ class DepartmentController extends Controller
             ], 400);
         }
 
-        // Get Department
+        // Get department
         $department = Department::find($id);
 
         // Not found
@@ -75,7 +75,6 @@ class DepartmentController extends Controller
     public function update(Request $request)
     {
         $id = $request->id;
-
         $name = $request->name;
 
         // Validate Id of Department
