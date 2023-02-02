@@ -47,12 +47,12 @@ const AttendanceOverview = ({ isClockIn }) => {
         {isClockIn ? (
           <div>
             <CustomButton name='Clock Out' onClick={clockOut} loading={loading} />
-            <SuccessAlert message={success.message} />
+            <SuccessAlert message={success?.message} />
           </div>
         ) : (
           <div>
             <CustomButton name='Clock In' onClick={clockIn} loading={loading} />
-            <SuccessAlert message={success.message} />
+            <SuccessAlert message={success?.message} />
           </div>
         )}
       </div>
