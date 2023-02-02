@@ -8,9 +8,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\AttendanceController;
 use App\Http\Controllers\User\TaskController;
-use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\User\LeaveController;
 use App\Http\Controllers\User\SalaryHistoryController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\SettingsController;
 
 // Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -22,7 +23,6 @@ use App\Http\Controllers\Admin\AdminLeaveController;
 use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
-use App\Http\Controllers\User\LeaveController;
 
 Route::post('/login', [LoginController::class, 'login']);
 
