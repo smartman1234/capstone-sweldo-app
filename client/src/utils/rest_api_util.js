@@ -41,6 +41,11 @@ export const clockOut = async () =>
     method: 'POST',
     headers: getHeaders(),
   })
+export const getAttendanceOverview = async () =>
+  await fetch(baseUrl + '/user/attendance/overview', {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 
 // Calendar
 export const getMonthlyTasks = async (timestamp) =>

@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
+import { useEffect } from 'react'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -24,14 +25,18 @@ export const options = {
   },
 }
 
-const AttendanceOverview = ({
-  getDashboardStats,
-  clockIn,
-  clockOut,
-  chartData,
-}) => {
+const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
   const [loading, setLoading] = useState(false)
+
   const [attendanceFilter, setAttendanceFilter] = useState('weekly')
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [],
+  })
+
+  useEffect(() => {
+    getAttendanceOverview()
+  }, [])
 
   const handleClockIn = async () => {
     setLoading(true)
@@ -63,6 +68,26 @@ const AttendanceOverview = ({
       }
     } catch (error) {}
     setLoading(false)
+  }
+
+  const getAttendanceOverview = async () => {
+    try {
+      const result = await RestApi.getAttendanceOverview()
+      const response = await result.json()
+      if (result.status === 200) {
+        setChartData({
+          ...chartData,
+          labels: response.previousAttendances.labels.reverse(),
+          datasets: [
+            {
+              label: 'Work Hours',
+              data: response.previousAttendances.data.reverse(),
+              backgroundColor: 'rgba(53, 162, 235, 0.5)'
+            }
+          ]
+        })
+      }
+    } catch (error) {}
   }
 
   return (
