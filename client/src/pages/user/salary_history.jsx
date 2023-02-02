@@ -11,9 +11,9 @@ const SalaryHistory = () => {
     getSalaries()
   }, [])
 
-  const getSalaries = async () => {
+  const getSalaries = async (page = 1) => {
     try {
-      const result = await RestApi.getSalaryHistory()
+      const result = await RestApi.getSalaryHistory(page)
       const response = await result.json()
       if (result.status === 200) {
         setSalaries(response.salaryHistory)

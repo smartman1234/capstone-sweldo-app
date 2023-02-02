@@ -66,8 +66,8 @@ export const deleteTask = async (id) =>
   })
 
 // Salary history
-export const getSalaryHistory = async () =>
-  await fetch(baseUrl + '/user/salary-history', {
+export const getSalaryHistory = async (page) =>
+  await fetch(baseUrl + `/user/salary-history?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
