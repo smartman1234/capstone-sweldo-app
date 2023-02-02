@@ -18,7 +18,6 @@ import Settings from './pages/user/settings'
 
 // Admin
 import AdminDashboard from './pages/admin/admin_dashboard'
-import AdminCalendar from './pages/admin/calendar'
 import Employee from './pages/admin/employee'
 import Department from './pages/admin/department'
 import Job from './pages/admin/job'
@@ -79,10 +78,6 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <AdminDashboard />,
-      },
-      {
-        path: 'calendar',
-        element: <AdminCalendar />,
       },
       {
         path: 'employee',
