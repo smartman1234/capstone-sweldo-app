@@ -10,6 +10,15 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+           // Clock in status
+           $isClockIn = false;
+
+           $attendance = $request->user()->attendances()->where('created_at', '>=', now()->startOfDay())->first();
+   
+           if ($attendance !== null && $attendance->clock_out === null) {
+               $isClockIn = true;
+           }
+        
         // Statistics
         $monthly = 0;
         $rate = 0;
@@ -52,6 +61,7 @@ class DashboardController extends Controller
         }
 
         return response()->json([
+            'isClockIn' => $isClockIn,
             'monthly' => $monthly,
             'rate' => $rate,
             'leave' => $leave,

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const AttendanceOverview = () => {
+const AttendanceOverview = ({ isClockIn }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
   const [success, setSuccess] = useState()
