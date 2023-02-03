@@ -3,17 +3,11 @@ import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
 const DepartmentTable = ({ departments, setSelectedDepartmentId }) => {
-  // delete department
-
   const handleSubmit = async (id) => {
     try {
       const result = await RestApi.deleteDepartment(id)
       const response = await result.json()
-
       if (result.status === 200) {
-      }
-
-      if (result.status === 400) {
       }
     } catch (error) {}
   }
