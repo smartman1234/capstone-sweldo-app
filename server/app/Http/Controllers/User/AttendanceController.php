@@ -64,9 +64,9 @@ class AttendanceController extends Controller
         $previousAttendances = [];
 
         // Take latest 7 only
-        $attendances = $user->attendances()->get()->sortByDesc('created_at')->take(7);
+        $attendances = $user->attendances()->get()->sortByDesc('clock_in')->take(7);
         foreach ($attendances as $attendance) {
-            $previousAttendances['labels'][] = Carbon::parse($attendance->created_at)->rawFormat('M d');
+            $previousAttendances['labels'][] = Carbon::parse($attendance->clock_in)->rawFormat('M d');
             $previousAttendances['data'][] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
         }
 
