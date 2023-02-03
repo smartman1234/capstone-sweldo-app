@@ -114,4 +114,9 @@ class DepartmentController extends Controller
             'message' => 'Department updated successfully'
         ]);
     }
+
+    public function destroy(Request $request)
+    {
+        // TODO
+    }
 }

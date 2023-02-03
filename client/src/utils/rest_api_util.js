@@ -179,6 +179,11 @@ export const updateDepartment = async (id, data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+export const deleteDepartment = async (id) =>
+  await fetch(baseUrl + `/admin/department/${id}/destroy`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Job
 export const getJobs = async (page) =>
@@ -208,6 +213,11 @@ export const updateJob = async (id, data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+export const deleteJob = async (id) =>
+  await fetch(baseUrl + `/admin/job/${id}/destroy`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Deduction
 export const getDeductions = async (page) =>
@@ -236,6 +246,11 @@ export const updateDeduction = async (id, data) =>
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify(data),
+  })
+export const deleteDeduction = async (id) =>
+  await fetch(baseUrl + `/admin/deduction/${id}/destroy`, {
+    method: 'POST',
+    headers: getHeaders(),
   })
 
 // Leave

@@ -136,4 +136,9 @@ class DeductionController extends Controller
             'message' => 'Deduction updated successfully'
         ]);
     }
+
+    public function destroy(Request $request)
+    {
+        // TODO
+    }
 }

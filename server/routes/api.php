@@ -92,18 +92,21 @@ Route::group([
     Route::post('/department', [DepartmentController::class, 'store']);
     Route::get('/department/{id}', [DepartmentController::class, 'show']);
     Route::post('/department/{id}', [DepartmentController::class, 'update']);
+    Route::post('/department/{id}/destroy', [DepartmentController::class, 'destroy']);
 
     // Job
     Route::get('/job', [JobController::class, 'index']);
     Route::post('/job', [JobController::class, 'store']);
     Route::get('/job/{id}', [JobController::class, 'show']);
     Route::post('/job/{id}', [JobController::class, 'update']);
+    Route::post('/job/{id}/destroy', [JobController::class, 'destroy']);
 
     // Deduction
     Route::get('/deduction', [DeductionController::class, 'index']);
     Route::post('/deduction', [DeductionController::class, 'store']);
     Route::get('/deduction/{id}', [DeductionController::class, 'show']);
     Route::post('/deduction/{id}', [DeductionController::class, 'update']);
+    Route::post('/deduction/{id}/destroy', [DeductionController::class, 'destroy']);
 
     // Leave
     Route::get('/leave', [AdminLeaveController::class, 'index']);

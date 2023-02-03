@@ -136,4 +136,9 @@ class JobController extends Controller
             'message' => 'Job updated successfully'
         ]);
     }
+
+    public function destroy(Request $request)
+    {
+        // TODO
+    }
 }
