@@ -12,11 +12,9 @@ class LeaveController extends Controller
     public function index(Request $request)
     {
         // Get user
-
         $user = $request->user();
 
         if ($request->name == null) {
-
             $leaves =  $user->leaves()->paginate(10);
         } else {
             $leaves = $user->leaves()->where('name', 'LIKE', "%" . $request->name . "%")->paginate(10);
@@ -29,12 +27,9 @@ class LeaveController extends Controller
 
     public function store(Request $request)
     {
-        // Add data
-
-
-
         $date = $request->date;
 
+        // Validate date
         $result = ValidationUtil::validateDate($date);
         if ($result != null) {
             return response()->json([
@@ -43,11 +38,13 @@ class LeaveController extends Controller
             ], 400);
         }
 
+        // Get user
         $user = $request->user();
+
+        // Create
         $user->leaves()->create([
             'date' => $date
         ]);
-
 
         return response()->json([
             'message' => 'Successfully added a new Leave'

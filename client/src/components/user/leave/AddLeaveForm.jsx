@@ -75,7 +75,6 @@ const AddLeaveForm = ({ toggleAddForm }) => {
                   : null
               }
             />
-          
           </div>
           <CustomButton
             name='Create'

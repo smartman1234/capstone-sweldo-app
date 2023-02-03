@@ -1,5 +1,3 @@
-import ActionButton from '../../ui/buttons/ActionButton'
-
 const LeaveTable = ({ leaves }) => {
   return (
     <table className='w-full text-left'>
