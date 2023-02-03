@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const AddLeaveForm = ({ toggleAddForm }) => {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ const AddLeaveForm = ({ toggleAddForm }) => {
       const response = await result.json()
       if (result.status === 200) {
         toggleAddForm()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         setError(response)
