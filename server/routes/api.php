@@ -112,7 +112,9 @@ Route::group([
 
     // Payroll
     Route::get('/payroll', [PayrollController::class, 'index']);
-
+    Route::get('/payroll/generate-payslips', [PayrollController::class, 'generatePayslips']);
+    Route::get('/payroll/payslips', [PayrollController::class, 'getPayslips']);
+    
     // Profile
     Route::get('/profile', [AdminProfileController::class, 'show']);
     Route::post('/profile', [AdminProfileController::class, 'update']);

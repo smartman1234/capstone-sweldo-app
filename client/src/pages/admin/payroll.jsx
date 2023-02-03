@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import PayrollTable from '../../components/admin/payroll/PayrollTable'
 import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
@@ -6,10 +7,12 @@ import PageTitle from '../../components/ui/titles/PageTitle'
 import * as RestApi from '../../utils/rest_api_util'
 
 const Payroll = () => {
+  const navigate = useNavigate()
 
   const [month, setMonth] = useState(0)
 
   const [payrolls, setPayrolls] = useState()
+  const [loading, setLoading] = useState()
 
   useEffect(() => {
     const date = new Date()
@@ -30,6 +33,19 @@ const Payroll = () => {
         setPayrolls(response.payrolls)
       }
     } catch (error) {}
+  }
+
+  const generatePayslips = async () => {
+    setLoading(true)
+    try {
+      const timestamp = Date.parse(month) / 1000
+      const result = await RestApi.generatePayslips(timestamp)
+      const response = await result.json()
+      if (result.status === 200) {
+        navigate('/payslip?timestamp=' + timestamp)
+      }
+    } catch (error) {}
+    setLoading(false)
   }
 
   return (
@@ -55,8 +71,8 @@ const Payroll = () => {
           />
           <CustomButton
             name='Generate Payslip'
-            onClick={() => {}}
-            loading={false}
+            onClick={generatePayslips}
+            loading={loading}
           />
         </div>
         <PayrollTable payrolls={payrolls} />

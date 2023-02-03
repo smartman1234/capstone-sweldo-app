@@ -266,6 +266,19 @@ export const getPayrolls = async (timestamp, page) =>
     method: 'GET',
     headers: getHeaders(),
   })
+export const generatePayslips = async (timestamp) =>
+  await fetch(
+    baseUrl + `/admin/payroll/generate-payslips?timestamp=${timestamp}`,
+    {
+      method: 'GET',
+      headers: getHeaders(),
+    }
+  )
+export const getPayslips = async (timestamp) =>
+  await fetch(baseUrl + `/admin/payroll/payslips?timestamp=${timestamp}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 
 // Profile
 export const getAdminProfile = async () =>
