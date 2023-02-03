@@ -2,7 +2,6 @@ import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
 const DeductionTable = ({ deductions, setSelectedDeductionId }) => {
-
   // Delete deduction
   const handleSubmit = async (id) => {
     try {

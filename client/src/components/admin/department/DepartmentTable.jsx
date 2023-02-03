@@ -2,12 +2,7 @@ import { useEffect, useState } from 'react'
 import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const DepartmentTable = ({
-  departments,
-  setSelectedDepartmentId,
-}) => {
-  const [error, setError] = useState()
-
+const DepartmentTable = ({ departments, setSelectedDepartmentId }) => {
   // delete department
 
   const handleSubmit = async (id) => {
@@ -19,7 +14,6 @@ const DepartmentTable = ({
       }
 
       if (result.status === 400) {
-        setError(response)
       }
     } catch (error) {}
   }
