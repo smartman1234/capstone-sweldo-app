@@ -56,6 +56,10 @@ const Profile = () => {
   return (
     <div>
       <PageTitle title='Profile' />
+      <div className="flex justify-center">
+        <label htmlFor="imgupload" className='outline outline-black rounded-full   h-24 w-24' disabled={!edit} />
+        <input type='file' hidden id='imgupload' multiple accept="image/*" className='bg-black rounded-full  h-24 w-24' name='test' disabled={!edit} />
+      </div>
       <div className='mb-8 space-y-4'>
         <CustomInput
           label='Email'
