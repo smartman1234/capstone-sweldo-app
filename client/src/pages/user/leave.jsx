@@ -31,7 +31,7 @@ const Leave = () => {
     <div>
       <PageTitle title='Leave' />
       <div className='space-y-4'>
-        <div className='flex space-x-4'>
+        <div className='flex justify-end space-x-4'>
           <button
             className='bg-blue-600 text-white font-medium px-5 py-2.5 rounded hover:bg-blue-700'
             onClick={toggleAddForm}
