@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
         // Get total hours (monthly)
         $monthlyAttendances = $user->attendances()->whereBetween(
-            'created_at',
+            'clock_in',
             [
                 Carbon::now()->startOfMonth(),
                 Carbon::now()->endOfMonth()
