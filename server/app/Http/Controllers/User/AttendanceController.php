@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
+use DateTimeZone;
 
 class AttendanceController extends Controller
 {
@@ -21,9 +23,9 @@ class AttendanceController extends Controller
             ], 400);
         }
 
-        // Create new attendance
+        // Create new attendance 
         $user->attendances()->create([
-            'clock_in' => Carbon::now(),
+            'clock_in' => Carbon::now(new DateTimeZone('Asia/Singapore'))
         ]);
 
         return response()->json([
@@ -46,7 +48,7 @@ class AttendanceController extends Controller
 
         // Update clock out
         $attendance->update([
-            'clock_out' => now(),
+            'clock_out' => Carbon::now(new DateTimeZone('Asia/Singapore')),
         ]);
         return response()->json([
             'message' => 'You have clocked out successfully'
