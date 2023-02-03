@@ -65,11 +65,6 @@ const Payroll = () => {
             />
           </div>
           <CustomButton
-            name='Generate Payroll'
-            onClick={() => {}}
-            loading={false}
-          />
-          <CustomButton
             name='Generate Payslip'
             onClick={generatePayslips}
             loading={loading}
