@@ -1,18 +1,29 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRef } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useReactToPrint } from 'react-to-print'
 import CustomButton from '../components/ui/buttons/CustomButton'
 import * as RestApi from '../utils/rest_api_util'
 
 const Payslip = () => {
+  const navigate = useNavigate()
   const location = useLocation()
   const componentRef = useRef()
 
   const [payslips, setPayslips] = useState([])
 
   useEffect(() => {
+    const isAdmin = localStorage.getItem('is_admin')
+    const token = localStorage.getItem('token')
+    if (!token || !isAdmin) {
+      navigate('/')
+      return
+    }
+    if (isAdmin === '0') {
+      navigate('/user/dashboard')
+      return
+    }
     const timestamp = new URLSearchParams(location.search).get('timestamp')
     getPayslips(timestamp)
   }, [location])
@@ -54,10 +65,10 @@ const Payslip = () => {
                 <div className='space-y-2'>
                   <h2 className='text-2xl font-bold'>
                     Payslip for the month of{' '}
-                    {new Date(payslip.date).toLocaleDateString(
-                      'default',
-                      { month: 'long', year: 'numeric' }
-                    )}
+                    {new Date(payslip.date).toLocaleDateString('default', {
+                      month: 'long',
+                      year: 'numeric',
+                    })}
                   </h2>
                   <h3 className='text-blue-500 text-lg uppercase'>
                     Employee Pay Summary
@@ -113,7 +124,10 @@ const Payslip = () => {
                 <h3 className='text-blue-500 text-lg uppercase'>Amount</h3>
               </div>
               {payslip.deduction_list.map((deduction, deductionKey) => (
-                <div key={deductionKey} className='grid grid-cols-1 md:grid-cols-2'>
+                <div
+                  key={deductionKey}
+                  className='grid grid-cols-1 md:grid-cols-2'
+                >
                   <h4>{deduction.name}</h4>
                   <p>P{deduction.amount}</p>
                 </div>
