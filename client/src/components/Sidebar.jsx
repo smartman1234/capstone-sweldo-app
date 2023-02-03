@@ -54,7 +54,6 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
         <ul className='flex flex-col space-y-4 p-5'>
           <li>
             <div className="flex justify-center">
-
             <img className='bg-black rounded-full  h-24 w-24' src='#' alt='images' />
             </div>
           </li>

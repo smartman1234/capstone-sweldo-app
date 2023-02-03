@@ -55,6 +55,10 @@ const AdminProfile = () => {
   return (
     <div>
       <PageTitle title='Profile' />
+      <div className="flex justify-center">
+        <label htmlFor="imgupload" className='outline outline-black rounded-full   h-24 w-24'></label>
+        <input type='file' hidden id='imgupload' className='bg-black rounded-full  h-24 w-24' name='test' />
+      </div>
       <div className='mb-8 space-y-4'>
         <CustomInput
           label='Email'

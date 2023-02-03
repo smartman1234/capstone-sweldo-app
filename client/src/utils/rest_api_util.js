@@ -307,6 +307,13 @@ export const updateAdminProfile = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+  export const uploadImage = async (data) =>
+  await fetch(baseUrl + '/admin/profile/avatar', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  })
+
 
 // Settings
 export const updateAdminSettings = async (data) =>
