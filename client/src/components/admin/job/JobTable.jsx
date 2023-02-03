@@ -1,5 +1,6 @@
 import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
   const handleSubmit = async (id) => {
@@ -10,6 +11,9 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
         getJobs()
       }
       if (result.status === 400) {
+        if (response.type === undefined) {
+          toast.error(response.message)
+        }
       }
     } catch (error) {}
   }

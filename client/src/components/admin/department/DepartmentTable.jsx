@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments }) => {
   const handleSubmit = async (id) => {
@@ -9,6 +10,11 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments 
       const response = await result.json()
       if (result.status === 200) {
         getDepartments()
+      }
+      if (result.status === 400) {
+        if (response.type === undefined) {
+          toast.error(response.message)
+        }
       }
     } catch (error) {}
   }
