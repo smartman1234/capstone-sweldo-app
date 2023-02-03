@@ -4,6 +4,7 @@ import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import * as RestApi from '../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const Profile = () => {
   const [edit, setEdit] = useState(false)
@@ -19,7 +20,6 @@ const Profile = () => {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
-  const [success, setSuccess] = useState()
 
   useEffect(() => {
     getProfile()
@@ -38,14 +38,13 @@ const Profile = () => {
   const handleSubmit = async () => {
     setLoading(true)
     setError(undefined)
-    setSuccess(undefined)
 
     try {
       const result = await RestApi.updateProfile(formData)
       const response = await result.json()
       if (result.status === 200) {
         setEdit(false)
-        setSuccess(response)
+        toast.success(response.message)
       }
       if (result.status === 400) {
         setError(response)
@@ -169,7 +168,6 @@ const Profile = () => {
           }
           disabled={!edit}
         />
-        <SuccessAlert message={success?.message} />
       </div>
       {edit ? (
         <CustomButton
