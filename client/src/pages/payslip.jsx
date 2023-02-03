@@ -54,9 +54,9 @@ const Payslip = () => {
                 <div className='space-y-2'>
                   <h2 className='text-2xl font-bold'>
                     Payslip for the month of{' '}
-                    {new Date(payslip.created_at).toLocaleDateString(
+                    {new Date(payslip.date).toLocaleDateString(
                       'default',
-                      { month: 'short', year: 'numeric' }
+                      { month: 'long', year: 'numeric' }
                     )}
                   </h2>
                   <h3 className='text-blue-500 text-lg uppercase'>
@@ -81,7 +81,7 @@ const Payslip = () => {
                         :{' '}
                         {new Date(payslip.created_at).toLocaleDateString(
                           'default',
-                          { month: 'short', day: 'numeric', year: 'numeric' }
+                          { month: 'long', day: 'numeric', year: 'numeric' }
                         )}
                       </p>
                     </div>

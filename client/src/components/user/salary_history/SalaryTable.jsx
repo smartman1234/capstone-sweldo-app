@@ -6,8 +6,9 @@ const SalaryTable = ({ salaries }) => {
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Date</th>
           <th className='p-2.5'>Total Hours</th>
-          <th className='p-2.5'>Deduction</th>
           <th className='p-2.5'>Earnings</th>
+          <th className='p-2.5'>Deduction</th>
+          <th className='p-2.5'>Net Pay</th>
         </tr>
       </thead>
       <tbody>
@@ -17,14 +18,15 @@ const SalaryTable = ({ salaries }) => {
               <tr key={index} className='border-b'>
                 <th className='p-2.5'>{salaries.from + index}</th>
                 <td className='p-2.5'>
-                  {new Date(salary.created_at).toLocaleDateString('default', {
+                  {new Date(salary.date).toLocaleDateString('default', {
                     month: 'short',
                     year: 'numeric',
                   })}
                 </td>
                 <td className='p-2.5'>{salary.total_hours}</td>
-                <td className='p-2.5'>{salary.deductions}</td>
                 <td className='p-2.5'>{salary.earnings}</td>
+                <td className='p-2.5'>{salary.total_deductions}</td>
+                <td className='p-2.5'>{salary.net_pay}</td>
               </tr>
             ))
           ) : (

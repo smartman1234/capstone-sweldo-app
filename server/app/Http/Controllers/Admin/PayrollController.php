@@ -97,7 +97,7 @@ class PayrollController extends Controller
 
         foreach ($users as $user) {
             $payslip = $user->payslips()->whereBetween(
-                'created_at',
+                'date',
                 [
                     Carbon::createFromTimestamp($timestamp)->addDay(1)->startOfMonth(),
                     Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
@@ -110,6 +110,7 @@ class PayrollController extends Controller
             // Create or update payslip
             if ($payslip == null) {
                 $user->payslips()->create([
+                    'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
                     'earnings' => $totalHours * $user->job->salary,
                     'deduction_list' => json_encode($deductionList),
@@ -118,6 +119,7 @@ class PayrollController extends Controller
                 ]);
             } else {
                 $user->payslips()->update([
+                    'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
                     'earnings' => $totalHours * $user->job->salary,
                     'deduction_list' => json_encode($deductionList),
@@ -147,7 +149,7 @@ class PayrollController extends Controller
         // Get all payslips
         $payslips = Payslip::with('user')
             ->whereBetween(
-                'created_at',
+                'date',
                 [
                     Carbon::createFromTimestamp($timestamp)->addDay(1)->startOfMonth(),
                     Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
@@ -158,6 +160,7 @@ class PayrollController extends Controller
         foreach ($payslips as $payslip) {
             $newPayslips[] = [
                 'id' => $payslip->id,
+                'date' => $payslip->date,
                 'name' => $payslip->user->first_name . ' ' . $payslip->user->last_name,
                 'department' => $payslip->user->department->name,
                 'job' => $payslip->user->job->name,
