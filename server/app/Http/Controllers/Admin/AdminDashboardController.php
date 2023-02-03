@@ -14,17 +14,11 @@ class AdminDashboardController extends Controller
 {
     public function index(Request $request)
     {
-         // Check if user is late at 9:15 AM
-        // TODO: Return statistics
+  
         $totalEmployee = User::where('is_admin', 0)->count();
-        $totalPresent = Attendance::count();
+        $totalPresent = Attendance::where('clock_in', '<', Carbon::now()->setTime(9, 15, 0))->count();
         $totalLate = Attendance::where('clock_in', '>=', Carbon::now()->setTime(9, 15, 0))->count();
         $totalOnLeave = Leave::count();
-
-       
-
-
-     
 
         return response()->json([
             'totalEmployee' => $totalEmployee,
