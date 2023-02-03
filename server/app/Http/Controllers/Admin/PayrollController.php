@@ -58,7 +58,7 @@ class PayrollController extends Controller
     {
         $hours = 0;
         $monthlyAttendances = $user->attendances()->whereBetween(
-            'created_at',
+            'clock_in',
             [
                 Carbon::createFromTimestamp($timestamp)->addDay(1)->startOfMonth(),
                 Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
