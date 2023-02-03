@@ -3,21 +3,18 @@ const CustomButton = ({
   onClick,
   loading = false,
   fullWidth = false,
+  disabled = false,
 }) => {
   return (
     <button
       type='button'
       className={
-        loading
-          ? fullWidth
-            ? 'w-full bg-blue-700 text-white font-medium px-5 py-2.5 rounded'
-            : 'bg-blue-700 text-white font-medium px-5 py-2.5 rounded'
-          : fullWidth
-          ? 'w-full bg-blue-600 text-white font-medium px-5 py-2.5 rounded hover:bg-blue-700'
-          : 'bg-blue-600 text-white font-medium px-5 py-2.5 rounded hover:bg-blue-700'
+        fullWidth
+          ? 'bg-blue-600 text-white font-medium px-5 py-2.5 rounded enabled:hover:bg-blue-700 w-full'
+          : 'bg-blue-600 text-white font-medium px-5 py-2.5 rounded enabled:hover:bg-blue-700'
       }
       onClick={onClick}
-      disabled={loading}
+      disabled={loading || disabled}
     >
       {loading ? (
         <>

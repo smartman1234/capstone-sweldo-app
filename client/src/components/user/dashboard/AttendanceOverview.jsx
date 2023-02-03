@@ -105,7 +105,7 @@ const AttendanceOverview = ({ clock, setClock }) => {
               <CustomButton name='Clock Out' onClick={handleClockOut} loading={loading} />
             )}
             {clock === 3 && (
-              <CustomButton name='Not available' onClick={() => {}} loading={false} />
+              <CustomButton name='Not available' onClick={() => {}} disabled={true} />
             )}
           </div>
         </div>
