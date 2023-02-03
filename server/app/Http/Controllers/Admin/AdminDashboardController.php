@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Leave;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class AdminDashboardController extends Controller
         $totalEmployee = User::where('is_admin', 0)->count();
         $totalPresent = 0;
         $totalLate = 0;
-        $totalOnLeave = 0;
+        $totalOnLeave = Leave::count();
 
         // TODO: Return attendance overview data
         return response()->json([
