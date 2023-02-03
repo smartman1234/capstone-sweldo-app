@@ -11,9 +11,10 @@ const UserDashboard = () => {
     rate: 0,
     leave: 0,
     expectedSalary: 0,
-    clockIn: null,
-    clockOut: null,
+    // clockIn: null,
+    // clockOut: null,
   })
+  const [clock, setClock] = useState(0)
 
   useEffect(() => {
     getDashboardStats()
@@ -25,6 +26,15 @@ const UserDashboard = () => {
       const response = await result.json()
       if (result.status === 200) {
         setStats(response)
+        if (response.clockIn === null && response.clockOut === null) {
+          setClock(1)
+        }
+        if (response.clockIn !== null && response.clockOut === null) {
+          setClock(2)
+        }
+        if (response.clockIn !== null && response.clockOut !== null) {
+          setClock(3)
+        }
       }
     } catch (error) {}
   }
@@ -39,11 +49,7 @@ const UserDashboard = () => {
           <StatisticCard name='Leave' value={stats.leave} />
           <StatisticCard name='Expected Salary' value={stats.expectedSalary} />
         </div>
-        <AttendanceOverview
-          getDashboardStats={getDashboardStats}
-          clockIn={stats.clockIn}
-          clockOut={stats.clockOut}
-        />
+        <AttendanceOverview clock={clock} setClock={setClock} />
       </div>
     </div>
   )

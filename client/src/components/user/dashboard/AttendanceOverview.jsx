@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import {
@@ -11,7 +11,7 @@ import {
   Legend,
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -25,10 +25,9 @@ export const options = {
   },
 }
 
-const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
+const AttendanceOverview = ({ clock, setClock }) => {
   const [loading, setLoading] = useState(false)
 
-  const [attendanceFilter, setAttendanceFilter] = useState('weekly')
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
@@ -44,11 +43,11 @@ const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
       const result = await RestApi.clockIn()
       const response = await result.json()
       if (result.status === 200) {
-        // TODO: Toast
-        getDashboardStats()
+        setClock(2)
+        toast.success(response.message)
       }
       if (result.status === 400) {
-        // TODO: Toast
+        toast.error(response.message)
       }
     } catch (error) {}
     setLoading(false)
@@ -60,11 +59,11 @@ const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
       const result = await RestApi.clockOut()
       const response = await result.json()
       if (result.status === 200) {
-        // TODO: Toast
-        getDashboardStats()
+        setClock(3)
+        toast.success(response.message)
       }
       if (result.status === 400) {
-        // TODO: Toast
+        toast.error(response.message)
       }
     } catch (error) {}
     setLoading(false)
@@ -82,9 +81,9 @@ const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
             {
               label: 'Work Hours',
               data: response.previousAttendances.data.reverse(),
-              backgroundColor: 'rgba(53, 162, 235, 0.5)'
-            }
-          ]
+              backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+          ],
         })
       }
     } catch (error) {}
@@ -96,41 +95,20 @@ const AttendanceOverview = ({ getDashboardStats, clockIn, clockOut }) => {
         <div className='flex justify-between'>
           <h1 className='text-2xl font-bold'>Online Attendance</h1>
           <div>
-            {clockIn ? (
-              clockOut ? null : (
-                <CustomButton
-                  name='Clock Out'
-                  onClick={handleClockOut}
-                  loading={loading}
-                />
-              )
-            ) : (
-              <CustomButton
-                name='Clock In'
-                onClick={handleClockIn}
-                loading={loading}
-              />
+            {clock === 0 && (
+              <CustomButton name='Loading' onClick={() => {}} loading={true} />
+            )}
+            {clock === 1 && (
+              <CustomButton name='Clock In' onClick={handleClockIn} loading={loading} />
+            )}
+            {clock === 2 && (
+              <CustomButton name='Clock Out' onClick={handleClockOut} loading={loading} />
+            )}
+            {clock === 3 && (
+              <CustomButton name='Not available' onClick={() => {}} loading={false} />
             )}
           </div>
         </div>
-        {/* <div className='flex justify-between items-center'>
-          <div>
-            <h1>⏱ Tracked Time</h1>
-            <span className='text-3xl font-bold'>7h 30m</span>
-          </div>
-          <div>
-            <select
-              className='w-full text-gray px-5 py-2.5 rounded border'
-              id='filter'
-              value={attendanceFilter}
-              onChange={(e) => setAttendanceFilter(e.target.value)}
-            >
-              <option value='weekly'>Weekly</option>
-              <option value='monthly'>Monthly</option>
-              <option value='yearly'>Yearly</option>
-            </select>
-          </div>
-        </div> */}
       </div>
       <div className='h-96'>
         <Bar options={options} data={chartData} />
