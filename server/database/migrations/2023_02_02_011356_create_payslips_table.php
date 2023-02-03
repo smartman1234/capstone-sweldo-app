@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('payslips', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->date('date');
             $table->float('total_hours');
             $table->float('earnings');
             $table->string('deduction_list');
