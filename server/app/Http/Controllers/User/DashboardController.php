@@ -37,7 +37,7 @@ class DashboardController extends Controller
         }
 
         // Get rate
-        $rate = $user->job->salary;
+        $rate = $user->job == null ? 0 : $user->job->salary;
 
         // Get total leaves
         $leave = $user->leaves()->count();
