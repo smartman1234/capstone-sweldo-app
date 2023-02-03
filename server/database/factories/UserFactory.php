@@ -21,12 +21,14 @@ class UserFactory extends Factory
         return [
             'email' => fake()->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'first_name' => 'Test',
-            'last_name' => 'Account',
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'birthday' => new DateTime(),
             'gender' => 'male',
-            'address' => 'test address',
-            'phone' => 'phone',
+            'address' => fake()->address(),
+            'phone' => fake()->phoneNumber(),
+            'department_id' => 1,
+            'job_id' => 1,
         ];
     }
 

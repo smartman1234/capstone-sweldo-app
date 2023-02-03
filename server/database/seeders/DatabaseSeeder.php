@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Deduction;
 use App\Models\Department;
 use App\Models\Job;
 use App\Models\Leave;
@@ -39,6 +40,21 @@ class DatabaseSeeder extends Seeder
             'salary' => 1000
         ]);
 
+        Deduction::create([
+            'name' => 'SSS',
+            'amount' => 800
+        ]);
+
+        Deduction::create([
+            'name' => 'Phil Health',
+            'amount' => 300
+        ]);
+
+        Deduction::create([
+            'name' => 'Pag Ibig',
+            'amount' => 100
+        ]);
+
         User::create([
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
@@ -52,6 +68,7 @@ class DatabaseSeeder extends Seeder
             'department_id' => 1,
             'job_id' => 1,
         ]);
+
         User::create([
             'email' => 'test@gmail.com',
             'password' => Hash::make('password'),
@@ -64,7 +81,8 @@ class DatabaseSeeder extends Seeder
             'department_id' => 1,
             'job_id' => 1,
         ]);
-        // User::factory(100)->create();
+        
+        User::factory(100)->create();
 
         // Leaves
         for ($i = 0; $i <= 30; $i++) {
