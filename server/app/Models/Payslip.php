@@ -14,6 +14,7 @@ class Payslip extends Model
         'total_hours',
         'earnings',
         'deduction_list',
+        'total_deductions',
         'net_pay',
     ];
 

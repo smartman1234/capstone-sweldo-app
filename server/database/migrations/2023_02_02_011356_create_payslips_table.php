@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('total_hours');
             $table->float('earnings');
             $table->string('deduction_list');
+            $table->float('total_deductions');
             $table->float('net_pay');
             $table->timestamps();
         });
