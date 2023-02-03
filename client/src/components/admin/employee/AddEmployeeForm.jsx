@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const AddEmployeeForm = ({ toggleAddForm, getEmployees }) => {
   const [formData, setFormData] = useState({
@@ -57,6 +58,7 @@ const AddEmployeeForm = ({ toggleAddForm, getEmployees }) => {
       if (result.status === 200) {
         toggleAddForm()
         getEmployees()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         setError(response)
@@ -236,7 +238,11 @@ const AddEmployeeForm = ({ toggleAddForm, getEmployees }) => {
                 <select
                   className='w-full text-gray px-5 py-2.5 rounded border'
                   id='department'
-                  value={formData.department_id !== '' ? formData.department_id : 'none'}
+                  value={
+                    formData.department_id !== ''
+                      ? formData.department_id
+                      : 'none'
+                  }
                   onChange={(e) =>
                     setFormData({ ...formData, department_id: e.target.value })
                   }

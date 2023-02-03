@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const AddDeductionForm = ({ toggleAddForm, getDeductions }) => {
   const [formData, setFormData] = useState({
@@ -21,6 +22,7 @@ const AddDeductionForm = ({ toggleAddForm, getDeductions }) => {
       if (result.status === 200) {
         toggleAddForm()
         getDeductions()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         setError(response)

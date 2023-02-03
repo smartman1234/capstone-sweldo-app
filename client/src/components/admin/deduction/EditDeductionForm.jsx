@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const EditDeductionForm = ({ selectedDeductionId, setSelectedDeductionId, getDeductions }) => {
   const [formData, setFormData] = useState({
@@ -38,6 +39,7 @@ const EditDeductionForm = ({ selectedDeductionId, setSelectedDeductionId, getDed
       if (result.status === 200) {
         setSelectedDeductionId(undefined)
         getDeductions()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         setError(response)

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const AddDepartmentForm = ({ toggleAddForm, getDepartments }) => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ const AddDepartmentForm = ({ toggleAddForm, getDepartments }) => {
       if (result.status === 200) {
         toggleAddForm()
         getDepartments()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         setError(response)

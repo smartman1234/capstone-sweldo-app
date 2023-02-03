@@ -31,6 +31,9 @@ import AdminSettings from './pages/admin/admin_settings'
 import PageNotFound from './pages/404'
 import Payslip from './pages/payslip'
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -116,7 +119,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'payslip',
-    element: <Payslip />
+    element: <Payslip />,
   },
   // 404
   {
@@ -126,7 +129,23 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position='bottom-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
+    </>
+  )
 }
 
 export default App
