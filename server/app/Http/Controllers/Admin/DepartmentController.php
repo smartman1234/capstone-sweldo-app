@@ -117,6 +117,34 @@ class DepartmentController extends Controller
 
     public function destroy(Request $request)
     {
-        // TODO
+        // Delete Department
+        $id = $request->id;
+
+        // Validate Id of Department
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get Department
+        $department = Department::find($id);
+
+        // Not found
+        if ($department == null) {
+            return response()->json([
+                'message' => 'Department not found',
+            ], 400);
+        }
+
+        // Delete
+        $department->delete();
+
+        return response()->json([
+            'message' => 'Department deleted successfully'
+        ]);
+
     }
 }
