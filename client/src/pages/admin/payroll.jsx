@@ -4,6 +4,7 @@ import PayrollTable from '../../components/admin/payroll/PayrollTable'
 import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
+import Pagination from '../../components/Pagination'
 import * as RestApi from '../../utils/rest_api_util'
 
 const Payroll = () => {
@@ -22,12 +23,16 @@ const Payroll = () => {
       month = '0' + month
     }
     setMonth(`${year}-${month}`)
-    getPayrolls(Date.parse(date) / 1000)
+    getPayrolls(1, `${year}-${month}`)
   }, [])
 
-  const getPayrolls = async (date, page = 1) => {
+  const getPayrolls = async (page = 1, selectedDate = null) => {
     try {
-      const result = await RestApi.getPayrolls(date, page)
+      let timestamp = Date.parse(month) / 1000
+      if (selectedDate !== null) {
+        timestamp = Date.parse(selectedDate) / 1000
+      }
+      const result = await RestApi.getPayrolls(timestamp, page)
       const response = await result.json()
       if (result.status === 200) {
         setPayrolls(response.payrolls)
@@ -60,7 +65,7 @@ const Payroll = () => {
               value={month}
               onChange={(e) => {
                 setMonth(e.target.value)
-                getPayrolls(Date.parse(e.target.value) / 1000)
+                getPayrolls(1, e.target.value)
               }}
             />
           </div>
@@ -71,6 +76,7 @@ const Payroll = () => {
           />
         </div>
         <PayrollTable payrolls={payrolls} />
+        <Pagination pagination={payrolls} onClick={getPayrolls} />
       </div>
     </div>
   )
