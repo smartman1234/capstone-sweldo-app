@@ -61,6 +61,7 @@ Route::group([
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::post('/profile', [ProfileController::class, 'update']);
+    Route::post('/profile/avatar', [ProfileController::class, 'avatar']);
 
     // Settings
     Route::post('/settings', [SettingsController::class, 'update']);
@@ -121,6 +122,7 @@ Route::group([
     // Profile
     Route::get('/profile', [AdminProfileController::class, 'show']);
     Route::post('/profile', [AdminProfileController::class, 'update']);
+    Route::post('/profile/avatar', [AdminProfileController::class, 'avatar']);
 
     // Settings
     Route::post('/settings', [AdminSettingsController::class, 'update']);
