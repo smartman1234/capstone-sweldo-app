@@ -13,7 +13,6 @@ const DeductionTable = ({ deductions, setSelectedDeductionId }) => {
       }
 
       if (result.status === 400) {
-        setError(response)
       }
     } catch (error) {}
   }
