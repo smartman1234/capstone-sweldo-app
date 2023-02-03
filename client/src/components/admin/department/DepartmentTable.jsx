@@ -9,9 +9,6 @@ const DepartmentTable = ({
 }) => {
   const [error, setError] = useState()
 
-
-
-
   // delete department
 
   const handleSubmit = async (id) => {
@@ -20,7 +17,6 @@ const DepartmentTable = ({
       const response = await result.json()
 
       if (result.status === 200) {
-        
       }
 
       if (result.status === 400) {
@@ -50,7 +46,10 @@ const DepartmentTable = ({
                     name='View'
                     onClick={() => setSelectedDepartmentId(department.id)}
                   />
-                  <ActionButton name='Delete' onClick={() => handleSubmit(department.id)} />
+                  <ActionButton
+                    name='Delete'
+                    onClick={() => handleSubmit(department.id)}
+                  />
                 </td>
               </tr>
             ))

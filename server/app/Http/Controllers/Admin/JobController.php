@@ -139,6 +139,33 @@ class JobController extends Controller
 
     public function destroy(Request $request)
     {
-        // TODO
+        // Delete job
+        $id = $request->id;
+
+        // Validate id 
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get job
+        $job = Job::find($id);
+
+        // Not found
+        if ($job == null) {
+            return response()->json([
+                'message' => 'Job not found',
+            ], 400);
+        }
+
+        // Delete
+        $job->delete();
+
+        return response()->json([
+            'message' => 'Job deleted successfully'
+        ]);
     }
 }
