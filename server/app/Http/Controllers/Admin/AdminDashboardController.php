@@ -14,11 +14,24 @@ class AdminDashboardController extends Controller
 {
     public function index(Request $request)
     {
-  
         $totalEmployee = User::where('is_admin', 0)->count();
-        $totalPresent = Attendance::where('clock_in', '<', Carbon::now()->setTime(9, 15, 0))->count();
-        $totalLate = Attendance::where('clock_in', '>=', Carbon::now()->setTime(9, 15, 0))->count();
-        $totalOnLeave = Leave::count();
+        $totalPresent = Attendance::where('clock_in', '<', Carbon::now()->setTime(9, 15, 0))
+            ->whereBetween(
+                'clock_in',
+                [
+                    Carbon::now()->startOfDay(),
+                    Carbon::now()->endOfDay()
+                ]
+            )->count();
+        $totalLate = Attendance::where('clock_in', '>=', Carbon::now()->setTime(9, 15, 0))
+            ->whereBetween(
+                'clock_in',
+                [
+                    Carbon::now()->startOfDay(),
+                    Carbon::now()->endOfDay()
+                ]
+            )->count();
+        $totalOnLeave = Leave::where('status', 'approved')->count();
 
         return response()->json([
             'totalEmployee' => $totalEmployee,
