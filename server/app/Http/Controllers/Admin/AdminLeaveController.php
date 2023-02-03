@@ -72,7 +72,7 @@ class AdminLeaveController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Leave updated successfully'
+            'message' => 'Leave has been approved'
         ]);
     }
 
@@ -106,7 +106,7 @@ class AdminLeaveController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Leave updated successfully'
+            'message' => 'Leave has been declined'
         ]);
     }
 }

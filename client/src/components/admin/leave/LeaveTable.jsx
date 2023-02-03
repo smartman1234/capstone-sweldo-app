@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const LeaveTable = ({ leaves, getLeaves }) => {
   const [loading, setLoading] = useState(false)
@@ -12,6 +13,7 @@ const LeaveTable = ({ leaves, getLeaves }) => {
       const response = await result.json()
       if (result.status === 200) {
         getLeaves(leaves.current_page)
+        toast.success(response.message)
       }
     } catch (error) {}
     setLoading(false)
@@ -24,6 +26,7 @@ const LeaveTable = ({ leaves, getLeaves }) => {
       const response = await result.json()
       if (result.status === 200) {
         getLeaves(leaves.current_page)
+        toast.success(response.message)
       }
     } catch (error) {}
     setLoading(false)
