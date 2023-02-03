@@ -16,31 +16,31 @@ class AdminDashboardController extends Controller
     {
         // TODO: Return statistics
         $totalEmployee = User::where('is_admin', 0)->count();
-        $totalPresent = 0;
+        $totalPresent = Attendance::count();
         $totalLate = 0;
         $totalOnLeave = Leave::count();
 
-        // Get the current time
-        $today = Carbon::now(new DateTimeZone('Asia/Singapore'));
+        // // Get the current time
+        // $today = Carbon::now();
 
-        // Loop through each employee's attendance record
-        $employees = User::where('is_admin', 0)->get();
-        foreach ($employees as $employee) {
-            $attendance = Attendance::where('user_id', $employee->id)
-                ->whereDate('created_at', $today)
-                ->first();
-            if ($attendance) {
-                // Check if the employee clocked in before or after 9:15 AM
-                $clockIn = Carbon::parse($attendance->clock_in);
-                $threshold = Carbon::create($today->year, $today->month, $today->day, 9, 15, 0);
-                if ($clockIn->lt($threshold)) {
-                    $totalPresent++;
-                } else {
-                    $totalLate++;
-                }
-            }
-        }
-        // TODO: Return attendance overview data
+        // // Loop through each employee's attendance record
+        // $employees = User::where('is_admin', 0)->get();
+        // foreach ($employees as $employee) {
+        //     $attendance = Attendance::where('user_id', $employee->id)
+        //         ->whereDate('created_at', $today)
+        //         ->first();
+        //     if ($attendance) {
+        //         // Check if the employee clocked in before or after 9:15 AM
+        //         $clockIn = Carbon::parse($attendance->clock_in);
+        //         $threshold = Carbon::create($today->year, $today->month, $today->day, 9, 15, 0);
+        //         if ($clockIn->lt($threshold)) {
+        //             $totalPresent++;
+        //         } else {
+        //             $totalLate++;
+        //         }
+        //     }
+        // }
+
         return response()->json([
             'totalEmployee' => $totalEmployee,
             'totalPresent' => $totalPresent,
