@@ -11,6 +11,7 @@ class AdminLeaveController extends Controller
 {
     public function index(Request $request)
     {
+
         if ($request->name == null) {
             $leaves = Leave::paginate(10);
         } else {
@@ -22,6 +23,7 @@ class AdminLeaveController extends Controller
                 })
                 ->paginate(10);
         }
+
         $employeesName = [];
         foreach ($leaves->items() as $item) {
             $employeesName[] = [
@@ -32,6 +34,7 @@ class AdminLeaveController extends Controller
                 'status' => $item->status,
             ];
         }
+
         $leaves = $leaves->toArray();
         $leaves['data'] = $employeesName;
         return response()->json([
@@ -41,6 +44,7 @@ class AdminLeaveController extends Controller
 
     public function approve(Request $request)
     {
+
         $id = $request->id;
 
         // Validate id
@@ -74,6 +78,7 @@ class AdminLeaveController extends Controller
 
     public function decline(Request $request)
     {
+        
         $id = $request->id;
 
         // Validate id
