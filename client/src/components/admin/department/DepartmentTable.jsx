@@ -1,6 +1,27 @@
+import { useState } from 'react'
 import ActionButton from '../../ui/buttons/ActionButton'
+import * as RestApi from '../../../utils/rest_api_util'
 
 const DepartmentTable = ({ departments, setSelectedDepartmentId }) => {
+  const [error, setError] = useState()
+
+
+  const deleteDepartment = async () => {
+    const result = await RestApi.deleteDepartment(setSelectedDepartmentId)
+    const response = await result.json()
+
+    if (result.status === 200){
+      
+    }
+
+    if (result.status === 400){
+      setError(response)
+    }
+  }
+
+
+
+
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -21,6 +42,10 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId }) => {
                   <ActionButton
                     name='View'
                     onClick={() => setSelectedDepartmentId(department.id)}
+                  />
+                  <ActionButton
+                    name='Delete'
+                    onClick={() => deleteDepartment()}
                   />
                 </td>
               </tr>
