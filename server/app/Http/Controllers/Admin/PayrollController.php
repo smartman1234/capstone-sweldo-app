@@ -25,7 +25,7 @@ class PayrollController extends Controller
         }
 
         // Get all deductions
-        $deductions = Deduction::sum('amount');
+        $totalDeductions = Deduction::sum('amount');
 
         // Get all users
         $users = User::where('is_admin', 0)->paginate(10);
@@ -39,9 +39,10 @@ class PayrollController extends Controller
             $employeesData[] = [
                 'id' => $user->id,
                 'name' => $user->first_name . ' ' . $user->last_name,
-                'totalHours' => $totalHours,
-                'deductions' => $deductions,
-                'earnings' => ($totalHours * $user->job->salary) - $deductions,
+                'total_hours' => $totalHours,
+                'earnings' => ($totalHours * $user->job->salary),
+                'deductions' => $totalDeductions,
+                'net_pay' => ($totalHours * $user->job->salary) - $totalDeductions
             ];
         }
 

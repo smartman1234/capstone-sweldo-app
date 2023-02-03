@@ -7,8 +7,9 @@ const PayrollTable = ({ payrolls }) => {
             <th className='p-2.5'>#</th>
             <th className='p-2.5'>Name</th>
             <th className='p-2.5'>Total Hours</th>
-            <th className='p-2.5'>Deduction</th>
             <th className='p-2.5'>Earnings</th>
+            <th className='p-2.5'>Deduction</th>
+            <th className='p-2.5'>Net Pay</th>
           </tr>
         </thead>
         <tbody>
@@ -18,9 +19,10 @@ const PayrollTable = ({ payrolls }) => {
                 <tr key={index} className='border-b'>
                   <th className='p-2.5'>{payrolls.from + index}</th>
                   <td className='p-2.5'>{employee.name}</td>
-                  <td className='p-2.5'>{employee.totalHours}</td>
-                  <td className='p-2.5'>{employee.deductions}</td>
+                  <td className='p-2.5'>{employee.total_hours}</td>
                   <td className='p-2.5'>{employee.earnings}</td>
+                  <td className='p-2.5'>{employee.deductions}</td>
+                  <td className='p-2.5'>{employee.net_pay < 0 ? 0 : employee.net_pay}</td>
                 </tr>
               ))
             ) : (
