@@ -19,7 +19,7 @@ const EditDepartmentForm = ({ selectedDepartmentId, setSelectedDepartmentId }) =
       const result = await RestApi.getDepartment(selectedDepartmentId)
       const response = await result.json()
       if (result.status === 200) {
-        setFormData(response.job)
+        setFormData(response.department)
       }
     } catch (error) {}
   }
