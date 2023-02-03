@@ -1,4 +1,4 @@
-import ActionButton from '../../ui/buttons/ActionButton'
+import ViewButton from '../../ui/buttons/ViewButton'
 
 const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
   return (
@@ -24,7 +24,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
                 <td className='p-2.5'>{employee.department.name}</td>
                 <td className='p-2.5'>{employee.job.name}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ActionButton
+                  <ViewButton
                     name='View'
                     onClick={() => setSelectedEmployeeId(employee.id)}
                   />

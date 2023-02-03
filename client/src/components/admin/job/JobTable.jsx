@@ -1,6 +1,7 @@
-import ActionButton from '../../ui/buttons/ActionButton'
+import ViewButton from '../../ui/buttons/ViewButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
+import DeleteButton from '../../ui/buttons/DeleteButton'
 
 const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
   const handleSubmit = async (id) => {
@@ -37,11 +38,11 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
                 <td className='p-2.5'>{job.name}</td>
                 <td className='p-2.5'>{job.salary}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ActionButton
+                  <ViewButton
                     name='View'
                     onClick={() => setSelectedJobId(job.id)}
                   />
-                  <ActionButton
+                  <DeleteButton
                     name='Delete'
                     onClick={() => handleSubmit(job.id)}
                   />

@@ -1,8 +1,8 @@
-const ActionButton = ({ name, onClick, loading = false }) => {
+const DeleteButton = ({ name, onClick, loading = false }) => {
   return (
     <button
       type='button'
-      className='bg-blue-600 text-white font-medium px-2 py-1 rounded enabled:hover:bg-blue-700'
+      className='bg-red-600 text-white font-medium px-2 py-1 rounded enabled:hover:bg-red-700'
       onClick={onClick}
       disabled={loading}
     >
@@ -34,4 +34,4 @@ const ActionButton = ({ name, onClick, loading = false }) => {
   )
 }
 
-export default ActionButton
+export default DeleteButton

@@ -1,5 +1,6 @@
-import ActionButton from '../../ui/buttons/ActionButton'
+import ViewButton from '../../ui/buttons/ViewButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import DeleteButton from '../../ui/buttons/DeleteButton'
 
 const DeductionTable = ({ deductions, setSelectedDeductionId, getDeductions }) => {
   const handleSubmit = async (id) => {
@@ -33,11 +34,11 @@ const DeductionTable = ({ deductions, setSelectedDeductionId, getDeductions }) =
                 <td className='p-2.5'>{deduction.name}</td>
                 <td className='p-2.5'>{deduction.amount}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ActionButton
+                  <ViewButton
                     name='View'
                     onClick={() => setSelectedDeductionId(deduction.id)}
                   />
-                  <ActionButton
+                  <DeleteButton
                     name='Delete'
                     onClick={() => handleSubmit(deduction.id)}
                   />

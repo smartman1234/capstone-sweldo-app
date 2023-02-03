@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import ActionButton from '../../ui/buttons/ActionButton'
+import ViewButton from '../../ui/buttons/ViewButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
+import DeleteButton from '../../ui/buttons/DeleteButton'
 
 const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments }) => {
   const handleSubmit = async (id) => {
@@ -36,11 +37,11 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments 
                 <th className='p-2.5'>{departments.from + index}</th>
                 <td className='p-2.5'>{department.name}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ActionButton
+                  <ViewButton
                     name='View'
                     onClick={() => setSelectedDepartmentId(department.id)}
                   />
-                  <ActionButton
+                  <DeleteButton
                     name='Delete'
                     onClick={() => handleSubmit(department.id)}
                   />
