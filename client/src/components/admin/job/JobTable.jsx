@@ -1,6 +1,20 @@
 import ActionButton from '../../ui/buttons/ActionButton'
+import * as RestApi from '../../../utils/rest_api_util'
 
 const JobTable = ({ jobs, setSelectedJobId }) => {
+  // Delete job
+  const handleSubmit = async (id) => {
+    try {
+      const result = await RestApi.deleteJob(id)
+      const response = await result.json()
+
+      if (result.status === 200) {
+      }
+
+      if (result.status === 400) {
+      }
+    } catch (error) {}
+  }
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -23,6 +37,10 @@ const JobTable = ({ jobs, setSelectedJobId }) => {
                   <ActionButton
                     name='View'
                     onClick={() => setSelectedJobId(job.id)}
+                  />
+                  <ActionButton
+                    name='Delete'
+                    onClick={() => handleSubmit(job.id)}
                   />
                 </td>
               </tr>

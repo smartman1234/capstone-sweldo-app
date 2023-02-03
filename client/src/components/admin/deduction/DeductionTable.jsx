@@ -1,6 +1,20 @@
 import ActionButton from '../../ui/buttons/ActionButton'
+import * as RestApi from '../../../utils/rest_api_util'
 
 const DeductionTable = ({ deductions, setSelectedDeductionId }) => {
+  // Delete deduction
+  const handleSubmit = async (id) => {
+    try {
+      const result = await RestApi.deleteDeduction(id)
+      const response = await result.json()
+
+      if (result.status === 200) {
+      }
+
+      if (result.status === 400) {
+      }
+    } catch (error) {}
+  }
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -23,6 +37,10 @@ const DeductionTable = ({ deductions, setSelectedDeductionId }) => {
                   <ActionButton
                     name='View'
                     onClick={() => setSelectedDeductionId(deduction.id)}
+                  />
+                  <ActionButton
+                    name='Delete'
+                    onClick={() => handleSubmit(deduction.id)}
                   />
                 </td>
               </tr>

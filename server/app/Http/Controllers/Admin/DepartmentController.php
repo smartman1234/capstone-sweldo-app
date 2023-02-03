@@ -117,10 +117,10 @@ class DepartmentController extends Controller
 
     public function destroy(Request $request)
     {
-        // Delete Department
+        // Delete department
         $id = $request->id;
 
-        // Validate Id of Department
+        // Validate id 
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -129,7 +129,7 @@ class DepartmentController extends Controller
             ], 400);
         }
 
-        // Get Department
+        // Get department
         $department = Department::find($id);
 
         // Not found
@@ -145,6 +145,5 @@ class DepartmentController extends Controller
         return response()->json([
             'message' => 'Department deleted successfully'
         ]);
-
     }
 }
