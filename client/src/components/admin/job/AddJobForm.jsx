@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const AddJobForm = ({ toggleAddForm }) => {
+const AddJobForm = ({ toggleAddForm, getJobs }) => {
   const [formData, setFormData] = useState({
     name: '',
     salary: '',
@@ -20,6 +20,7 @@ const AddJobForm = ({ toggleAddForm }) => {
       const response = await result.json()
       if (result.status === 200) {
         toggleAddForm()
+        getJobs()
       }
       if (result.status === 400) {
         setError(response)

@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const EditDepartmentForm = ({ selectedDepartmentId, setSelectedDepartmentId }) => {
+const EditDepartmentForm = ({ selectedDepartmentId, setSelectedDepartmentId, getDepartments }) => {
   const [formData, setFormData] = useState({
     name: '',
   })
@@ -33,6 +33,7 @@ const EditDepartmentForm = ({ selectedDepartmentId, setSelectedDepartmentId }) =
       const response = await result.json()
       if (result.status === 200) {
         setSelectedDepartmentId(undefined)
+        getDepartments()
       }
       if (result.status === 400) {
         setError(response)

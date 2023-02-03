@@ -73,14 +73,21 @@ const Deduction = () => {
         <DeductionTable
           deductions={deductions}
           setSelectedDeductionId={setSelectedDeductionId}
+          getDeductions={getDeductions}
         />
         <Pagination pagination={deductions} onClick={getDeductions} />
       </div>
-      {showAddForm && <AddDeductionForm toggleAddForm={toggleAddForm} />}
+      {showAddForm && (
+        <AddDeductionForm
+          toggleAddForm={toggleAddForm}
+          getDeductions={getDeductions}
+        />
+      )}
       {selectedDeductionId !== undefined && (
         <EditDeductionForm
           selectedDeductionId={selectedDeductionId}
           setSelectedDeductionId={setSelectedDeductionId}
+          getDeductions={getDeductions}
         />
       )}
     </div>

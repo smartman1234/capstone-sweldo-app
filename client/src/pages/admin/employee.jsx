@@ -76,11 +76,17 @@ const Employee = () => {
         />
         <Pagination pagination={employees} onClick={getEmployees} />
       </div>
-      {showAddForm && <AddEmployeeForm toggleAddForm={toggleAddForm} />}
+      {showAddForm && (
+        <AddEmployeeForm
+          toggleAddForm={toggleAddForm}
+          getEmployees={getEmployees}
+        />
+      )}
       {selectedEmployeeId !== undefined && (
         <EditEmployeeForm
           selectedEmployeeId={selectedEmployeeId}
           setSelectedEmployeeId={setSelectedEmployeeId}
+          getEmployees={getEmployees}
         />
       )}
     </div>

@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const AddEmployeeForm = ({ toggleAddForm }) => {
+const AddEmployeeForm = ({ toggleAddForm, getEmployees }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -56,6 +56,7 @@ const AddEmployeeForm = ({ toggleAddForm }) => {
       const response = await result.json()
       if (result.status === 200) {
         toggleAddForm()
+        getEmployees()
       }
       if (result.status === 400) {
         setError(response)

@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const EditDeductionForm = ({ selectedDeductionId, setSelectedDeductionId }) => {
+const EditDeductionForm = ({ selectedDeductionId, setSelectedDeductionId, getDeductions }) => {
   const [formData, setFormData] = useState({
     name: '',
     salary: '',
@@ -37,6 +37,7 @@ const EditDeductionForm = ({ selectedDeductionId, setSelectedDeductionId }) => {
       const response = await result.json()
       if (result.status === 200) {
         setSelectedDeductionId(undefined)
+        getDeductions()
       }
       if (result.status === 400) {
         setError(response)

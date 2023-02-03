@@ -75,14 +75,21 @@ const Department = () => {
           setSelectedDepartmentId={setSelectedDepartmentId}
           setDepartments={setDepartments}
           selectedDepartmentId={selectedDepartmentId}
+          getDepartments={getDepartments}
         />
         <Pagination pagination={departments} onClick={getDepartments} />
       </div>
-      {showAddForm && <AddDepartmentForm toggleAddForm={toggleAddForm} />}
+      {showAddForm && (
+        <AddDepartmentForm
+          toggleAddForm={toggleAddForm}
+          getDepartments={getDepartments}
+        />
+      )}
       {selectedDepartmentId !== undefined && (
         <EditDepartmentForm
           selectedDepartmentId={selectedDepartmentId}
           setSelectedDepartmentId={setSelectedDepartmentId}
+          getDepartments={getDepartments}
         />
       )}
     </div>

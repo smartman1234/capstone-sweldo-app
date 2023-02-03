@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const AddDeductionForm = ({ toggleAddForm }) => {
+const AddDeductionForm = ({ toggleAddForm, getDeductions }) => {
   const [formData, setFormData] = useState({
     name: '',
     amount: '',
@@ -20,6 +20,7 @@ const AddDeductionForm = ({ toggleAddForm }) => {
       const response = await result.json()
       if (result.status === 200) {
         toggleAddForm()
+        getDeductions()
       }
       if (result.status === 400) {
         setError(response)

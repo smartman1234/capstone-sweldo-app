@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const AddDepartmentForm = ({ toggleAddForm }) => {
+const AddDepartmentForm = ({ toggleAddForm, getDepartments }) => {
   const [formData, setFormData] = useState({
     name: '',
   })
@@ -19,6 +19,7 @@ const AddDepartmentForm = ({ toggleAddForm }) => {
       const response = await result.json()
       if (result.status === 200) {
         toggleAddForm()
+        getDepartments()
       }
       if (result.status === 400) {
         setError(response)

@@ -70,14 +70,21 @@ const Job = () => {
             Add
           </button>
         </div>
-        <JobTable jobs={jobs} setSelectedJobId={setSelectedJobId} />
+        <JobTable
+          jobs={jobs}
+          setSelectedJobId={setSelectedJobId}
+          getJobs={getJobs}
+        />
         <Pagination pagination={jobs} onClick={getJobs} />
       </div>
-      {showAddForm && <AddJobForm toggleAddForm={toggleAddForm} />}
+      {showAddForm && (
+        <AddJobForm toggleAddForm={toggleAddForm} getJobs={getJobs} />
+      )}
       {selectedJobId !== undefined && (
         <EditJobForm
           selectedJobId={selectedJobId}
           setSelectedJobId={setSelectedJobId}
+          getJobs={getJobs}
         />
       )}
     </div>

@@ -1,12 +1,13 @@
 import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const DeductionTable = ({ deductions, setSelectedDeductionId }) => {
+const DeductionTable = ({ deductions, setSelectedDeductionId, getDeductions }) => {
   const handleSubmit = async (id) => {
     try {
       const result = await RestApi.deleteDeduction(id)
       const response = await result.json()
       if (result.status === 200) {
+        getDeductions()
       }
       if (result.status === 400) {
       }

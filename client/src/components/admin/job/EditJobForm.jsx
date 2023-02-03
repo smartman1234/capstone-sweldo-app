@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
-const EditJobForm = ({ selectedJobId, setSelectedJobId }) => {
+const EditJobForm = ({ selectedJobId, setSelectedJobId, getJobs }) => {
   const [formData, setFormData] = useState({
     name: '',
     salary: '',
@@ -34,6 +34,7 @@ const EditJobForm = ({ selectedJobId, setSelectedJobId }) => {
       const response = await result.json()
       if (result.status === 200) {
         setSelectedJobId(undefined)
+        getJobs()
       }
       if (result.status === 400) {
         setError(response)
