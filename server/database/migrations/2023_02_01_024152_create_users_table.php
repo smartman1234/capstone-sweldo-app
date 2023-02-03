@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->boolean('is_admin')->default(false);
-            $table->foreignId('department_id')->constrained();
-            $table->foreignId('job_id')->constrained();
+            $table->foreignId('department_id');
+            $table->foreignId('job_id');
             $table->timestamps();
         });
     }

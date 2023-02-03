@@ -8,34 +8,19 @@ const DepartmentTable = ({
   selectedDepartmentId,
 }) => {
   const [error, setError] = useState()
-  const [formData, setFormData] = useState({
-    name: '',
-  })
 
-  useEffect(() => {
-    getDepartment()
-  }, [])
 
-  const getDepartment = async () => {
-    try {
-      const result = await RestApi.getDepartment(selectedDepartmentId)
-      const response = await result.json()
-      if (result.status === 200) {
-        setFormData(response.department)
-      }
-    } catch (error) {}
-  }
 
 
   // delete department
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (id) => {
     try {
-      const result = await RestApi.deleteDepartment(selectedDepartmentId, formData)
+      const result = await RestApi.deleteDepartment(id)
       const response = await result.json()
 
       if (result.status === 200) {
-        setSelectedDepartmentId(undefined)
+        
       }
 
       if (result.status === 400) {
@@ -65,7 +50,7 @@ const DepartmentTable = ({
                     name='View'
                     onClick={() => setSelectedDepartmentId(department.id)}
                   />
-                  <ActionButton name='Delete' onClick={() => handleSubmit()} />
+                  <ActionButton name='Delete' onClick={() => handleSubmit(department.id)} />
                 </td>
               </tr>
             ))
