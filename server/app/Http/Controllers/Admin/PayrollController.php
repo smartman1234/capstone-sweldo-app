@@ -40,9 +40,9 @@ class PayrollController extends Controller
                 'id' => $user->id,
                 'name' => $user->first_name . ' ' . $user->last_name,
                 'total_hours' => $totalHours,
-                'earnings' => ($totalHours * ($user->job == null ? 0 : $user->job->salary)),
+                'earnings' => ($totalHours * $user->job->salary),
                 'deductions' => $totalDeductions,
-                'net_pay' => ($totalHours * ($user->job == null ? 0 : $user->job->salary)) - $totalDeductions
+                'net_pay' => ($totalHours * $user->job->salary) - $totalDeductions
             ];
         }
 
@@ -113,19 +113,19 @@ class PayrollController extends Controller
                 $user->payslips()->create([
                     'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
-                    'earnings' => $totalHours * ($user->job == null ? 0 : $user->job->salary),
+                    'earnings' => $totalHours * $user->job->salary,
                     'deduction_list' => json_encode($deductionList),
                     'total_deductions' => $totalDeductions,
-                    'net_pay' => ($totalHours * ($user->job == null ? 0 : $user->job->salary)) - $totalDeductions
+                    'net_pay' => ($totalHours * $user->job->salary) - $totalDeductions
                 ]);
             } else {
                 $user->payslips()->update([
                     'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
-                    'earnings' => $totalHours * ($user->job == null ? 0 : $user->job->salary),
+                    'earnings' => $totalHours * $user->job->salary,
                     'deduction_list' => json_encode($deductionList),
                     'total_deductions' => $totalDeductions,
-                    'net_pay' => ($totalHours * ($user->job == null ? 0 : $user->job->salary)) - $totalDeductions
+                    'net_pay' => ($totalHours * $user->job->salary) - $totalDeductions
                 ]);
             }
         }
@@ -163,8 +163,8 @@ class PayrollController extends Controller
                 'id' => $payslip->id,
                 'date' => $payslip->date,
                 'name' => $payslip->user->first_name . ' ' . $payslip->user->last_name,
-                'department' => $payslip->user->department == null ? 'None' : $payslip->user->department->name,
-                'job' => $payslip->user->job == null ? 'None' : $payslip->user->job->name,
+                'department' => $payslip->user->department->name,
+                'job' => $payslip->user->job->name,
                 'earnings' => $payslip->earnings,
                 'deduction_list' => json_decode($payslip->deduction_list, true),
                 'total_deductions' => $payslip->total_deductions,

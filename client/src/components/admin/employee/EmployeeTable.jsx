@@ -21,8 +21,8 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
                 <th className='p-2.5'>{employees.from + index}</th>
                 <td className='p-2.5'>{employee.email}</td>
                 <td className='p-2.5'>{employee.first_name} {employee.last_name}</td>
-                <td className='p-2.5'>{employee.department === null ? 'None' : employee.department.name}</td>
-                <td className='p-2.5'>{employee.job === null ? 'None' : employee.job.name }</td>
+                <td className='p-2.5'>{employee.department.name}</td>
+                <td className='p-2.5'>{employee.job.name}</td>
                 <td className='p-2.5 space-x-4'>
                   <ActionButton
                     name='View'
