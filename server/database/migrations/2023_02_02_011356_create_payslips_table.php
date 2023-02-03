@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->float('total_hours');
-            $table->float('deductions');
             $table->float('earnings');
+            $table->string('deduction_list');
+            $table->float('net_pay');
             $table->timestamps();
         });
     }
