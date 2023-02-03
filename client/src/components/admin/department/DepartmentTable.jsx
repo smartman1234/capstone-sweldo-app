@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ActionButton from '../../ui/buttons/ActionButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
@@ -8,12 +8,30 @@ const DepartmentTable = ({
   selectedDepartmentId,
 }) => {
   const [error, setError] = useState()
+  const [formData, setFormData] = useState({
+    name: '',
+  })
+
+  useEffect(() => {
+    getDepartment()
+  }, [])
+
+  const getDepartment = async () => {
+    try {
+      const result = await RestApi.getDepartment(selectedDepartmentId)
+      const response = await result.json()
+      if (result.status === 200) {
+        setFormData(response.department)
+      }
+    } catch (error) {}
+  }
+
 
   // delete department
 
   const handleSubmit = async () => {
     try {
-      const result = await RestApi.deleteDepartment(selectedDepartmentId)
+      const result = await RestApi.deleteDepartment(selectedDepartmentId, formData)
       const response = await result.json()
 
       if (result.status === 200) {

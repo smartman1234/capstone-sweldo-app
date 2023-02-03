@@ -68,7 +68,7 @@ class DepartmentController extends Controller
         }
 
         return response()->json([
-            'job' => $department,
+            'department' => $department,
         ]);
     }
 
