@@ -139,6 +139,34 @@ class DeductionController extends Controller
 
     public function destroy(Request $request)
     {
-        // TODO
-    }
+           // Delete job
+           $id = $request->id;
+
+           // Validate id 
+           $result = ValidationUtil::validateId($id);
+           if ($result != null) {
+               return response()->json([
+                   'message' => $result,
+                   'type' => 'id'
+               ], 400);
+           }
+   
+           // Get deduction
+           $deduction = Deduction::find($id);
+   
+           // Not found
+           if ($deduction == null) {
+               return response()->json([
+                   'message' => 'Deduction not found',
+               ], 400);
+           }
+   
+           // Delete
+           $deduction->delete();
+   
+           return response()->json([
+               'message' => 'Deduction deleted successfully'
+           ]);
+       }
+    
 }
