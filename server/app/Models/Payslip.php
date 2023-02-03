@@ -12,8 +12,9 @@ class Payslip extends Model
     protected $fillable = [
         'user_id',
         'total_hours',
-        'deductions',
         'earnings',
+        'deduction_list',
+        'net_pay',
     ];
 
     public function user()
