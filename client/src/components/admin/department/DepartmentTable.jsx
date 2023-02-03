@@ -5,7 +5,6 @@ import * as RestApi from '../../../utils/rest_api_util'
 const DepartmentTable = ({
   departments,
   setSelectedDepartmentId,
-  selectedDepartmentId,
 }) => {
   const [error, setError] = useState()
 
