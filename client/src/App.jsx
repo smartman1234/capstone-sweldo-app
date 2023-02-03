@@ -29,6 +29,7 @@ import AdminSettings from './pages/admin/admin_settings'
 
 // 404
 import PageNotFound from './pages/404'
+import Payslip from './pages/payslip'
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
         element: <AdminSettings />,
       },
     ],
+  },
+  {
+    path: 'payslip',
+    element: <Payslip />
   },
   // 404
   {
