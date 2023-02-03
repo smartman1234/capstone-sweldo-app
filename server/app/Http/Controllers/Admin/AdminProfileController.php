@@ -18,6 +18,7 @@ class AdminProfileController extends Controller
 
     public function update(Request $request)
     {
+        $avatar = $request->avatar;
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $birthday = $request->birthday;
@@ -25,6 +26,14 @@ class AdminProfileController extends Controller
         $address = $request->address;
         $phone = $request->phone;
 
+        // Validate avatar
+        $result = ValidationUtil::validateAvatar($avatar);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'avatar'
+            ], 400);
+        }
         // Validate first name
         $result = ValidationUtil::validateFirstName($first_name);
         if ($result != null) {
@@ -82,8 +91,14 @@ class AdminProfileController extends Controller
         // Get user
         $user = $request->user();
 
+         // Add image to storage
+         if ($avatar != null) {
+            $avatar = $request->file('avatar')->store('avatars');
+        }
+
         // Update
         $user->update([
+            'avatar' => $avatar,
             'first_name' => $first_name,
             'last_name' => $last_name,
             'birthday' => $birthday,

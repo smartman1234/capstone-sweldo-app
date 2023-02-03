@@ -10,6 +10,7 @@ const AdminProfile = () => {
 
   const [formData, setFormData] = useState({
     email: '',
+    avatar: '',
     first_name: '',
     last_name: '',
     birthday: '',
@@ -56,8 +57,17 @@ const AdminProfile = () => {
     <div>
       <PageTitle title='Profile' />
       <div className="flex justify-center">
-        <label htmlFor="imgupload" className='outline outline-black rounded-full   h-24 w-24'></label>
-        <input type='file' hidden id='imgupload' className='bg-black rounded-full  h-24 w-24' name='test' />
+        <label htmlFor="avatar" className='outline outline-black rounded-full   h-24 w-24' />
+        <input type='file' hidden 
+        id='avatar' 
+        className='bg-black rounded-full  h-24 w-24' 
+        value={formData.avatar}
+        onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
+        error={
+          error !== undefined && error.type === 'avatar' ? error.message : null
+        }
+        disabled={!edit}
+        />
       </div>
       <div className='mb-8 space-y-4'>
         <CustomInput
