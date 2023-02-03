@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
+use App\Models\User;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 
@@ -158,6 +159,14 @@ class JobController extends Controller
         if ($job == null) {
             return response()->json([
                 'message' => 'Job not found',
+            ], 400);
+        }
+
+        // Count user with this job
+        $count = User::where('job_id', $id)->count();
+        if ($count != 0) {
+            return response()->json([
+                'message' => 'Please remove all employee in this job first',
             ], 400);
         }
 

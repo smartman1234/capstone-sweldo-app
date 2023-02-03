@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
+use App\Models\User;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 
@@ -136,6 +137,14 @@ class DepartmentController extends Controller
         if ($department == null) {
             return response()->json([
                 'message' => 'Department not found',
+            ], 400);
+        }
+
+        // Count user with this department
+        $count = User::where('department_id', $id)->count();
+        if ($count != 0) {
+            return response()->json([
+                'message' => 'Please remove all employee in this department first',
             ], 400);
         }
 
