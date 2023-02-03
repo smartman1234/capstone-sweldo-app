@@ -26,7 +26,7 @@ const SalaryTable = ({ salaries }) => {
                 <td className='p-2.5'>{salary.total_hours}</td>
                 <td className='p-2.5'>{salary.earnings}</td>
                 <td className='p-2.5'>{salary.total_deductions}</td>
-                <td className='p-2.5'>{salary.net_pay}</td>
+                <td className='p-2.5'>{salary.net_pay < 0 ? 0 : salary.net_pay}</td>
               </tr>
             ))
           ) : (
