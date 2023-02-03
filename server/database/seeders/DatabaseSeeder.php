@@ -4,11 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Attendance;
 use App\Models\Deduction;
 use App\Models\Department;
 use App\Models\Job;
 use App\Models\Leave;
 use App\Models\User;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -55,6 +57,7 @@ class DatabaseSeeder extends Seeder
             'amount' => 100
         ]);
 
+        // Admin
         User::create([
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
@@ -69,6 +72,7 @@ class DatabaseSeeder extends Seeder
             'job_id' => 1,
         ]);
 
+        // Test
         User::create([
             'email' => 'test@gmail.com',
             'password' => Hash::make('password'),
@@ -81,8 +85,28 @@ class DatabaseSeeder extends Seeder
             'department_id' => 1,
             'job_id' => 1,
         ]);
-        
-        User::factory(100)->create();
+
+        // Create attendance for test account
+        $testUser = User::find(2);
+
+        // Create attendance for january (5 hours)
+        $testUser->attendances()->create([
+            'clock_in' => Carbon::parse('2023-01-01 09:00:00'),
+            'clock_out' => Carbon::parse('2023-01-01 14:00:00'),
+        ]);
+
+        // Create attendance for feb (8 hours)
+        $testUser->attendances()->create([
+            'clock_in' => Carbon::parse('2023-02-01 09:00:00'),
+            'clock_out' => Carbon::parse('2023-02-01 17:00:00'),
+        ]);
+        // Create attendance for feb (8 hours)
+        $testUser->attendances()->create([
+            'clock_in' => Carbon::parse('2023-02-02 09:00:00'),
+            'clock_out' => Carbon::parse('2023-02-02 17:00:00'),
+        ]);
+
+        User::factory(20)->create();
 
         // Leaves
         for ($i = 0; $i <= 30; $i++) {
