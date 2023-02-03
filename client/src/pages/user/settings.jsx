@@ -5,6 +5,7 @@ import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import * as RestApi from '../../utils/rest_api_util'
+import { toast } from 'react-toastify'
 
 const Settings = () => {
   const [formData, setFormData] = useState({
@@ -14,12 +15,10 @@ const Settings = () => {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
-  const [success, setSuccess] = useState()
 
   const handleSubmit = async () => {
     setLoading(true)
     setError(undefined)
-    setSuccess(undefined)
 
     if (formData.new_password !== formData.confirm_new_password) {
       setError({
@@ -42,10 +41,13 @@ const Settings = () => {
             confirm_new_password: '',
           }
         })
-        setSuccess(response)
+        toast.success(response.message)
       }
       if (result.status === 400) {
         setError(response)
+        if (response.type === undefined) {
+          toast.error(response.message)
+        }
       }
     } catch (error) {}
     setLoading(false)
@@ -100,14 +102,6 @@ const Settings = () => {
               : null
           }
         />
-        <DangerAlert
-          message={
-            error !== undefined && error.type === undefined
-              ? error.message
-              : null
-          }
-        />
-        <SuccessAlert message={success?.message} />
       </div>
       <CustomButton
         name='Update'
