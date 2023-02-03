@@ -144,7 +144,7 @@ class PayrollController extends Controller
             ], 400);
         }
 
-        // TODO: Return department and job
+        // Get all payslips
         $payslips = Payslip::with('user')
             ->whereBetween(
                 'created_at',
