@@ -11,6 +11,7 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments 
       const response = await result.json()
       if (result.status === 200) {
         getDepartments()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         if (response.type === undefined) {
