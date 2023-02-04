@@ -49,7 +49,7 @@ class DashboardController extends Controller
         $expectedSalary = ($monthly * $rate) - $deductions;
 
         // Get attendance today
-        $attendance = $user->attendances()->where('created_at', '>=', Carbon::now()->startOfDay())->first();
+        $attendance = $user->attendances()->where('clock_in', '>=', Carbon::now()->startOfDay())->first();
         if ($attendance != null) {
             $clockIn = $attendance->clock_in;
             $clockOut = $attendance->clock_out;
