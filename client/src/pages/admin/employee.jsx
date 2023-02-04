@@ -73,6 +73,7 @@ const Employee = () => {
         <EmployeeTable
           employees={employees}
           setSelectedEmployeeId={setSelectedEmployeeId}
+          getEmployees={getEmployees}
         />
         <Pagination pagination={employees} onClick={getEmployees} />
       </div>
