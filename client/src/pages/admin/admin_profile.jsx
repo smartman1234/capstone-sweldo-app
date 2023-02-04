@@ -10,7 +10,6 @@ const AdminProfile = () => {
 
   const [formData, setFormData] = useState({
     email: '',
-    avatar: '',
     first_name: '',
     last_name: '',
     birthday: '',
@@ -18,6 +17,7 @@ const AdminProfile = () => {
     address: '',
     phone: '',
   })
+  const [uploadImage, setUploadImage] = useState()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
 
@@ -53,21 +53,47 @@ const AdminProfile = () => {
     setLoading(false)
   }
 
+  const handleUpload = async () => {
+    setError(undefined)
+
+    try {
+      const result = await RestApi.uploadImage(uploadImage)
+      const response = await result.json()
+      if (result.status === 200) {
+        toast.success(response.message)
+      }
+      if (result.status === 400) {
+        setError(response)
+      }
+    } catch (error) {}
+  }
+
   return (
     <div>
       <PageTitle title='Profile' />
-      <div className="flex justify-center">
-        <label htmlFor="avatar" className='outline outline-black rounded-full   h-24 w-24' />
-        <input type='file' hidden 
-        id='avatar' 
-        className='bg-black rounded-full  h-24 w-24' 
-        value={formData.avatar}
-        onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
-        error={
-          error !== undefined && error.type === 'avatar' ? error.message : null
-        }
-        disabled={!edit}
+      <div className='flex justify-center'>
+        <label
+          htmlFor='avatar'
+          className='outline outline-black rounded-full   h-24 w-24'
         />
+        <input
+          type='file'
+          hidden
+          id='avatar'
+          className='bg-black rounded-full  h-24 w-24'
+          onChange={(e) => setUploadImage(e.target.files[0])}
+          error={
+            error !== undefined && error.type === 'avatar'
+              ? error.message
+              : null
+          }
+          disabled={!edit}
+        />
+      </div>
+      <div className='flex justify-center mt-5'>
+        {edit ? (
+          <CustomButton name='Upload Image' onClick={handleUpload} />
+        ) : null}
       </div>
       <div className='mb-8 space-y-4'>
         <CustomInput
