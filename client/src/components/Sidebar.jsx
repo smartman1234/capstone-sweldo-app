@@ -57,8 +57,8 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
             <div className='flex justify-center'>
               <img
                 className='bg-black rounded-full  h-24 w-24'
-                src='#'
-                alt='images'
+                src={localStorage.getItem('avatar')}
+                alt='Avatar'
               />
             </div>
           </li>
