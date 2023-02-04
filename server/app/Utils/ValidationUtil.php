@@ -215,17 +215,9 @@ class ValidationUtil
         return null;
     }
 
-    public static function validateAvatar(string $value = null)
+    public static function validateAvatar($value = null)
     {
-        if (empty($value)) {
-            return 'Please input avatar';
-        }
-        if (strlen($value) > 255) {
-            return 'Max 255 characters only';
-        }
-        if (preg_match('required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', $value)) {
-            return 'Please put the correct avatar';
-        }
+        // TODO: proper validation O_o
         return null;
     }
 }

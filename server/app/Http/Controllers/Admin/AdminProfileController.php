@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class AdminProfileController extends Controller
 {
     public function show(Request $request)
     {
         $user = $request->user();
+        
+        // Change to url of avatar
+        $user->avatar = URL::asset('storage/' . $user->avatar);
+
         return response()->json([
             'user' => $user
         ]);
@@ -98,37 +104,32 @@ class AdminProfileController extends Controller
         ]);
     }
 
-    public function avatar(Request $request)
+    public function updateAvatar(Request $request)
     {
+        $image = $request->file('image');
 
-        // upload image to server and get the path of the image in the server and save it in the database and return the path to the client to display the image in the client side 
-       
         // Validate image
-        $result = ValidationUtil::validateAvatar($request->file('avatar'));
+        $result = ValidationUtil::validateAvatar($image);
         if ($result != null) {
             return response()->json([
                 'message' => $result,
                 'type' => 'avatar'
             ], 400);
         }
+        
+        // Store image and save path
+        $imagePath = Storage::disk('public')->put('/images', $image);
 
         // Get user
         $user = $request->user();
 
-        // Upload image
-        $path = $request->file('avatar')->store('images');
-
         // Update
         $user->update([
-            'avatar' => $path
+            'avatar' => $imagePath
         ]);
 
         return response()->json([
             'message' => 'Avatar uploaded successfully'
         ]);
-
-
-        
-        
     }
 }

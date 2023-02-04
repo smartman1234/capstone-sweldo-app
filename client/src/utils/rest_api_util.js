@@ -11,6 +11,15 @@ const getHeaders = () => {
   return headers
 }
 
+const getCustomHeaders = () => {
+  const headers = {}
+  const token = localStorage.getItem('token')
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`
+  }
+  return headers
+}
+
 // Login
 export const login = async (data) =>
   await fetch(baseUrl + '/login', {
@@ -307,13 +316,12 @@ export const updateAdminProfile = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
-  export const uploadImage = async (data) =>
+export const uploadAvatar = async (data) =>
   await fetch(baseUrl + '/admin/profile/avatar', {
     method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify(data),
+    headers: getCustomHeaders(),
+    body: data,
   })
-
 
 // Settings
 export const updateAdminSettings = async (data) =>

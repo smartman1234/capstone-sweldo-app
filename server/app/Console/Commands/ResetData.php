@@ -30,6 +30,7 @@ class ResetData extends Command
     {
         Artisan::call('migrate:fresh');
         Artisan::call('db:seed');
+        Artisan::call('storage:link');
         Artisan::call('passport:install');
 
         return Command::SUCCESS;

@@ -8,8 +8,8 @@ import { toast } from 'react-toastify'
 const AdminProfile = () => {
   const [edit, setEdit] = useState(false)
 
-  // how can i add upload image on this code
   const [formData, setFormData] = useState({
+    avatar: '',
     email: '',
     first_name: '',
     last_name: '',
@@ -18,9 +18,10 @@ const AdminProfile = () => {
     address: '',
     phone: '',
   })
-  const [uploadImage, setUploadImage] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
+
+  const [selectedImage, setSelectedImage] = useState()
 
   useEffect(() => {
     getAdminProfile()
@@ -54,49 +55,55 @@ const AdminProfile = () => {
     setLoading(false)
   }
 
-  const handleUpload = async () => {
-    setError(undefined)
+  const uploadAvatar = async () => {
+    setLoading(true)
 
     try {
-      const dataForm = new FormData()
-      dataForm.append('avatar', uploadImage)
-      const result = await RestApi.uploadImage(dataForm)
+      const customForm = new FormData()
+      customForm.append('image', selectedImage)
+      const result = await RestApi.uploadAvatar(customForm)
       const response = await result.json()
       if (result.status === 200) {
+        setSelectedImage(undefined)
         toast.success(response.message)
       }
-      if (result.status === 400) {
-        setError(response)
-      }
     } catch (error) {}
+    setLoading(false)
   }
 
   return (
     <div>
       <PageTitle title='Profile' />
-      <div className='flex justify-center'>
-        {/* <label
-          htmlFor='avatar'
-          className='outline outline-black rounded-full   h-24 w-24'
-        /> */}
-        <input
-          type='file'
-          className='  '
-          onChange={(e) => setUploadImage(e.target.files[0])}
-          error={
-            error !== undefined && error.type === 'avatar'
-              ? error.message
-              : null
-          }
-          disabled={!edit}
-        />
-      </div>
-      <div className='flex justify-center mt-5'>
-        {edit ? (
-          <CustomButton name='Upload Image' onClick={handleUpload} />
-        ) : null}
-      </div>
       <div className='mb-8 space-y-4'>
+        <div className='flex flex-col items-center'>
+          {/* Use: http://127.0.0.1:8000/storage/image name */}
+          <img
+            src={formData.avatar}
+            alt='Avatar'
+            className='w-20 h-20 rounded-full bg-red-500'
+          />
+          <input
+            type='file'
+            accept='image/*'
+            onChange={(e) => {
+              console.log(e.target.files[0])
+              // Preview
+              setFormData({
+                ...formData,
+                avatar: URL.createObjectURL(e.target.files[0]),
+              })
+              // Set image
+              setSelectedImage(e.target.files[0])
+            }}
+          />
+          {selectedImage && (
+            <CustomButton
+              name='Upload Avatar'
+              onClick={uploadAvatar}
+              loading={loading}
+            />
+          )}
+        </div>
         <CustomInput
           label='Email'
           id='email'
