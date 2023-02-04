@@ -159,6 +159,11 @@ export const updateEmployee = async (id, data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+  export const deleteEmployee = async (id) =>
+  await fetch(baseUrl + `/admin/employee/${id}/destroy`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Department
 export const getDepartments = async (page) =>

@@ -1,6 +1,25 @@
 import ViewButton from '../../ui/buttons/ViewButton'
+import * as RestApi from '../../../utils/rest_api_util'
+import DeleteButton from '../../ui/buttons/DeleteButton'
+import { toast } from 'react-toastify'
 
-const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
+const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
+
+  const handleSubmit = async (id) => {
+    try {
+      const result = await RestApi.deleteEmployee(id)
+      const response = await result.json()
+      if (result.status === 200) {
+        getEmployees()
+        toast.success(response.message)
+      }
+      if (result.status === 400) {
+        if (response.type === undefined) {
+          toast.error(response.message)
+        }
+      }
+    } catch (error) {}
+  }
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -27,6 +46,10 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId }) => {
                   <ViewButton
                     name='View'
                     onClick={() => setSelectedEmployeeId(employee.id)}
+                  />
+                  <DeleteButton 
+                  name='Delete'
+                  onClick={() => handleSubmit(employee.id)}
                   />
                 </td>
               </tr>
