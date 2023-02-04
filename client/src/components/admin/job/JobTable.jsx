@@ -10,6 +10,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
       const response = await result.json()
       if (result.status === 200) {
         getJobs()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         if (response.type === undefined) {
