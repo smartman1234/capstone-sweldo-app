@@ -7,10 +7,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
   const navigate = useNavigate()
 
   const [admin, setAdmin] = useState(false)
-  const [username, setUsername] = useState({ first_name: '' })
-  useEffect(() => {
-    getProfile()
-  }, [])
+
   useEffect(() => {
     const isAdmin = localStorage.getItem('is_admin')
     if (isAdmin === '1') {
@@ -18,19 +15,9 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
     }
   }, [])
 
-
   const logout = () => {
     localStorage.clear()
     navigate('/')
-  }
-  const getProfile = async () => {
-    try {
-      const result = await RestApi.getProfile()
-      const response = await result.json()
-      if (result.status === 200) {
-        setUsername(response.user)
-      }
-    } catch (error) { }
   }
 
   return (
@@ -67,13 +54,17 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
       <nav>
         <ul className='flex flex-col space-y-4 p-5'>
           <li>
-            <div className="flex justify-center">
-              <img className='bg-black rounded-full  h-24 w-24' src='#' alt='images' />
+            <div className='flex justify-center'>
+              <img
+                className='bg-black rounded-full  h-24 w-24'
+                src='#'
+                alt='images'
+              />
             </div>
           </li>
           <li>
             <p className='p-5 text-center bg-black text-white rounded'>
-              Welcome, {username.first_name}
+              Welcome, {localStorage.getItem('first_name')}
             </p>
           </li>
           {admin === false ? (
