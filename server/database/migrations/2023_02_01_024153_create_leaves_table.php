@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('date');
             $table->enum('status', ['pending', 'approved', 'declined'])->default('pending');
             $table->timestamps();
