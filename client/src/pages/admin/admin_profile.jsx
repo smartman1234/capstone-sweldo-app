@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 const AdminProfile = () => {
   const [edit, setEdit] = useState(false)
 
+  // how can i add upload image on this code
   const [formData, setFormData] = useState({
     email: '',
     first_name: '',
@@ -17,7 +18,7 @@ const AdminProfile = () => {
     address: '',
     phone: '',
   })
-  const [uploadImage, setUploadImage] = useState()
+  const [uploadImage, setUploadImage] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
 
@@ -57,7 +58,9 @@ const AdminProfile = () => {
     setError(undefined)
 
     try {
-      const result = await RestApi.uploadImage(uploadImage)
+      const dataForm = new FormData()
+      dataForm.append('avatar', uploadImage)
+      const result = await RestApi.uploadImage(dataForm)
       const response = await result.json()
       if (result.status === 200) {
         toast.success(response.message)
@@ -72,15 +75,13 @@ const AdminProfile = () => {
     <div>
       <PageTitle title='Profile' />
       <div className='flex justify-center'>
-        <label
+        {/* <label
           htmlFor='avatar'
           className='outline outline-black rounded-full   h-24 w-24'
-        />
+        /> */}
         <input
           type='file'
-          hidden
-          id='avatar'
-          className='bg-black rounded-full  h-24 w-24'
+          className='  '
           onChange={(e) => setUploadImage(e.target.files[0])}
           error={
             error !== undefined && error.type === 'avatar'

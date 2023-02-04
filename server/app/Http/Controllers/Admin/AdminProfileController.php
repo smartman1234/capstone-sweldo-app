@@ -18,7 +18,7 @@ class AdminProfileController extends Controller
 
     public function update(Request $request)
     {
-        $avatar = $request->avatar;
+
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $birthday = $request->birthday;
@@ -26,14 +26,6 @@ class AdminProfileController extends Controller
         $address = $request->address;
         $phone = $request->phone;
 
-        // Validate avatar
-        $result = ValidationUtil::validateAvatar($avatar);
-        if ($result != null) {
-            return response()->json([
-                'message' => $result,
-                'type' => 'avatar'
-            ], 400);
-        }
         // Validate first name
         $result = ValidationUtil::validateFirstName($first_name);
         if ($result != null) {
@@ -91,14 +83,8 @@ class AdminProfileController extends Controller
         // Get user
         $user = $request->user();
 
-         // Add image to storage
-         if ($avatar != null) {
-            $avatar = $request->file('avatar')->store('avatars');
-        }
-
         // Update
         $user->update([
-            'avatar' => $avatar,
             'first_name' => $first_name,
             'last_name' => $last_name,
             'birthday' => $birthday,
@@ -110,5 +96,39 @@ class AdminProfileController extends Controller
         return response()->json([
             'message' => 'Profile updated successfully'
         ]);
+    }
+
+    public function avatar(Request $request)
+    {
+
+        // upload image to server and get the path of the image in the server and save it in the database and return the path to the client to display the image in the client side 
+       
+        // Validate image
+        $result = ValidationUtil::validateAvatar($request->file('avatar'));
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'avatar'
+            ], 400);
+        }
+
+        // Get user
+        $user = $request->user();
+
+        // Upload image
+        $path = $request->file('avatar')->store('images');
+
+        // Update
+        $user->update([
+            'avatar' => $path
+        ]);
+
+        return response()->json([
+            'message' => 'Avatar uploaded successfully'
+        ]);
+
+
+        
+        
     }
 }
