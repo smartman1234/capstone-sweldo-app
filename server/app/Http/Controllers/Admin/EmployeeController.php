@@ -363,9 +363,10 @@ class EmployeeController extends Controller
 
     public function destroy(Request $request)
     {
+        
         $id = $request->id;
 
-        // Validate id 
+        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
