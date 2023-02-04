@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class LoginController extends Controller
 {
@@ -54,6 +55,7 @@ class LoginController extends Controller
         return response()->json([
             'user' => [
                 'id' => $user->id,
+                'avatar' => URL::asset('storage/' . $user->avatar),
                 'email' => $user->email,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
