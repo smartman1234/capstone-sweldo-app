@@ -47,6 +47,7 @@ const Login = () => {
             password: '',
           }
         })
+        localStorage.setItem('avatar', response.user.avatar)
         localStorage.setItem('email', response.user.email)
         localStorage.setItem('first_name', response.user.first_name)
         localStorage.setItem('last_name', response.user.last_name)
