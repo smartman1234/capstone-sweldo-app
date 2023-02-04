@@ -151,7 +151,7 @@ export const updateEmployee = async (id, data) =>
     body: JSON.stringify(data),
   })
   export const deleteEmployee = async (id) =>
-  await fetch(baseUrl + `/admin/department/${id}/destroy`, {
+  await fetch(baseUrl + `/admin/employee/${id}/destroy`, {
     method: 'POST',
     headers: getHeaders(),
   })

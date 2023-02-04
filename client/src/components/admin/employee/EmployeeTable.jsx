@@ -11,6 +11,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
       const response = await result.json()
       if (result.status === 200) {
         getEmployees()
+        toast.success(response.message)
       }
       if (result.status === 400) {
         if (response.type === undefined) {
@@ -48,7 +49,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
                   />
                   <DeleteButton 
                   name='Delete'
-                  onClick={handleSubmit}
+                  onClick={() => handleSubmit(employee.id)}
                   />
                 </td>
               </tr>

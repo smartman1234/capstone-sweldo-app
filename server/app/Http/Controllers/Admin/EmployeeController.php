@@ -360,4 +360,35 @@ class EmployeeController extends Controller
             'message' => 'Employee updated successfully'
         ]);
     }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->id;
+
+        // Validate id 
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get employee
+        $employee = User::find($id);
+
+        // Not found
+        if ($employee == null) {
+            return response()->json([
+                'message' => 'Employee not found',
+            ], 400);
+        }
+
+        // Delete
+        $employee->delete();
+
+        return response()->json([
+            'message' => 'Employee deleted successfully'
+        ]);
+    }
 }

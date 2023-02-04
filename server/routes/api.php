@@ -87,6 +87,7 @@ Route::group([
     Route::post('/employee', [EmployeeController::class, 'store']);
     Route::get('/employee/{id}', [EmployeeController::class, 'show']);
     Route::post('/employee/{id}', [EmployeeController::class, 'update']);
+    Route::post('/employee/{id}/destroy', [EmployeeController::class, 'destroy']);
 
     // Department
     Route::get('/department', [DepartmentController::class, 'index']);
