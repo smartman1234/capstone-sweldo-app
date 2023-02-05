@@ -15,7 +15,7 @@ class AdminProfileController extends Controller
         $user = $request->user();
         
         // Change to url of avatar
-        $user->avatar = URL::asset('storage/' . $user->avatar);
+        $user->avatar = $user->avatar == null ? $user->avatar : URL::asset('storage/' . $user->avatar);
 
         return response()->json([
             'user' => $user
