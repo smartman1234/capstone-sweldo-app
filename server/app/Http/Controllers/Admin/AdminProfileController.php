@@ -129,7 +129,8 @@ class AdminProfileController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Avatar uploaded successfully'
+            'message' => 'Avatar uploaded successfully',
+            'avatar' => URL::asset('storage/' . $user->avatar)
         ]);
     }
 }

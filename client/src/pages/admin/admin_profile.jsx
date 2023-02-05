@@ -4,8 +4,10 @@ import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import * as RestApi from '../../utils/rest_api_util'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const AdminProfile = () => {
+  const navigate = useNavigate()
   const [edit, setEdit] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -66,6 +68,10 @@ const AdminProfile = () => {
       if (result.status === 200) {
         setSelectedImage(undefined)
         toast.success(response.message)
+        // Update avatar
+        localStorage.setItem('avatar', response.avatar)
+        // Navigate to this page to update sidebar, coz we don't use state management
+        navigate('/admin/profile')
       }
     } catch (error) {}
     setLoading(false)
