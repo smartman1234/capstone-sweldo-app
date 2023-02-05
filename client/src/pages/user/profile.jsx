@@ -10,6 +10,7 @@ const Profile = () => {
   const [edit, setEdit] = useState(false)
 
   const [formData, setFormData] = useState({
+    avatar: '',
     email: '',
     first_name: '',
     last_name: '',
@@ -20,6 +21,8 @@ const Profile = () => {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
+  const [selectedImage, setSelectedImage] = useState()
+
 
   useEffect(() => {
     getProfile()
@@ -53,14 +56,55 @@ const Profile = () => {
     setLoading(false)
   }
 
+  const uploadAvatar = async () => {
+    setLoading(true)
+
+    try {
+      const customForm = new FormData()
+      customForm.append('image', selectedImage)
+      const result = await RestApi.uploadUserAvatar(customForm)
+      const response = await result.json()
+      if (result.status === 200) {
+        setSelectedImage(undefined)
+        toast.success(response.message)
+      }
+    } catch (error) {}
+    setLoading(false)
+  }
+
   return (
     <div>
       <PageTitle title='Profile' />
-      <div className="flex justify-center">
-        <label htmlFor="imgupload" className='outline outline-black rounded-full   h-24 w-24' disabled={!edit} />
-        <input type='file' hidden id='imgupload' multiple accept="image/*" className='bg-black rounded-full  h-24 w-24' name='test' disabled={!edit} />
-      </div>
       <div className='mb-8 space-y-4'>
+        <div className='flex flex-col items-center'>
+          {/* Use: http://127.0.0.1:8000/storage/image name */}
+          <img
+            src={formData.avatar}
+            alt='Avatar'
+            className='w-20 h-20 rounded-full bg-red-500'
+          />
+          <input
+            type='file'
+            accept='image/*'
+            onChange={(e) => {
+              console.log(e.target.files[0])
+              // Preview
+              setFormData({
+                ...formData,
+                avatar: URL.createObjectURL(e.target.files[0]),
+              })
+              // Set image
+              setSelectedImage(e.target.files[0])
+            }}
+          />
+          {selectedImage && (
+            <CustomButton
+              name='Upload Avatar'
+              onClick={uploadAvatar}
+              loading={loading}
+            />
+          )}
+        </div>
         <CustomInput
           label='Email'
           id='email'
