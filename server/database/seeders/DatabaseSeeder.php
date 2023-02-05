@@ -86,34 +86,21 @@ class DatabaseSeeder extends Seeder
             'job_id' => 1,
         ]);
 
-        // Create attendance for test account
+        // Get test user
         $testUser = User::find(2);
 
-        // Create attendance for january (5 hours)
-        $testUser->attendances()->create([
-            'clock_in' => Carbon::parse('2023-01-01 09:00:00'),
-            'clock_out' => Carbon::parse('2023-01-01 14:00:00'),
-        ]);
-
-        // Create attendance for feb (8 hours)
-        $testUser->attendances()->create([
-            'clock_in' => Carbon::parse('2023-02-01 09:00:00'),
-            'clock_out' => Carbon::parse('2023-02-01 17:00:00'),
-        ]);
-        // Create attendance for feb (8 hours)
-        $testUser->attendances()->create([
-            'clock_in' => Carbon::parse('2023-02-02 09:00:00'),
-            'clock_out' => Carbon::parse('2023-02-02 17:00:00'),
-        ]);
-
-        User::factory(20)->create();
-
-        // Leaves
-        for ($i = 0; $i <= 30; $i++) {
-            Leave::create([
-                'user_id' => 2,
-                'date' => new DateTime()
+        // Create 30 days of attendance
+        for ($day = 30; $day > 0; $day--) {
+            $currentDay = Carbon::now()->subDay($day);
+            $clockIn = $currentDay->startOfDay()->addHour(9);
+            $clockOut = $currentDay->startOfDay()->addHour(15);
+            $testUser->attendances()->create([
+                'clock_in' => $clockIn,
+                'clock_out' => $clockOut,
             ]);
         }
+
+        // Create 10 fake users
+        User::factory(10)->create();
     }
 }
