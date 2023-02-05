@@ -50,8 +50,8 @@ export const clockOut = async () =>
     method: 'POST',
     headers: getHeaders(),
   })
-export const getAttendanceOverview = async () =>
-  await fetch(baseUrl + '/user/attendance/overview', {
+export const getAttendanceOverview = async (filter) =>
+  await fetch(baseUrl + `/user/attendance/overview?filter=${filter}`, {
     method: 'GET',
     headers: getHeaders(),
   })

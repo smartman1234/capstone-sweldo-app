@@ -57,17 +57,83 @@ class AttendanceController extends Controller
 
     public function getAttendanceOverview(Request $request)
     {
+        $filter = $request->filter;
+
+        if ($filter != 'daily' && $filter != 'weekly' && $filter != 'monthly') {
+            return response()->json([
+                'message' => 'Invalid filter'
+            ], 400);
+        }
+
+
         // Get user
         $user = $request->user();
 
         // Previous attendance
         $previousAttendances = [];
 
-        // Take latest 7 only
-        $attendances = $user->attendances()->get()->sortByDesc('clock_in')->take(7);
-        foreach ($attendances as $attendance) {
-            $previousAttendances['labels'][] = Carbon::parse($attendance->clock_in)->rawFormat('M d');
-            $previousAttendances['data'][] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
+        // Daily
+        if ($filter == 'daily') {
+            $attendances = $user->attendances()
+                ->where('clock_in', '>', Carbon::now()->startOfWeek())
+                ->where('clock_in', '<', Carbon::now()->endOfWeek())
+                ->get()
+                ->sortByDesc('clock_in');
+
+            foreach ($attendances as $attendance) {
+                $previousAttendances['labels'][] = Carbon::parse($attendance->clock_in)->rawFormat('D, M d');
+                $previousAttendances['data'][] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
+            }
+        }
+
+        // Weekly
+        if ($filter == 'weekly') {
+            $weeklyAttendances = $user->attendances()
+                ->where('clock_in', '>', Carbon::now()->subDay(90))
+                ->get()
+                ->sortByDesc('clock_in')
+                ->groupBy(function ($attendance) {
+                    return Carbon::parse($attendance->clock_in)->format('W');
+                });
+
+            $weeklyData = [];
+            foreach ($weeklyAttendances as $week => $attendances) {
+                foreach ($attendances as $attendance) {
+                    if (isset($weeklyData[$week])) {
+                        $weeklyData[$week] += Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
+                    } else {
+                        $weeklyData[$week] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
+                    }
+                }
+            }
+
+            foreach ($weeklyData as $week => $hour) {
+                $previousAttendances['labels'][] = 'Week ' . $week;
+                $previousAttendances['data'][] = $hour;
+            }
+        }
+
+        // Monthly
+        if ($filter == 'monthly') {
+            $monthlyAttendances = $user->attendances()->get()->sortByDesc('clock_in')->groupBy(function ($attendance) {
+                return Carbon::parse($attendance->clock_in)->format('m');
+            });
+
+            $monthlyData = [];
+            foreach ($monthlyAttendances as $month => $attendances) {
+                foreach ($attendances as $attendance) {
+                    if (isset($monthlyData[$month])) {
+                        $monthlyData[$month] += Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
+                    } else {
+                        $monthlyData[$month] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
+                    }
+                }
+            }
+
+            foreach ($monthlyData as $month => $hour) {
+                $previousAttendances['labels'][] = Carbon::createFromFormat('!m', $month)->format('F');
+                $previousAttendances['data'][] = $hour;
+            }
         }
 
         return response()->json([

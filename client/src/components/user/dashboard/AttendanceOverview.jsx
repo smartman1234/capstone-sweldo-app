@@ -69,9 +69,9 @@ const AttendanceOverview = ({ clock, setClock }) => {
     setLoading(false)
   }
 
-  const getAttendanceOverview = async () => {
+  const getAttendanceOverview = async (filter = 'daily') => {
     try {
-      const result = await RestApi.getAttendanceOverview()
+      const result = await RestApi.getAttendanceOverview(filter)
       const response = await result.json()
       if (result.status === 200) {
         setChartData({
@@ -99,14 +99,39 @@ const AttendanceOverview = ({ clock, setClock }) => {
               <CustomButton name='Loading' onClick={() => {}} loading={true} />
             )}
             {clock === 1 && (
-              <CustomButton name='Clock In' onClick={handleClockIn} loading={loading} />
+              <CustomButton
+                name='Clock In'
+                onClick={handleClockIn}
+                loading={loading}
+              />
             )}
             {clock === 2 && (
-              <CustomButton name='Clock Out' onClick={handleClockOut} loading={loading} />
+              <CustomButton
+                name='Clock Out'
+                onClick={handleClockOut}
+                loading={loading}
+              />
             )}
             {clock === 3 && (
-              <CustomButton name='Not available' onClick={() => {}} disabled={true} />
+              <CustomButton
+                name='Not available'
+                onClick={() => {}}
+                disabled={true}
+              />
             )}
+          </div>
+        </div>
+        <div className='flex justify-end'>
+          <div>
+            <select
+              className='w-full text-gray px-5 py-2.5 rounded border'
+              id='filter'
+              onChange={(e) => getAttendanceOverview(e.target.value)}
+            >
+              <option value='daily'>Daily</option>
+              <option value='weekly'>Weekly</option>
+              <option value='monthly'>Monthly</option>
+            </select>
           </div>
         </div>
       </div>
