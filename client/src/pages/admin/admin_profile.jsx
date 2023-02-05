@@ -61,7 +61,7 @@ const AdminProfile = () => {
     try {
       const customForm = new FormData()
       customForm.append('image', selectedImage)
-      const result = await RestApi.uploadAvatar(customForm)
+      const result = await RestApi.uploadAdminAvatar(customForm)
       const response = await result.json()
       if (result.status === 200) {
         setSelectedImage(undefined)
@@ -76,7 +76,6 @@ const AdminProfile = () => {
       <PageTitle title='Profile' />
       <div className='mb-8 space-y-4'>
         <div className='flex flex-col items-center'>
-          {/* Use: http://127.0.0.1:8000/storage/image name */}
           <img
             src={formData.avatar}
             alt='Avatar'
@@ -86,7 +85,6 @@ const AdminProfile = () => {
             type='file'
             accept='image/*'
             onChange={(e) => {
-              console.log(e.target.files[0])
               // Preview
               setFormData({
                 ...formData,

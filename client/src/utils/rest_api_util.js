@@ -111,6 +111,12 @@ export const updateProfile = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+export const uploadAvatar = async (data) =>
+  await fetch(baseUrl + '/user/profile/avatar', {
+    method: 'POST',
+    headers: getCustomHeaders(),
+    body: data,
+  })
 
 // Settings
 export const updateSettings = async (data) =>
@@ -118,13 +124,6 @@ export const updateSettings = async (data) =>
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify(data),
-  })
-
-  export const uploadUserAvatar = async (data) =>
-  await fetch(baseUrl + '/user/profile/avatar', {
-    method: 'POST',
-    headers: getCustomHeaders(),
-    body: data,
   })
 
 /*
@@ -166,7 +165,7 @@ export const updateEmployee = async (id, data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
-  export const deleteEmployee = async (id) =>
+export const deleteEmployee = async (id) =>
   await fetch(baseUrl + `/admin/employee/${id}/destroy`, {
     method: 'POST',
     headers: getHeaders(),
@@ -328,7 +327,7 @@ export const updateAdminProfile = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
-export const uploadAvatar = async (data) =>
+export const uploadAdminAvatar = async (data) =>
   await fetch(baseUrl + '/admin/profile/avatar', {
     method: 'POST',
     headers: getCustomHeaders(),
