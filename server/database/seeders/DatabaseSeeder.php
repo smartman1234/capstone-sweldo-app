@@ -91,12 +91,9 @@ class DatabaseSeeder extends Seeder
 
         // Create 30 days of attendance
         for ($day = 30; $day > 0; $day--) {
-            $currentDay = Carbon::now()->subDay($day);
-            $clockIn = $currentDay->startOfDay()->addHour(9);
-            $clockOut = $currentDay->startOfDay()->addHour(15);
             $testUser->attendances()->create([
-                'clock_in' => $clockIn,
-                'clock_out' => $clockOut,
+                'clock_in' => Carbon::now()->subDay($day)->startOfDay()->addHour(8),
+                'clock_out' => Carbon::now()->subDay($day)->startOfDay()->addHour(15),
             ]);
         }
 
