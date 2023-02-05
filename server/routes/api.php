@@ -61,7 +61,7 @@ Route::group([
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::post('/profile', [ProfileController::class, 'update']);
-    Route::post('/profile/avatar', [ProfileController::class, 'avatar']);
+    Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar']);
 
     // Settings
     Route::post('/settings', [SettingsController::class, 'update']);
