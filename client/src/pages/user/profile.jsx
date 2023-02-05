@@ -49,6 +49,10 @@ const Profile = () => {
       if (result.status === 200) {
         setEdit(false)
         toast.success(response.message)
+        // Update name
+        localStorage.setItem('first_name', response.first_name)
+        // Navigate to this page to update sidebar, coz we don't use state management
+        navigate('/user/profile')
       }
       if (result.status === 400) {
         setError(response)

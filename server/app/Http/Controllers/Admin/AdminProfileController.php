@@ -100,7 +100,8 @@ class AdminProfileController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Profile updated successfully'
+            'message' => 'Profile updated successfully',
+            'first_name' => $first_name,
         ]);
     }
 
