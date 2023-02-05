@@ -120,6 +120,13 @@ export const updateSettings = async (data) =>
     body: JSON.stringify(data),
   })
 
+  export const uploadUserAvatar = async (data) =>
+  await fetch(baseUrl + '/user/profile/avatar', {
+    method: 'POST',
+    headers: getCustomHeaders(),
+    body: data,
+  })
+
 /*
   Admin
 */
