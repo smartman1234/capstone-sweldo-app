@@ -5,12 +5,18 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Utils\ValidationUtil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class ProfileController extends Controller
 {
     public function show(Request $request)
     {
         $user = $request->user();
+
+        // Change to url of avatar
+        $user->avatar = URL::asset('storage/' . $user->avatar);
+
         return response()->json([
             'user' => $user
         ]);
@@ -94,6 +100,35 @@ class ProfileController extends Controller
 
         return response()->json([
             'message' => 'Profile updated successfully'
+        ]);
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        $image = $request->file('image');
+
+        // Validate image
+        $result = ValidationUtil::validateAvatar($image);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'avatar'
+            ], 400);
+        }
+        
+        // Store image and save path
+        $imagePath = Storage::disk('public')->put('/images', $image);
+
+        // Get user
+        $user = $request->user();
+
+        // Update
+        $user->update([
+            'avatar' => $imagePath
+        ]);
+
+        return response()->json([
+            'message' => 'Avatar uploaded successfully'
         ]);
     }
 }
