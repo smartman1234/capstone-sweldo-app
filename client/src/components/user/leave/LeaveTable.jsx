@@ -1,4 +1,6 @@
-const LeaveTable = ({ leaves }) => {
+import ViewButton from '../../ui/buttons/ViewButton'
+
+const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -6,6 +8,7 @@ const LeaveTable = ({ leaves }) => {
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Date</th>
           <th className='p-2.5'>Status</th>
+          <th className='p-2.5'>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +19,12 @@ const LeaveTable = ({ leaves }) => {
                 <th className='p-2.5'>{leaves.from + index}</th>
                 <td className='p-2.5'>{leave.date}</td>
                 <td className='p-2.5'>{leave.status}</td>
+                <td className='p-2.5 space-x-4'>
+                  <ViewButton
+                    name='View'
+                    onClick={() => setSelectedLeaveId(leave.id)}
+                  />
+                  </td>
               </tr>
             ))
           ) : (
