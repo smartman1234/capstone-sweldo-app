@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 const AddLeaveForm = ({ toggleAddForm }) => {
   const [formData, setFormData] = useState({
     date: '',
+    reason: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
@@ -77,6 +78,30 @@ const AddLeaveForm = ({ toggleAddForm }) => {
                   : null
               }
             />
+            <div className='w-full'>
+              <label
+                htmlFor='reason'
+                className='block text-gray-700 text-sm font-medium mb-2'
+              >
+                Reason
+              </label>
+              <textarea
+                className={
+                  error !== undefined && error.type === 'reason'
+                    ? 'w-full text-gray px-5 py-2.5 rounded border border-red-500'
+                    : 'w-full text-gray px-5 py-2.5 rounded border'
+                }
+                id='reason'
+                placeholder='Reason'
+                value={formData.reason}
+                onChange={(e) =>
+                  setFormData({ ...formData, reason: e.target.value })
+                }
+              />
+              {error !== undefined && error.type === 'reason' && (
+                <span className='text-sm text-red-500'>{error.message}</span>
+              )}
+            </div>
           </div>
           <CustomButton
             name='Create'

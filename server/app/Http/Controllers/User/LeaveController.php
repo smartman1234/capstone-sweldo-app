@@ -28,6 +28,7 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $date = $request->date;
+        $reason = $request->reason;
 
         // Validate date
         $result = ValidationUtil::validateDate($date);
@@ -38,12 +39,22 @@ class LeaveController extends Controller
             ], 400);
         }
 
+        // Validate reason
+        $result = ValidationUtil::validateReason($reason);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'reason'
+            ], 400);
+        }
+
         // Get user
         $user = $request->user();
 
         // Create
         $user->leaves()->create([
-            'date' => $date
+            'date' => $date,
+            'reason' => $reason
         ]);
 
         return response()->json([

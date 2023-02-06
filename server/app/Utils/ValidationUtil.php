@@ -215,6 +215,17 @@ class ValidationUtil
         return null;
     }
 
+    public static function validateReason(string $value = null)
+    {
+        if (empty($value)) {
+            return 'Please enter a reason';
+        }
+        if (strlen($value) > 255) {
+            return 'Max 255 characters only';
+        }
+        return null;
+    }
+
     public static function validateAvatar($value = null)
     {
         // TODO: proper validation O_o
