@@ -61,4 +61,32 @@ class LeaveController extends Controller
             'message' => 'Successfully added a new Leave'
         ]);
     }
+
+    public function show(Request $request)
+    {
+        $id = $request->id;
+
+        // Validate id
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+
+        // Get department
+        $leave = Leave::find($id);
+
+        // Not found
+        if ($leave == null) {
+            return response()->json([
+                'message' => 'Leave not found',
+            ], 400);
+        }
+
+        return response()->json([
+            'leave' => $leave,
+        ]);
+    }
 }
