@@ -3,8 +3,9 @@ import ApproveButton from '../../ui/buttons/ApproveButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 import DeclineButton from '../../ui/buttons/DeclineButton'
+import ViewButton from '../../ui/buttons/ViewButton'
 
-const LeaveTable = ({ leaves, getLeaves }) => {
+const LeaveTable = ({ leaves, getLeaves, setSelectedLeaveId }) => {
   const [loading, setLoading] = useState(false)
 
   const approveLeave = async (id) => {
@@ -104,6 +105,10 @@ const LeaveTable = ({ leaves, getLeaves }) => {
                       />
                     </>
                   )}
+                   <ViewButton
+                    name='View'
+                    onClick={() => setSelectedLeaveId(leave.id)}
+                  />
                 </td>
               </tr>
             ))
