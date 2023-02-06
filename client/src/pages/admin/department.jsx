@@ -73,8 +73,6 @@ const Department = () => {
         <DepartmentTable
           departments={departments}
           setSelectedDepartmentId={setSelectedDepartmentId}
-          setDepartments={setDepartments}
-          selectedDepartmentId={selectedDepartmentId}
           getDepartments={getDepartments}
         />
         <Pagination pagination={departments} onClick={getDepartments} />
