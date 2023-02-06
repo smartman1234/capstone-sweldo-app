@@ -34,12 +34,12 @@ class DatabaseSeeder extends Seeder
 
         Job::create([
             'name' => 'Software Engineer',
-            'salary' => 5000,
+            'salary' => 1000,
         ]);
 
         Job::create([
             'name' => 'Junior Developer',
-            'salary' => 1000
+            'salary' => 500
         ]);
 
         Deduction::create([
