@@ -2,10 +2,17 @@ import ViewButton from '../../ui/buttons/ViewButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import DeleteButton from '../../ui/buttons/DeleteButton'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
+const DeductionTable = ({
+  deductions,
+  setSelectedDeductionId,
+  getDeductions,
+}) => {
+  const [deletingId, setDeletingId] = useState()
 
-const DeductionTable = ({ deductions, setSelectedDeductionId, getDeductions }) => {
   const handleSubmit = async (id) => {
+    setDeletingId(id)
     try {
       const result = await RestApi.deleteDeduction(id)
       const response = await result.json()
@@ -16,6 +23,7 @@ const DeductionTable = ({ deductions, setSelectedDeductionId, getDeductions }) =
       if (result.status === 400) {
       }
     } catch (error) {}
+    setDeletingId(undefined)
   }
 
   return (
@@ -44,6 +52,7 @@ const DeductionTable = ({ deductions, setSelectedDeductionId, getDeductions }) =
                   <DeleteButton
                     name='Delete'
                     onClick={() => handleSubmit(deduction.id)}
+                    loading={deletingId === deduction.id}
                   />
                 </td>
               </tr>

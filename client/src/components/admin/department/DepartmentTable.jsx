@@ -4,8 +4,15 @@ import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 import DeleteButton from '../../ui/buttons/DeleteButton'
 
-const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments }) => {
+const DepartmentTable = ({
+  departments,
+  setSelectedDepartmentId,
+  getDepartments,
+}) => {
+  const [deletingId, setDeletingId] = useState()
+
   const handleSubmit = async (id) => {
+    setDeletingId(id)
     try {
       const result = await RestApi.deleteDepartment(id)
       const response = await result.json()
@@ -19,6 +26,7 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments 
         }
       }
     } catch (error) {}
+    setDeletingId(undefined)
   }
 
   return (
@@ -45,6 +53,7 @@ const DepartmentTable = ({ departments, setSelectedDepartmentId, getDepartments 
                   <DeleteButton
                     name='Delete'
                     onClick={() => handleSubmit(department.id)}
+                    loading={deletingId === department.id}
                   />
                 </td>
               </tr>

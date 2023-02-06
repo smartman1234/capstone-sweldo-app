@@ -2,9 +2,13 @@ import ViewButton from '../../ui/buttons/ViewButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 import DeleteButton from '../../ui/buttons/DeleteButton'
+import { useState } from 'react'
 
 const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
+  const [deletingId, setDeletingId] = useState()
+
   const handleSubmit = async (id) => {
+    setDeletingId(id)
     try {
       const result = await RestApi.deleteJob(id)
       const response = await result.json()
@@ -18,6 +22,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
         }
       }
     } catch (error) {}
+    setDeletingId(undefined)
   }
   
   return (
@@ -46,6 +51,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
                   <DeleteButton
                     name='Delete'
                     onClick={() => handleSubmit(job.id)}
+                    loading={deletingId === job.id}
                   />
                 </td>
               </tr>
