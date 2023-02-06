@@ -19,6 +19,8 @@ const Profile = () => {
     gender: '',
     address: '',
     phone: '',
+    department_name: '',
+    job_name: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
@@ -260,6 +262,22 @@ const Profile = () => {
           }
           disabled={!edit}
         />
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <CustomInput
+            label='Department'
+            id='department'
+            type='text'
+            value={formData.department_name}
+            disabled={true}
+          />
+          <CustomInput
+            label='Job'
+            id='job'
+            type='text'
+            value={formData.job_name}
+            disabled={true}
+          />
+        </div>
       </div>
       {edit ? (
         <CustomButton
