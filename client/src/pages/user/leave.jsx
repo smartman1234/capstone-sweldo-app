@@ -4,10 +4,12 @@ import Pagination from '../../components/Pagination'
 import * as RestApi from '../../utils/rest_api_util'
 import AddLeaveForm from '../../components/user/leave/AddLeaveForm'
 import LeaveTable from '../../components/user/leave/LeaveTable'
+import ShowLeave from '../../components/user/leave/ShowLeave'
 
 const Leave = () => {
   const [showAddForm, setShowAddForm] = useState(false)
   const [leaves, setleaves] = useState()
+  const [selectedLeaveId, setSelectedLeaveId] = useState()
 
   useEffect(() => {
     getLeaves()
@@ -39,10 +41,19 @@ const Leave = () => {
             Add
           </button>
         </div>
-        <LeaveTable leaves={leaves} />
+        <LeaveTable
+          leaves={leaves}
+          setSelectedLeaveId={setSelectedLeaveId}
+        />
         <Pagination pagination={leaves} onClick={getLeaves} />
       </div>
       {showAddForm && <AddLeaveForm toggleAddForm={toggleAddForm} />}
+      {selectedLeaveId !== undefined && (
+        <ShowLeave
+          selectedLeaveId={selectedLeaveId}
+          setSelectedLeaveId={setSelectedLeaveId}
+        />
+      )}
     </div>
   )
 }
