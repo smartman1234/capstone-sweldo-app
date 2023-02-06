@@ -32,7 +32,7 @@ class AdminDashboardController extends Controller
             )->count();
         $totalOnLeave = Leave::where('status', 'approved')
             ->whereBetween(
-                'clock_in',
+                'date',
                 [
                     Carbon::now()->startOfDay(),
                     Carbon::now()->endOfDay()
