@@ -4,6 +4,7 @@ import PageTitle from '../../components/ui/titles/PageTitle'
 import Pagination from '../../components/Pagination'
 import LeaveTable from '../../components/admin/leave/LeaveTable'
 import * as RestApi from '../../utils/rest_api_util'
+import ShowAdminLeave from '../../components/admin/leave/ShowAdminLeave'
 
 const AdminLeave = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const AdminLeave = () => {
   })
 
   const [leaves, setLeaves] = useState()
+  const [selectedLeaveId, setSelectedLeaveId] = useState()
+
 
   useEffect(() => {
     getLeaves()
@@ -57,9 +60,16 @@ const AdminLeave = () => {
         <LeaveTable
           leaves={leaves}
           getLeaves={getLeaves}
+          setSelectedLeaveId={setSelectedLeaveId}
         />
         <Pagination pagination={leaves} onClick={getLeaves} />
       </div>
+      {selectedLeaveId !== undefined && (
+        <ShowAdminLeave
+          selectedLeaveId={selectedLeaveId}
+          setSelectedLeaveId={setSelectedLeaveId}
+        />
+      )}
     </div>
   )
 }
