@@ -77,6 +77,7 @@ class AttendanceController extends Controller
             $attendances = $user->attendances()
                 ->where('clock_in', '>', Carbon::now()->startOfWeek())
                 ->where('clock_in', '<', Carbon::now()->endOfWeek())
+                ->where('clock_out', '!=', null)
                 ->get()
                 ->sortByDesc('clock_in');
 
