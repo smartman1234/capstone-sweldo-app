@@ -16,7 +16,7 @@ class AttendanceController extends Controller
         $user = $request->user();
 
         // Get attendance today
-        $attendance = $user->attendances()->where('created_at', '>=', Carbon::now()->startOfDay())->first();
+        $attendance = $user->attendances()->where('clock_in', '>=', Carbon::now()->startOfDay())->first();
         if ($attendance != null) {
             return response()->json([
                 'message' => 'You have already clocked in today'
@@ -39,7 +39,7 @@ class AttendanceController extends Controller
         $user = $request->user();
 
         // Get attendance today
-        $attendance = $user->attendances()->where('created_at', '>=', Carbon::now()->startOfDay())->first();
+        $attendance = $user->attendances()->where('clock_in', '>=', Carbon::now()->startOfDay())->first();
         if ($attendance != null && $attendance->clock_out !== null) {
             return response()->json([
                 'message' => 'You have already clocked out today'
