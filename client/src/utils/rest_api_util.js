@@ -91,7 +91,7 @@ export const addLeave = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
-  export const getLeave = async (id) =>
+export const getLeave = async (id) =>
   await fetch(baseUrl + `/user/leave/${id}`, {
     method: 'GET',
     headers: getHeaders(),
@@ -299,7 +299,7 @@ export const declineLeave = async (id) =>
     method: 'POST',
     headers: getHeaders(),
   })
-  export const getAdminLeave = async (id) =>
+export const getAdminLeave = async (id) =>
   await fetch(baseUrl + `/admin/leave/${id}`, {
     method: 'GET',
     headers: getHeaders(),

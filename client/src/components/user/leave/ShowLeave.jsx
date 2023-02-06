@@ -55,13 +55,7 @@ const ShowLeave = ({ selectedLeaveId, setSelectedLeaveId }) => {
           </div>
           {/* Form */}
           <div className='mb-8 space-y-4'>
-            <CustomInput
-              label='Leave'
-              id='reason'
-              type='text'
-              value={formData.reason}
-              disabled={true}
-            />
+            <p>{formData.reason}</p>
           </div>
         </div>
       </div>

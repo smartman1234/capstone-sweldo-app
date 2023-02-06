@@ -75,7 +75,7 @@ class LeaveController extends Controller
             ], 400);
         }
 
-        // Get department
+        // Get leave
         $leave = Leave::find($id);
 
         // Not found
