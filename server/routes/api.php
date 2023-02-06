@@ -54,6 +54,7 @@ Route::group([
     // Leave
     Route::get('/leave', [LeaveController::class, 'index']);
     Route::post('/leave', [LeaveController::class, 'store']);
+    Route::get('/leave/{id}', [LeaveController::class, 'show']);
 
     // Salary history
     Route::get('/salary-history', [SalaryHistoryController::class, 'index']);

@@ -91,6 +91,11 @@ export const addLeave = async (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   })
+  export const getLeave = async (id) =>
+  await fetch(baseUrl + `/user/leave/${id}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 
 // Salary history
 export const getSalaryHistory = async (page) =>
