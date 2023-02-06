@@ -41,13 +41,12 @@ const Leave = () => {
             Add
           </button>
         </div>
-        <LeaveTable
-          leaves={leaves}
-          setSelectedLeaveId={setSelectedLeaveId}
-        />
+        <LeaveTable leaves={leaves} setSelectedLeaveId={setSelectedLeaveId} />
         <Pagination pagination={leaves} onClick={getLeaves} />
       </div>
-      {showAddForm && <AddLeaveForm toggleAddForm={toggleAddForm} />}
+      {showAddForm && (
+        <AddLeaveForm toggleAddForm={toggleAddForm} getLeaves={getLeaves} />
+      )}
       {selectedLeaveId !== undefined && (
         <ShowLeave
           selectedLeaveId={selectedLeaveId}
