@@ -17,14 +17,36 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
             leaves.data.map((leave, index) => (
               <tr key={index} className='border-b'>
                 <th className='p-2.5'>{leaves.from + index}</th>
-                <td className='p-2.5'>{leave.date}</td>
-                <td className='p-2.5'>{leave.status}</td>
+                <td className='p-2.5'>
+                  {new Date(leave.date).toLocaleDateString('default', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </td>
+                <td className='p-2.5'>
+                  {leave.status === 'pending' && (
+                    <span className='bg-yellow-500 text-white text-sm capitalize rounded px-2 py-1'>
+                      {leave.status}
+                    </span>
+                  )}
+                  {leave.status === 'approved' && (
+                    <span className='bg-green-500 text-white text-sm capitalize rounded px-2 py-1'>
+                      {leave.status}
+                    </span>
+                  )}
+                  {leave.status === 'declined' && (
+                    <span className='bg-red-500 text-white text-sm capitalize rounded px-2 py-1'>
+                      {leave.status}
+                    </span>
+                  )}
+                </td>
                 <td className='p-2.5 space-x-4'>
                   <ViewButton
                     name='View'
                     onClick={() => setSelectedLeaveId(leave.id)}
                   />
-                  </td>
+                </td>
               </tr>
             ))
           ) : (
