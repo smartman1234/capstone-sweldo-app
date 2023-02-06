@@ -16,6 +16,8 @@ class ProfileController extends Controller
 
         // Change to url of avatar
         $user->avatar = $user->avatar == null ? $user->avatar : URL::asset('storage/' . $user->avatar);
+        $user->department_name = $user->department->name;
+        $user->job_name = $user->job->name;
 
         return response()->json([
             'user' => $user
