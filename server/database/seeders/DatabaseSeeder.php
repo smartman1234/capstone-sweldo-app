@@ -99,5 +99,33 @@ class DatabaseSeeder extends Seeder
 
         // Create 10 fake users
         User::factory(10)->create();
+
+        // User 3 - 9 (Present)
+        for ($i = 3; $i <= 9; $i++) {
+            User::find($i)->attendances()->create([
+                'clock_in' => Carbon::now()->startOfDay()->addHour(8),
+                'clock_out' => Carbon::now()->startOfDay()->addHour(mt_rand(16, 20)),
+            ]);
+        }
+
+        // User 10 - (Late)
+        User::find(10)->attendances()->create([
+            'clock_in' => Carbon::now()->startOfDay()->addHour(10),
+            'clock_out' => Carbon::now()->startOfDay()->addHour(mt_rand(16, 20)),
+        ]);
+
+        // User 11 - on Leave
+        User::find(11)->leaves()->create([
+            'date' => Carbon::now(),
+            'reason' => 'Sick leave',
+            'status' => 'approved'
+        ]);
+
+        // User 12 - on Leave
+        User::find(12)->leaves()->create([
+            'date' => Carbon::now(),
+            'reason' => 'Emergency leave',
+            'status' => 'approved'
+        ]);
     }
 }
