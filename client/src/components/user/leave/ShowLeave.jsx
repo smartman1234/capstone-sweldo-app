@@ -29,7 +29,7 @@ const ShowLeave = ({ selectedLeaveId, setSelectedLeaveId }) => {
           {/* Form title */}
           <div className='flex justify-between'>
             <div className='mb-4'>
-              <h1 className='text-3xl font-bold'>Reason</h1>
+              <h1 className='text-3xl font-bold'>Leave Request</h1>
             </div>
             <div>
               <button
@@ -55,7 +55,21 @@ const ShowLeave = ({ selectedLeaveId, setSelectedLeaveId }) => {
           </div>
           {/* Form */}
           <div className='mb-8 space-y-4'>
-            <p>{formData.reason}</p>
+            <div>
+              <label
+                htmlFor='reason'
+                className='block text-gray-700 text-sm font-medium mb-2'
+              >
+                Reason
+              </label>
+              <textarea
+                className='w-full text-gray px-5 py-2.5 rounded border'
+                id='reason'
+                placeholder='Reason'
+                value={formData.reason}
+                disabled
+              />
+            </div>
           </div>
         </div>
       </div>

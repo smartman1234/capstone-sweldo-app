@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 import CustomInput from '../../ui/inputs/CustomInput'
-import CustomButton from '../../ui/buttons/CustomButton'
+import ApproveButton from '../../ui/buttons/ApproveButton'
 import * as RestApi from '../../../utils/rest_api_util'
+import { toast } from 'react-toastify'
+import DeclineButton from '../../ui/buttons/DeclineButton'
 
-const ShowAdminLeave = ({ selectedLeaveId, setSelectedLeaveId }) => {
+const ShowAdminLeave = ({ selectedLeaveId, setSelectedLeaveId, getLeaves }) => {
   const [formData, setFormData] = useState({
     reason: '',
   })
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     getLeave()
@@ -20,6 +23,34 @@ const ShowAdminLeave = ({ selectedLeaveId, setSelectedLeaveId }) => {
         setFormData(response.leave)
       }
     } catch (error) {}
+  }
+
+  const approveLeave = async () => {
+    setLoading(true)
+    try {
+      const result = await RestApi.approveLeave(selectedLeaveId)
+      const response = await result.json()
+      if (result.status === 200) {
+        setSelectedLeaveId(undefined)
+        getLeaves()
+        toast.success(response.message)
+      }
+    } catch (error) {}
+    setLoading(false)
+  }
+
+  const declineLeave = async () => {
+    setLoading(true)
+    try {
+      const result = await RestApi.declineLeave(selectedLeaveId)
+      const response = await result.json()
+      if (result.status === 200) {
+        setSelectedLeaveId(undefined)
+        getLeaves()
+        toast.success(response.message)
+      }
+    } catch (error) {}
+    setLoading(false)
   }
 
   return (
@@ -55,12 +86,32 @@ const ShowAdminLeave = ({ selectedLeaveId, setSelectedLeaveId }) => {
           </div>
           {/* Form */}
           <div className='mb-8 space-y-4'>
-            <CustomInput
-              label='Leave'
-              id='reason'
-              type='text'
-              value={formData.reason}
-              disabled={true}
+            <div>
+              <label
+                htmlFor='reason'
+                className='block text-gray-700 text-sm font-medium mb-2'
+              >
+                Reason
+              </label>
+              <textarea
+                className='w-full text-gray px-5 py-2.5 rounded border'
+                id='reason'
+                placeholder='Reason'
+                value={formData.reason}
+                disabled
+              />
+            </div>
+          </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <ApproveButton
+              name='Approve'
+              onClick={approveLeave}
+              loading={loading}
+            />
+            <DeclineButton
+              name='Decline'
+              onClick={declineLeave}
+              loading={loading}
             />
           </div>
         </div>

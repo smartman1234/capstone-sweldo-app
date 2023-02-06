@@ -1,38 +1,11 @@
 import { useState } from 'react'
-import ApproveButton from '../../ui/buttons/ApproveButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 import DeclineButton from '../../ui/buttons/DeclineButton'
 import ViewButton from '../../ui/buttons/ViewButton'
 
-const LeaveTable = ({ leaves, getLeaves, setSelectedLeaveId }) => {
+const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
   const [loading, setLoading] = useState(false)
-
-  const approveLeave = async (id) => {
-    setLoading(true)
-    try {
-      const result = await RestApi.approveLeave(id)
-      const response = await result.json()
-      if (result.status === 200) {
-        getLeaves(leaves.current_page)
-        toast.success(response.message)
-      }
-    } catch (error) {}
-    setLoading(false)
-  }
-
-  const declineLeave = async (id) => {
-    setLoading(true)
-    try {
-      const result = await RestApi.declineLeave(id)
-      const response = await result.json()
-      if (result.status === 200) {
-        getLeaves(leaves.current_page)
-        toast.success(response.message)
-      }
-    } catch (error) {}
-    setLoading(false)
-  }
 
   return (
     <table className='w-full text-left'>
@@ -73,38 +46,6 @@ const LeaveTable = ({ leaves, getLeaves, setSelectedLeaveId }) => {
                   )}
                 </td>
                 <td className='p-2.5 space-x-4'>
-                  {leave.status === 'pending' && (
-                    <>
-                      <ApproveButton
-                        name='Approve'
-                        onClick={() => approveLeave(leave.id)}
-                        loading={loading}
-                      />
-                      <DeclineButton
-                        name='Decline'
-                        onClick={() => declineLeave(leave.id)}
-                        loading={loading}
-                      />
-                    </>
-                  )}
-                  {leave.status === 'approved' && (
-                    <>
-                      <DeclineButton
-                        name='Decline'
-                        onClick={() => declineLeave(leave.id)}
-                        loading={loading}
-                      />
-                    </>
-                  )}
-                  {leave.status === 'declined' && (
-                    <>
-                      <ApproveButton
-                        name='Approve'
-                        onClick={() => approveLeave(leave.id)}
-                        loading={loading}
-                      />
-                    </>
-                  )}
                    <ViewButton
                     name='View'
                     onClick={() => setSelectedLeaveId(leave.id)}

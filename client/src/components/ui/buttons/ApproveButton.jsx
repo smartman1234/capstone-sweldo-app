@@ -2,7 +2,7 @@ const ApproveButton = ({ name, onClick, loading = false }) => {
   return (
     <button
       type='button'
-      className='bg-green-600 text-white font-medium px-2 py-1 rounded enabled:hover:bg-green-700'
+      className='bg-green-600 text-white font-medium px-5 py-2.5 rounded enabled:hover:bg-green-700'
       onClick={onClick}
       disabled={loading}
     >

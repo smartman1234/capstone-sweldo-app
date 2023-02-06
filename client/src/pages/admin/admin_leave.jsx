@@ -59,7 +59,6 @@ const AdminLeave = () => {
         />
         <LeaveTable
           leaves={leaves}
-          getLeaves={getLeaves}
           setSelectedLeaveId={setSelectedLeaveId}
         />
         <Pagination pagination={leaves} onClick={getLeaves} />
@@ -68,6 +67,7 @@ const AdminLeave = () => {
         <ShowAdminLeave
           selectedLeaveId={selectedLeaveId}
           setSelectedLeaveId={setSelectedLeaveId}
+          getLeaves={getLeaves}
         />
       )}
     </div>
