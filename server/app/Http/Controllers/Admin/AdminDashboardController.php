@@ -30,7 +30,15 @@ class AdminDashboardController extends Controller
                     Carbon::now()->endOfDay()
                 ]
             )->count();
-        $totalOnLeave = Leave::where('status', 'approved')->count();
+        $totalOnLeave = Leave::where('status', 'approved')
+            ->whereBetween(
+                'clock_in',
+                [
+                    Carbon::now()->startOfDay(),
+                    Carbon::now()->endOfDay()
+                ]
+            )
+            ->count();
 
         return response()->json([
             'totalEmployee' => $totalEmployee,
