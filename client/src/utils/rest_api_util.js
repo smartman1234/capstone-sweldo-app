@@ -299,6 +299,11 @@ export const declineLeave = async (id) =>
     method: 'POST',
     headers: getHeaders(),
   })
+  export const getAdminLeave = async (id) =>
+  await fetch(baseUrl + `/admin/leave/${id}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 
 // Payroll
 export const getPayrolls = async (timestamp, page) =>

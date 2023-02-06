@@ -115,6 +115,7 @@ Route::group([
     Route::get('/leave', [AdminLeaveController::class, 'index']);
     Route::post('/leave/{id}/approve', [AdminLeaveController::class, 'approve']);
     Route::post('/leave/{id}/decline', [AdminLeaveController::class, 'decline']);
+    Route::get('/leave/{id}', [AdminLeaveController::class, 'show']);
 
     // Payroll
     Route::get('/payroll', [PayrollController::class, 'index']);
