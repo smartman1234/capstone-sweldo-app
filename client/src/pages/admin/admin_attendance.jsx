@@ -9,7 +9,25 @@ const AdminAttendance = () => {
   })
   const [attendances, setAttendances] = useState()
 
-  const searchEmployee = async (name, page = 1) => {
+  useEffect(() => {
+    getAttendances()
+  }, [])
+
+  const getAttendances = async (page = 1) => {
+    if (formData.name !== '') {
+      searchAttendances(formData.name, page)
+      return
+    }
+    try {
+      const result = await RestApi.getAttendances(page)
+      const response = await result.json()
+      if (result.status === 200) {
+        setEmployees(response.employees)
+      }
+    } catch (error) {}
+  }
+
+  const searchAttendances = async (name, page = 1) => {
     try {
       const result = await RestApi.searchAttendances(name, page)
       const response = await result.json()
@@ -31,7 +49,7 @@ const AdminAttendance = () => {
             value={formData.name}
             onChange={(e) => {
               setFormData({ ...formData, name: e.target.value })
-              searchEmployee(e.target.value)
+              searchAttendances(e.target.value)
             }}
           />
           </div>

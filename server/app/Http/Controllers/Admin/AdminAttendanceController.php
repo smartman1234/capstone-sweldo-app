@@ -4,14 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminAttendanceController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->name == null) {
+            $employees = User::paginate(10);
+        } else {
+            $employees = User::with('department')
+                ->with('job')
+                ->where('is_admin', 0)
+                ->where('first_name', 'LIKE', "%" . $request->name . "%")
+                ->orWhere('last_name', 'LIKE', "%" . $request->name . "%")
+                ->orWhere('email', 'LIKE', "%" . $request->name . "%")->paginate(10);
+        }
 
         $attendances = Attendance::orderBy('clock_in', 'desc')->take(10)->get();
 
@@ -26,6 +37,7 @@ class AdminAttendanceController extends Controller
         }
 
         return response()->json([
+            'employees' => $employees,
             'attendance' => $employeesName,
         ]);
     }
