@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SidebarButton from './ui/buttons/SidebarButton'
-import * as RestApi from '../utils/rest_api_util'
 
 const Sidebar = ({ activeSidebar, toggleSidebar }) => {
   const navigate = useNavigate()

@@ -4,7 +4,11 @@ import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 
-const EditEmployeeForm = ({ selectedEmployeeId, setSelectedEmployeeId, getEmployees }) => {
+const EditEmployeeForm = ({
+  selectedEmployeeId,
+  setSelectedEmployeeId,
+  getEmployees,
+}) => {
   const [formData, setFormData] = useState({
     email: '',
     first_name: '',

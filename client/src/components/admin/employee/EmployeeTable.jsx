@@ -4,7 +4,6 @@ import DeleteButton from '../../ui/buttons/DeleteButton'
 import { toast } from 'react-toastify'
 
 const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
-
   const handleSubmit = async (id) => {
     try {
       const result = await RestApi.deleteEmployee(id)
@@ -20,6 +19,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
       }
     } catch (error) {}
   }
+
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>
@@ -39,7 +39,9 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
               <tr key={index} className='border-b'>
                 <th className='p-2.5'>{employees.from + index}</th>
                 <td className='p-2.5'>{employee.email}</td>
-                <td className='p-2.5'>{employee.first_name} {employee.last_name}</td>
+                <td className='p-2.5'>
+                  {employee.first_name} {employee.last_name}
+                </td>
                 <td className='p-2.5'>{employee.department.name}</td>
                 <td className='p-2.5'>{employee.job.name}</td>
                 <td className='p-2.5 space-x-4'>
@@ -47,9 +49,9 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
                     name='View'
                     onClick={() => setSelectedEmployeeId(employee.id)}
                   />
-                  <DeleteButton 
-                  name='Delete'
-                  onClick={() => handleSubmit(employee.id)}
+                  <DeleteButton
+                    name='Delete'
+                    onClick={() => handleSubmit(employee.id)}
                   />
                 </td>
               </tr>

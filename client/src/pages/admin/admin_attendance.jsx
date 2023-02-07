@@ -12,16 +12,16 @@ const AdminAttendance = () => {
   const [attendances, setAttendances] = useState()
 
   useEffect(() => {
-    getAttendances()
+    getAdminAttendances()
   }, [])
 
-  const getAttendances = async (page = 1) => {
+  const getAdminAttendances = async (page = 1) => {
     if (formData.name !== '') {
       searchAttendances(formData.name, page)
       return
     }
     try {
-      const result = await RestApi.getAttendances(page)
+      const result = await RestApi.getAdminAttendances(page)
       const response = await result.json()
       if (result.status === 200) {
         setAttendances(response.attendances)
@@ -56,7 +56,7 @@ const AdminAttendance = () => {
           />
         </div>
         <AdminAttendanceTable attendances={attendances} />
-        <Pagination pagination={attendances} onClick={getAttendances} />
+        <Pagination pagination={attendances} onClick={getAdminAttendances} />
       </div>
     </div>
   )

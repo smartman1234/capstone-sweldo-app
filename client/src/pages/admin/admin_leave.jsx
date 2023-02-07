@@ -14,7 +14,6 @@ const AdminLeave = () => {
   const [leaves, setLeaves] = useState()
   const [selectedLeaveId, setSelectedLeaveId] = useState()
 
-
   useEffect(() => {
     getLeaves()
   }, [])
@@ -57,10 +56,7 @@ const AdminLeave = () => {
             searchLeaves(e.target.value)
           }}
         />
-        <LeaveTable
-          leaves={leaves}
-          setSelectedLeaveId={setSelectedLeaveId}
-        />
+        <LeaveTable leaves={leaves} setSelectedLeaveId={setSelectedLeaveId} />
         <Pagination pagination={leaves} onClick={getLeaves} />
       </div>
       {selectedLeaveId !== undefined && (

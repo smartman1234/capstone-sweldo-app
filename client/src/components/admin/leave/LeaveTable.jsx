@@ -1,7 +1,6 @@
 import ViewButton from '../../ui/buttons/ViewButton'
 
 const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
-
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>

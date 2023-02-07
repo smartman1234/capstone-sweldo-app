@@ -143,7 +143,9 @@ const Payslip = () => {
                 <h4 className='text-lg font-bold'>
                   NET PAY (Gross Earnings - Total Deductions)
                 </h4>
-                <p className='text-lg font-bold'>P{payslip.net_pay < 0 ? 0 : payslip.net_pay}</p>
+                <p className='text-lg font-bold'>
+                  P{payslip.net_pay < 0 ? 0 : payslip.net_pay}
+                </p>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ const CustomInput = ({
   value,
   onChange,
   error,
-  disabled = false
+  disabled = false,
 }) => {
   return (
     <div className='w-full'>

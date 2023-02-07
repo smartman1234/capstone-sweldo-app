@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import CustomInput from '../../ui/inputs/CustomInput'
 import ApproveButton from '../../ui/buttons/ApproveButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'

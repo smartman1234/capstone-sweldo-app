@@ -27,7 +27,9 @@ export const options = {
 }
 
 const AttendanceOverview = ({ clock, setClock }) => {
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString())
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString()
+  )
   const [loading, setLoading] = useState(false)
 
   const [chartData, setChartData] = useState({

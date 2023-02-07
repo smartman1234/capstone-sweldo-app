@@ -2,10 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 const SidebarButton = ({ name, to }) => {
   return (
-    <NavLink
-      to={to}
-      className='sidebarBtn'
-    >
+    <NavLink to={to} className='sidebarBtn'>
       {name}
     </NavLink>
   )

@@ -24,7 +24,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
     } catch (error) {}
     setDeletingId(undefined)
   }
-  
+
   return (
     <table className='w-full text-left'>
       <thead className='bg-gray-100 uppercase'>

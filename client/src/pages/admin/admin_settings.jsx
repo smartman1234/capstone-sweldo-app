@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import DangerAlert from '../../components/ui/alerts/DangerAlert'
-import SuccessAlert from '../../components/ui/alerts/SuccessAlert'
 import CustomButton from '../../components/ui/buttons/CustomButton'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
