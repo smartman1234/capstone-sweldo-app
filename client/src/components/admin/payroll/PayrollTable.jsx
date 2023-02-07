@@ -22,7 +22,9 @@ const PayrollTable = ({ payrolls }) => {
                   <td className='p-2.5'>{employee.total_hours}</td>
                   <td className='p-2.5'>{employee.earnings}</td>
                   <td className='p-2.5'>{employee.deductions}</td>
-                  <td className='p-2.5'>{employee.net_pay < 0 ? 0 : employee.net_pay}</td>
+                  <td className='p-2.5'>
+                    {employee.net_pay < 0 ? 0 : employee.net_pay}
+                  </td>
                 </tr>
               ))
             ) : (

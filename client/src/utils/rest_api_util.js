@@ -40,6 +40,11 @@ export const getDashboardStats = async () =>
   })
 
 // Attendance
+export const getAttendances = async (page) =>
+  await fetch(baseUrl + `/user/attendance?page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 export const clockIn = async () =>
   await fetch(baseUrl + '/user/attendance/clock-in', {
     method: 'POST',
@@ -142,24 +147,19 @@ export const getAdminDashboardStats = async () =>
     headers: getHeaders(),
   })
 
-// Attemdance
-export const getRecentAttendance = async () =>
-  await fetch(baseUrl + '/admin/attendance', {
-    method: 'GET',
-    headers: getHeaders(),
-  })
-export const getAttendances = async (page) =>
+// Attendance
+export const getAdminAttendances = async (page) =>
   await fetch(baseUrl + `/admin/attendance?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
-  export const searchAttendances = async (name, page) =>
+export const searchAttendances = async (name, page) =>
   await fetch(baseUrl + `/admin/attendance?name=${name}&page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
-  export const getAttendance = async (id) =>
-  await fetch(baseUrl + `/admin/attendance/${id}`, {
+export const getRecentAttendance = async () =>
+  await fetch(baseUrl + '/admin/attendance/recent', {
     method: 'GET',
     headers: getHeaders(),
   })

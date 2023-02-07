@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import CustomInput from '../../ui/inputs/CustomInput'
-import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 
 const ShowLeave = ({ selectedLeaveId, setSelectedLeaveId }) => {

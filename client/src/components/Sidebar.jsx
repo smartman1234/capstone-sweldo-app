@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SidebarButton from './ui/buttons/SidebarButton'
-import * as RestApi from '../utils/rest_api_util'
 
 const Sidebar = ({ activeSidebar, toggleSidebar }) => {
   const navigate = useNavigate()
@@ -88,6 +87,9 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
             <>
               <li className='flex'>
                 <SidebarButton name='Dashboard' to='dashboard' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Attendance' to='attendance' />
               </li>
               <li className='flex'>
                 <SidebarButton name='Calendar' to='calendar' />

@@ -4,7 +4,11 @@ import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 
-const EditDepartmentForm = ({ selectedDepartmentId, setSelectedDepartmentId, getDepartments }) => {
+const EditDepartmentForm = ({
+  selectedDepartmentId,
+  setSelectedDepartmentId,
+  getDepartments,
+}) => {
   const [formData, setFormData] = useState({
     name: '',
   })
@@ -30,7 +34,10 @@ const EditDepartmentForm = ({ selectedDepartmentId, setSelectedDepartmentId, get
     setError(undefined)
 
     try {
-      const result = await RestApi.updateDepartment(selectedDepartmentId, formData)
+      const result = await RestApi.updateDepartment(
+        selectedDepartmentId,
+        formData
+      )
       const response = await result.json()
       if (result.status === 200) {
         setSelectedDepartmentId(undefined)

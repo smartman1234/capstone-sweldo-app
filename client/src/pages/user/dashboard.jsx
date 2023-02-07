@@ -11,8 +11,6 @@ const UserDashboard = () => {
     rate: 0,
     leave: 0,
     expectedSalary: 0,
-    // clockIn: null,
-    // clockOut: null,
   })
   const [clock, setClock] = useState(0)
 

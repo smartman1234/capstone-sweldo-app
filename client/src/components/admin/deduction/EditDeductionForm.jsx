@@ -4,7 +4,11 @@ import CustomButton from '../../ui/buttons/CustomButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 
-const EditDeductionForm = ({ selectedDeductionId, setSelectedDeductionId, getDeductions }) => {
+const EditDeductionForm = ({
+  selectedDeductionId,
+  setSelectedDeductionId,
+  getDeductions,
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     salary: '',
