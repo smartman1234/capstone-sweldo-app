@@ -3,7 +3,7 @@ import CustomInput from '../../ui/inputs/CustomInput'
 import ApproveButton from '../../ui/buttons/ApproveButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
-import DeclineButton from '../../ui/buttons/DeclineButton'
+import DangerButton from '../../ui/buttons/DangerButton'
 
 const ShowAdminLeave = ({ selectedLeaveId, setSelectedLeaveId, getLeaves }) => {
   const [formData, setFormData] = useState({
@@ -108,7 +108,7 @@ const ShowAdminLeave = ({ selectedLeaveId, setSelectedLeaveId, getLeaves }) => {
               onClick={approveLeave}
               loading={loading}
             />
-            <DeclineButton
+            <DangerButton
               name='Decline'
               onClick={declineLeave}
               loading={loading}
