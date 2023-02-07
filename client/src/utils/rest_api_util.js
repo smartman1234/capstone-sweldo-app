@@ -143,23 +143,18 @@ export const getAdminDashboardStats = async () =>
   })
 
 // Attemdance
-export const getRecentAttendance = async () =>
-  await fetch(baseUrl + '/admin/attendance', {
-    method: 'GET',
-    headers: getHeaders(),
-  })
 export const getAttendances = async (page) =>
   await fetch(baseUrl + `/admin/attendance?page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
-  export const searchAttendances = async (name, page) =>
+export const searchAttendances = async (name, page) =>
   await fetch(baseUrl + `/admin/attendance?name=${name}&page=${page}`, {
     method: 'GET',
     headers: getHeaders(),
   })
-  export const getAttendance = async (id) =>
-  await fetch(baseUrl + `/admin/attendance/${id}`, {
+export const getRecentAttendance = async () =>
+  await fetch(baseUrl + '/admin/attendance/recent', {
     method: 'GET',
     headers: getHeaders(),
   })
