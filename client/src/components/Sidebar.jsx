@@ -24,12 +24,12 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
     <aside
       className={
         activeSidebar
-          ? 'bg-blue-500 fixed z-10 w-full md:w-64 h-screen transition-all duration-300'
+          ? 'bg-[#2f323f] fixed z-10 w-full md:w-64 h-screen transition-all duration-300 overflow-auto pb-5'
           : 'bg-white fixed z-10 w-64 h-screen transition-all duration-300 -ml-64'
       }
     >
       {/* Toggle */}
-      <div className='bg-blue-700 h-16 flex items-center px-5'>
+      <div className='h-16 flex items-center px-5'>
         <button
           className='block md:hidden bg-blue-600 text-white font-medium p-2 rounded hover:bg-blue-500'
           onClick={toggleSidebar}
@@ -40,21 +40,21 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
             viewBox='0 0 24 24'
             strokeWidth='1.5'
             stroke='currentColor'
-            className='w-6 h-6'
+            class='w-6 h-6'
           >
             <path
               strokeLinecap='round'
               strokeLinejoin='round'
-              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12'
+              d='M6 18L18 6M6 6l12 12'
             />
           </svg>
         </button>
       </div>
       {/* Menu */}
-      <nav>
-        <ul className='flex flex-col space-y-4 p-5'>
+      <nav className='navigation'>
+        <ul className='flex flex-col space-y-4'>
           <li>
-            <div className='flex justify-center'>
+            <div className='flex flex-col justify-center items-center py-4 space-y-2'>
               {localStorage.getItem('avatar') === 'null' ? (
                 <div className='w-20 h-20 flex justify-center items-center rounded-full bg-gray-500'>
                   <svg
@@ -79,12 +79,10 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
                   className='w-20 h-20 rounded-full'
                 />
               )}
+              <p className='text-center text-white rounded'>
+                Welcome, {localStorage.getItem('first_name')}
+              </p>
             </div>
-          </li>
-          <li>
-            <p className='p-5 text-center bg-black text-white rounded'>
-              Welcome, {localStorage.getItem('first_name')}
-            </p>
           </li>
           {admin === false ? (
             <>
@@ -138,9 +136,9 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
               </li>
             </>
           )}
-          <li className='flextext-white'>
+          <li className='flextext-white pl-5'>
             <button
-              className='w-full flex space-x-4 text-black font-medium px-5 py-2.5 rounded hover:bg-blue-600 hover:text-white'
+              className='w-full flex space-x-4 text-white font-medium px-5 py-2.5 rounded'
               onClick={logout}
             >
               <svg
