@@ -42,10 +42,10 @@ Route::group([
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     // Attendance
+    Route::get('/attendance', [AttendanceController::class, 'index']);
     Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn']);
     Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut']);
     Route::get('/attendance/overview', [AttendanceController::class, 'getAttendanceOverview']);
-    Route::get('/attendance', [AttendanceController::class, 'index']);
 
     // Task
     Route::get('/task/monthly/{timestamp}', [TaskController::class, 'getMonthlyTasks']);

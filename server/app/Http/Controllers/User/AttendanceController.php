@@ -11,10 +11,13 @@ use DateTimeZone;
 class AttendanceController extends Controller
 {
     public function index(Request $request){
-
+        // Get user
         $user = $request->user();
+
+        // Get attendance
         $attendances = $user->attendances()->paginate(10);
 
+        // Modify data
         $employeesName = [];
         foreach ($attendances->items() as $item) {
             $employeesName[] = [
@@ -26,9 +29,9 @@ class AttendanceController extends Controller
                 'status' => $item->clock_in >= Carbon::now()->setTime(9, 15, 0) ? 'late' : 'present',
             ];
         }
-
         $attendances = $attendances->toArray();
         $attendances['data'] = $employeesName;
+
         return response()->json([
             'attendances' => $attendances
         ]);
@@ -88,7 +91,6 @@ class AttendanceController extends Controller
                 'message' => 'Invalid filter'
             ], 400);
         }
-
 
         // Get user
         $user = $request->user();
