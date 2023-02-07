@@ -1,8 +1,6 @@
-import { useState } from 'react'
 import ViewButton from '../../ui/buttons/ViewButton'
 
 const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
-  const [loading, setLoading] = useState(false)
 
   return (
     <table className='w-full text-left'>
