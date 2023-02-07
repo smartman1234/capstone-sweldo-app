@@ -55,6 +55,11 @@ export const getAttendanceOverview = async (filter) =>
     method: 'GET',
     headers: getHeaders(),
   })
+  export const getUserAttendances = async (page) =>
+  await fetch(baseUrl + `/user/attendance?page=${page}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 
 // Calendar
 export const getMonthlyTasks = async (timestamp) =>

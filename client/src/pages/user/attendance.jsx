@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import AdminAttendanceTable from '../../components/admin/attendance/AdminAttendanceTable'
 import Pagination from '../../components/Pagination'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
@@ -18,7 +17,7 @@ const Attendance = () => {
 
   const getAttendances = async (page = 1) => {
     try {
-      const result = await RestApi.getAttendances(page)
+      const result = await RestApi.getUserAttendances(page)
       const response = await result.json()
       if (result.status === 200) {
         setAttendances(response.attendances)

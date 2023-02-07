@@ -11,13 +11,12 @@ const AttendanceTable = ({ attendances }) => {
             <th className='p-2.5'>Status</th>
           </tr>
         </thead>
-        {/* <tbody>
+        <tbody>
           {attendances !== undefined &&
             (attendances.data.length !== 0 ? (
               attendances.data.map((attendance, index) => (
                 <tr key={index} className='border-b'>
                   <th className='p-2.5'>{attendances.from + index}</th>
-                  <td className='p-2.5'>{attendance.name}</td>
                   <td className='p-2.5'>
                     {new Date(attendance.clock_in).toLocaleDateString('default', {
                       month: 'long',
@@ -53,7 +52,7 @@ const AttendanceTable = ({ attendances }) => {
                 </td>
               </tr>
             ))}
-        </tbody> */}
+        </tbody>
       </table>
     )
   }

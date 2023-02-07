@@ -10,6 +10,30 @@ use DateTimeZone;
 
 class AttendanceController extends Controller
 {
+    public function index(Request $request){
+
+        $user = $request->user();
+        $attendances = $user->attendances()->paginate(10);
+
+        $employeesName = [];
+        foreach ($attendances->items() as $item) {
+            $employeesName[] = [
+                'id' => $item->id,
+                'date' => $item->date,
+                'clock_in' => $item->clock_in,
+                'clock_out' => $item->clock_out,
+                'total_hours' => Carbon::parse($item->clock_in)->diffInHours(Carbon::parse($item->clock_out)),
+                'status' => $item->clock_in >= Carbon::now()->setTime(9, 15, 0) ? 'late' : 'present',
+            ];
+        }
+
+        $attendances = $attendances->toArray();
+        $attendances['data'] = $employeesName;
+        return response()->json([
+            'attendances' => $attendances
+        ]);
+    }
+    
     public function clockIn(Request $request)
     {
         // Get user
