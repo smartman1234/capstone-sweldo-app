@@ -39,6 +39,7 @@ class SettingsController extends Controller
         if (!Hash::check($old_password, $user->password)) {
             return response()->json([
                 'message' => 'Invalid old password',
+                'type' => 'old_password'
             ], 400);
         }
 
