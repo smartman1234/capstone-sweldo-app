@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import CustomButton from '../../ui/buttons/CustomButton'
+import DangerButton from '../../ui/buttons/DangerButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import {
   Chart as ChartJS,
@@ -110,7 +111,7 @@ const AttendanceOverview = ({ clock, setClock }) => {
               />
             )}
             {clock === 2 && (
-              <CustomButton
+              <DangerButton
                 name={`Clock - Out (${currentTime})`}
                 onClick={handleClockOut}
                 loading={loading}
