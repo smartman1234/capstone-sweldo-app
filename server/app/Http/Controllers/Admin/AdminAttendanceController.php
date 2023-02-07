@@ -16,12 +16,7 @@ class AdminAttendanceController extends Controller
         if ($request->name == null) {
             $employees = User::paginate(10);
         } else {
-            $employees = User::with('department')
-                ->with('job')
-                ->where('is_admin', 0)
-                ->where('first_name', 'LIKE', "%" . $request->name . "%")
-                ->orWhere('last_name', 'LIKE', "%" . $request->name . "%")
-                ->orWhere('email', 'LIKE', "%" . $request->name . "%")->paginate(10);
+            $employees = User::with('first_name')->paginate(10);
         }
 
         $attendances = Attendance::orderBy('clock_in', 'desc')->take(10)->get();
