@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomInput from '../../components/ui/inputs/CustomInput'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import * as RestApi from '../../utils/rest_api_util'
@@ -22,7 +22,7 @@ const AdminAttendance = () => {
       const result = await RestApi.getAttendances(page)
       const response = await result.json()
       if (result.status === 200) {
-        setEmployees(response.employees)
+        setAttendances(response.employees)
       }
     } catch (error) {}
   }
