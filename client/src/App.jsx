@@ -10,6 +10,7 @@ import AdminLayout from './components/layouts/AdminLayout'
 
 // User
 import UserDashboard from './pages/user/dashboard'
+import Attendance from './pages/user/attendance'
 import Calendar from './pages/user/calendar'
 import Leave from './pages/user/leave'
 import SalaryHistory from './pages/user/salary_history'
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <UserDashboard />,
+      },
+      {
+        path: 'attendance',
+        element: <Attendance />,
       },
       {
         path: 'calendar',

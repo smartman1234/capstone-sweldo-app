@@ -40,7 +40,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
             viewBox='0 0 24 24'
             strokeWidth='1.5'
             stroke='currentColor'
-            className='w-6 h-6'
+            class='w-6 h-6'
           >
             <path
               strokeLinecap='round'
@@ -88,6 +88,9 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
             <>
               <li className='flex'>
                 <SidebarButton name='Dashboard' to='dashboard' />
+              </li>
+              <li className='flex'>
+                <SidebarButton name='Attendance' to='attendance' />
               </li>
               <li className='flex'>
                 <SidebarButton name='Calendar' to='calendar' />
