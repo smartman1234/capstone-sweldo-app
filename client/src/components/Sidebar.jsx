@@ -114,6 +114,9 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
                 <SidebarButton name='Employee' to='employee' />
               </li>
               <li className='flex'>
+                <SidebarButton name='Attendance' to='attendance' />
+              </li>
+              <li className='flex'>
                 <SidebarButton name='Department' to='department' />
               </li>
               <li className='flex'>
