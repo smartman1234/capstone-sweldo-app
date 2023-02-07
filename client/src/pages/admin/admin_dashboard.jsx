@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+import RecentAttendance from '../../components/admin/dashboard/RecentAttendance'
 import StatisticCard from '../../components/ui/cards/StatisticCard'
 import PageTitle from '../../components/ui/titles/PageTitle'
 import * as RestApi from '../../utils/rest_api_util'
@@ -12,8 +13,11 @@ const AdminDashboard = () => {
     totalOnLeave: 0,
   })
 
+  const [recentAttendances, setRecentAttendances] = useState()
+
   useEffect(() => {
     getAdminDashboard()
+    getRecentAttendance()
   }, [])
 
   const getAdminDashboard = async () => {
@@ -26,6 +30,19 @@ const AdminDashboard = () => {
     } catch (error) {}
   }
 
+    const getRecentAttendance = async () => {
+      try {
+        const result = await RestApi.getRecentAttendance()
+        const response = await result.json()
+        if (result.status === 200){
+          setRecentAttendances(response.attendance)
+          // console.log(response)
+        }
+      } catch (error) {
+        
+      }
+    }
+
   return (
     <div>
       <PageTitle title='Dashboard' />
@@ -36,6 +53,9 @@ const AdminDashboard = () => {
           <StatisticCard name='Late' value={stats.totalLate} />
           <StatisticCard name='On Leave' value={stats.totalOnLeave} />
         </div>
+        <RecentAttendance 
+        recentAttendances={recentAttendances}
+        />
       </div>
     </div>
   )
