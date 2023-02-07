@@ -83,7 +83,6 @@ Route::group([
 
     // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index']);
-    Route::get('/attendance', [AdminAttendanceController::class, 'index']);
 
     // Employee
     Route::get('/employee', [EmployeeController::class, 'index']);
@@ -92,6 +91,10 @@ Route::group([
     Route::post('/employee/{id}', [EmployeeController::class, 'update']);
     Route::post('/employee/{id}/destroy', [EmployeeController::class, 'destroy']);
 
+    // Attendance
+    Route::get('/attendance', [AdminAttendanceController::class, 'index']);
+    Route::get('/attendance/recent', [AdminAttendanceController::class, 'getRecentAttendance']);
+    
     // Department
     Route::get('/department', [DepartmentController::class, 'index']);
     Route::post('/department', [DepartmentController::class, 'store']);
