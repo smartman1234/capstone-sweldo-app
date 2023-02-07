@@ -33,7 +33,6 @@ const Payslip = () => {
       const result = await RestApi.getPayslips(timestamp)
       const response = await result.json()
       if (result.status === 200) {
-        console.log(response.payslips)
         setPayslips(response.payslips)
       }
     } catch (error) {}

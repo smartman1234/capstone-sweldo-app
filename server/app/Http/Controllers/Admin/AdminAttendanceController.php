@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class AdminAttendanceController extends Controller
 {
-
     public function index(Request $request)
     {
         if ($request->name == null) {
