@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAttendanceController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
@@ -82,6 +83,7 @@ Route::group([
 
     // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index']);
+    Route::get('/attendance', [AdminAttendanceController::class, 'index']);
 
     // Employee
     Route::get('/employee', [EmployeeController::class, 'index']);

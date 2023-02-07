@@ -142,6 +142,13 @@ export const getAdminDashboardStats = async () =>
     headers: getHeaders(),
   })
 
+// Attemdance
+export const getRecentAttendance = async () =>
+  await fetch(baseUrl + '/admin/attendance', {
+    method: 'GET',
+    headers: getHeaders(),
+  })
+
 // Employee
 export const getEmployees = async (page) =>
   await fetch(baseUrl + `/admin/employee?page=${page}`, {
