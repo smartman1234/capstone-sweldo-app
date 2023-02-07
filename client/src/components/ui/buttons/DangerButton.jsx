@@ -1,4 +1,4 @@
-const DeclineButton = ({ name, onClick, loading = false }) => {
+const DangerButton = ({ name, onClick, loading = false }) => {
   return (
     <button
       type='button'
@@ -34,4 +34,4 @@ const DeclineButton = ({ name, onClick, loading = false }) => {
   )
 }
 
-export default DeclineButton
+export default DangerButton

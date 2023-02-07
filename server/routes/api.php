@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAttendanceController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
@@ -90,6 +91,10 @@ Route::group([
     Route::post('/employee/{id}', [EmployeeController::class, 'update']);
     Route::post('/employee/{id}/destroy', [EmployeeController::class, 'destroy']);
 
+    // Attendance
+    Route::get('/attendance', [AdminAttendanceController::class, 'index']);
+    Route::get('/attendance/recent', [AdminAttendanceController::class, 'getRecentAttendance']);
+    
     // Department
     Route::get('/department', [DepartmentController::class, 'index']);
     Route::post('/department', [DepartmentController::class, 'store']);

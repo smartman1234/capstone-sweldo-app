@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ViewButton from '../../ui/buttons/ViewButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'

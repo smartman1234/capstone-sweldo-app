@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import CustomButton from '../../ui/buttons/CustomButton'
+import DangerButton from '../../ui/buttons/DangerButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import {
   Chart as ChartJS,
@@ -26,6 +27,7 @@ export const options = {
 }
 
 const AttendanceOverview = ({ clock, setClock }) => {
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString())
   const [loading, setLoading] = useState(false)
 
   const [chartData, setChartData] = useState({
@@ -34,6 +36,9 @@ const AttendanceOverview = ({ clock, setClock }) => {
   })
 
   useEffect(() => {
+    setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString())
+    }, 1000)
     getAttendanceOverview()
   }, [])
 
@@ -100,14 +105,14 @@ const AttendanceOverview = ({ clock, setClock }) => {
             )}
             {clock === 1 && (
               <CustomButton
-                name='Clock In'
+                name={`Clock - In (${currentTime})`}
                 onClick={handleClockIn}
                 loading={loading}
               />
             )}
             {clock === 2 && (
-              <CustomButton
-                name='Clock Out'
+              <DangerButton
+                name={`Clock - Out (${currentTime})`}
                 onClick={handleClockOut}
                 loading={loading}
               />

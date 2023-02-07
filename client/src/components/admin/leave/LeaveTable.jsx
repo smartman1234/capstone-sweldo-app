@@ -1,11 +1,6 @@
-import { useState } from 'react'
-import * as RestApi from '../../../utils/rest_api_util'
-import { toast } from 'react-toastify'
-import DeclineButton from '../../ui/buttons/DeclineButton'
 import ViewButton from '../../ui/buttons/ViewButton'
 
 const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
-  const [loading, setLoading] = useState(false)
 
   return (
     <table className='w-full text-left'>
