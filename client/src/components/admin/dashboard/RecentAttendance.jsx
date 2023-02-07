@@ -10,7 +10,6 @@ const RecentAttendance = ({ recentAttendances }) => {
       <thead className='bg-gray-100 uppercase'>
         <tr>
           <th className='p-2.5'>#</th>
-          <th className='p-2.5'>Email</th>
           <th className='p-2.5'>Name</th>
           <th className='p-2.5'>Date</th>
           <th className='p-2.5'>Status</th>
@@ -22,7 +21,6 @@ const RecentAttendance = ({ recentAttendances }) => {
             recentAttendances.map((recentAttendance, index) => (
               <tr key={index} className='border-b'>
                 <th className='p-2.5'>{index + 1}</th>
-                <td className='p-2.5'>{recentAttendance.email}</td>
                 <td className='p-2.5'>{recentAttendance.name}</td>
                 <td className='p-2.5'>
                   {new Date(recentAttendance.clock_in).toLocaleDateString('default', {
