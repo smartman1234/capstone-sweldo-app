@@ -33,6 +33,7 @@ import Payslip from './pages/payslip'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import AdminAttendance from './pages/admin/admin_attendance'
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <AdminDashboard />,
+      },
+      {
+        path: 'attendance',
+        element: <AdminAttendance />,
       },
       {
         path: 'employee',
