@@ -67,7 +67,7 @@ const Login = () => {
   }
 
   return (
-    <div className='bg-black/50 h-screen flex justify-center items-center p-5'>
+    <div className='bg-black/50 h-screen flex lg:justify-end items-center justify-center  p-5'>
       <div className='bg-white w-full md:w-96 rounded-lg shadow-lg p-5'>
         <div className='mb-4'>
           <h1 className='text-3xl text-center font-bold'>Sweldo App</h1>
