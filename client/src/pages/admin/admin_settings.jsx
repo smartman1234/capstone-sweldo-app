@@ -54,59 +54,61 @@ const AdminSettings = () => {
   return (
     <div>
       <PageTitle title='Settings' />
-      <div className='mb-8 space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
-        <CustomInput
-          label='Old Password'
-          id='old_password'
-          type='password'
-          placeholder='Old Password'
-          value={formData.old_password}
-          onChange={(e) =>
-            setFormData({ ...formData, old_password: e.target.value })
-          }
-          error={
-            error !== undefined && error.type === 'old_password'
-              ? error.message
-              : null
-          }
-        />
-        <CustomInput
-          label='New Password'
-          id='new_password'
-          type='password'
-          placeholder='New Password'
-          value={formData.new_password}
-          onChange={(e) =>
-            setFormData({ ...formData, new_password: e.target.value })
-          }
-          error={
-            error !== undefined && error.type === 'new_password'
-              ? error.message
-              : null
-          }
-        />
-        <CustomInput
-          label='Confirm New Password'
-          id='confirm_new_password'
-          type='password'
-          placeholder='Confirm New Password'
-          value={formData.confirm_new_password}
-          onChange={(e) =>
-            setFormData({ ...formData, confirm_new_password: e.target.value })
-          }
-          error={
-            error !== undefined && error.type === 'confirm_new_password'
-              ? error.message
-              : null
-          }
+      <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
+        <div className='mb-8 space-y-4'>
+          <CustomInput
+            label='Old Password'
+            id='old_password'
+            type='password'
+            placeholder='Old Password'
+            value={formData.old_password}
+            onChange={(e) =>
+              setFormData({ ...formData, old_password: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'old_password'
+                ? error.message
+                : null
+            }
+          />
+          <CustomInput
+            label='New Password'
+            id='new_password'
+            type='password'
+            placeholder='New Password'
+            value={formData.new_password}
+            onChange={(e) =>
+              setFormData({ ...formData, new_password: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'new_password'
+                ? error.message
+                : null
+            }
+          />
+          <CustomInput
+            label='Confirm New Password'
+            id='confirm_new_password'
+            type='password'
+            placeholder='Confirm New Password'
+            value={formData.confirm_new_password}
+            onChange={(e) =>
+              setFormData({ ...formData, confirm_new_password: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'confirm_new_password'
+                ? error.message
+                : null
+            }
+          />
+        </div>
+        <CustomButton
+          name='Update'
+          onClick={handleSubmit}
+          loading={loading}
+          fullWidth={true}
         />
       </div>
-      <CustomButton
-        name='Update'
-        onClick={handleSubmit}
-        loading={loading}
-        fullWidth={true}
-      />
     </div>
   )
 }

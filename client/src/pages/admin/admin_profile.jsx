@@ -84,198 +84,208 @@ const AdminProfile = () => {
   return (
     <div>
       <PageTitle title='Profile' />
-      <div className='mb-8 space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
-        <div className='flex flex-col items-center'>
-          {formData.avatar === null ? (
-            <div className='w-20 h-20 flex justify-center items-center rounded-full bg-gray-500'>
+      <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
+        <div className='mb-8 space-y-4'>
+          <div className='flex flex-col items-center'>
+            {formData.avatar === null ? (
+              <div className='w-20 h-20 flex justify-center items-center rounded-full bg-gray-500'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth='1.5'
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
+                  />
+                </svg>
+              </div>
+            ) : (
+              <img
+                src={formData.avatar}
+                alt='Avatar'
+                className='w-20 h-20 rounded-full'
+              />
+            )}
+            <label htmlFor='avatar' className='flex gap-5'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
                 viewBox='0 0 24 24'
-                strokeWidth='1.5'
+                strokeWidth={1.5}
                 stroke='currentColor'
                 className='w-6 h-6'
               >
                 <path
                   strokeLinecap='round'
                   strokeLinejoin='round'
-                  d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
+                  d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5'
                 />
               </svg>
-            </div>
-          ) : (
-            <img
-              src={formData.avatar}
-              alt='Avatar'
-              className='w-20 h-20 rounded-full'
-            />
-          )}
-          <label htmlFor='avatar' className='flex gap-5'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='w-6 h-6'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5'
-              />
-            </svg>
-            Upload Avatar
-          </label>
-          <input
-            hidden
-            id='avatar'
-            type='file'
-            accept='image/*'
-            onChange={(e) => {
-              // Preview
-              setFormData({
-                ...formData,
-                avatar: URL.createObjectURL(e.target.files[0]),
-              })
-              // Set image
-              setSelectedImage(e.target.files[0])
-            }}
-          />
-          {selectedImage && (
-            <CustomButton
-              name='Upload Avatar'
-              onClick={uploadAvatar}
-              loading={loading}
-            />
-          )}
-        </div>
-        <CustomInput
-          label='Email'
-          id='email'
-          type='email'
-          placeholder='johndoe@gmail.com'
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          error={
-            error !== undefined && error.type === 'email' ? error.message : null
-          }
-          disabled={true}
-        />
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          <CustomInput
-            label='First Name'
-            id='first_name'
-            type='text'
-            placeholder='John'
-            value={formData.first_name}
-            onChange={(e) =>
-              setFormData({ ...formData, first_name: e.target.value })
-            }
-            error={
-              error !== undefined && error.type === 'first_name'
-                ? error.message
-                : null
-            }
-            disabled={!edit}
-          />
-          <CustomInput
-            label='Last Name'
-            id='last_name'
-            type='text'
-            placeholder='Doe'
-            value={formData.last_name}
-            onChange={(e) =>
-              setFormData({ ...formData, last_name: e.target.value })
-            }
-            error={
-              error !== undefined && error.type === 'last_name'
-                ? error.message
-                : null
-            }
-            disabled={!edit}
-          />
-        </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          <CustomInput
-            label='Birthday'
-            id='birthday'
-            type='date'
-            value={formData.birthday}
-            onChange={(e) =>
-              setFormData({ ...formData, birthday: e.target.value })
-            }
-            error={
-              error !== undefined && error.type === 'birthday'
-                ? error.message
-                : null
-            }
-            disabled={!edit}
-          />
-          <div>
-            <label
-              htmlFor='gender'
-              className='block text-gray-700 text-sm font-medium mb-2'
-            >
-              Gender
+              Upload Avatar
             </label>
-            <select
-              className='w-full text-gray px-5 py-2.5 rounded border'
-              id='gender'
-              value={formData.gender}
+            <input
+              hidden
+              id='avatar'
+              type='file'
+              accept='image/*'
+              onChange={(e) => {
+                // Preview
+                setFormData({
+                  ...formData,
+                  avatar: URL.createObjectURL(e.target.files[0]),
+                })
+                // Set image
+                setSelectedImage(e.target.files[0])
+              }}
+            />
+            {selectedImage && (
+              <CustomButton
+                name='Upload Avatar'
+                onClick={uploadAvatar}
+                loading={loading}
+              />
+            )}
+          </div>
+          <CustomInput
+            label='Email'
+            id='email'
+            type='email'
+            placeholder='johndoe@gmail.com'
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'email'
+                ? error.message
+                : null
+            }
+            disabled={true}
+          />
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <CustomInput
+              label='First Name'
+              id='first_name'
+              type='text'
+              placeholder='John'
+              value={formData.first_name}
               onChange={(e) =>
-                setFormData({ ...formData, gender: e.target.value })
+                setFormData({ ...formData, first_name: e.target.value })
+              }
+              error={
+                error !== undefined && error.type === 'first_name'
+                  ? error.message
+                  : null
               }
               disabled={!edit}
-            >
-              <option value='male'>Male</option>
-              <option value='female'>Female</option>
-            </select>
+            />
+            <CustomInput
+              label='Last Name'
+              id='last_name'
+              type='text'
+              placeholder='Doe'
+              value={formData.last_name}
+              onChange={(e) =>
+                setFormData({ ...formData, last_name: e.target.value })
+              }
+              error={
+                error !== undefined && error.type === 'last_name'
+                  ? error.message
+                  : null
+              }
+              disabled={!edit}
+            />
           </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <CustomInput
+              label='Birthday'
+              id='birthday'
+              type='date'
+              value={formData.birthday}
+              onChange={(e) =>
+                setFormData({ ...formData, birthday: e.target.value })
+              }
+              error={
+                error !== undefined && error.type === 'birthday'
+                  ? error.message
+                  : null
+              }
+              disabled={!edit}
+            />
+            <div>
+              <label
+                htmlFor='gender'
+                className='block text-gray-700 text-sm font-medium mb-2'
+              >
+                Gender
+              </label>
+              <select
+                className='w-full text-gray px-5 py-2.5 rounded border'
+                id='gender'
+                value={formData.gender}
+                onChange={(e) =>
+                  setFormData({ ...formData, gender: e.target.value })
+                }
+                disabled={!edit}
+              >
+                <option value='male'>Male</option>
+                <option value='female'>Female</option>
+              </select>
+            </div>
+          </div>
+          <CustomInput
+            label='Address'
+            id='address'
+            type='text'
+            placeholder='Some address'
+            value={formData.address}
+            onChange={(e) =>
+              setFormData({ ...formData, address: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'address'
+                ? error.message
+                : null
+            }
+            disabled={!edit}
+          />
+          <CustomInput
+            label='Phone'
+            id='phone'
+            type='text'
+            placeholder='09xx xxxx xxx'
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
+            error={
+              error !== undefined && error.type === 'phone'
+                ? error.message
+                : null
+            }
+            disabled={!edit}
+          />
         </div>
-        <CustomInput
-          label='Address'
-          id='address'
-          type='text'
-          placeholder='Some address'
-          value={formData.address}
-          onChange={(e) =>
-            setFormData({ ...formData, address: e.target.value })
-          }
-          error={
-            error !== undefined && error.type === 'address'
-              ? error.message
-              : null
-          }
-          disabled={!edit}
-        />
-        <CustomInput
-          label='Phone'
-          id='phone'
-          type='text'
-          placeholder='09xx xxxx xxx'
-          value={formData.phone}
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          error={
-            error !== undefined && error.type === 'phone' ? error.message : null
-          }
-          disabled={!edit}
-        />
+        {edit ? (
+          <CustomButton
+            name='Update'
+            onClick={handleSubmit}
+            loading={loading}
+            fullWidth={true}
+          />
+        ) : (
+          <CustomButton
+            name='Edit'
+            onClick={() => setEdit(true)}
+            fullWidth={true}
+          />
+        )}
       </div>
-      {edit ? (
-        <CustomButton
-          name='Update'
-          onClick={handleSubmit}
-          loading={loading}
-          fullWidth={true}
-        />
-      ) : (
-        <CustomButton
-          name='Edit'
-          onClick={() => setEdit(true)}
-          fullWidth={true}
-        />
-      )}
     </div>
   )
 }
