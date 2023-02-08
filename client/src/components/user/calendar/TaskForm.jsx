@@ -89,7 +89,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
             </div>
           </div>
           {/* Form */}
-          <div className='space-y-4'>
+          <div className='space-y-4 h-96 overflow-auto p-5'>
             {/* Task list */}
             {dailyTasks.map((task) => (
               <div
