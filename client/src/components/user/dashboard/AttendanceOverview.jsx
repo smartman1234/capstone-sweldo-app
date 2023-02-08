@@ -97,7 +97,7 @@ const AttendanceOverview = ({ clock, setClock }) => {
   }
 
   return (
-    <div className='bg-white shadow p-5'>
+    <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
       <div className='space-y-4'>
         <div className='flex justify-between'>
           <h1 className='text-2xl font-bold'>Online Attendance</h1>

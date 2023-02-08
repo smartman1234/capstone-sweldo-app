@@ -23,7 +23,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
     <aside
       className={
         activeSidebar
-          ? 'bg-[#2f323f] fixed z-10 w-full md:w-64 h-screen transition-all duration-300 overflow-auto pb-5'
+          ? 'bg-[#03C988] fixed z-10 w-full md:w-64 h-screen transition-all duration-300 overflow-auto pb-5'
           : 'bg-white fixed z-10 w-64 h-screen transition-all duration-300 -ml-64'
       }
     >
