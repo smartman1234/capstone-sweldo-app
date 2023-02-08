@@ -1,6 +1,6 @@
 const Navbar = ({ toggleSidebar }) => {
   return (
-    <nav className='bg-sky-900 sticky top-0 h-16 flex justify-between items-center px-5'>
+    <nav className='bg-[#03C988] sticky top-0 h-16 flex justify-between items-center px-5'>
       <button
         className='bg-blue-600 text-white font-medium p-2 rounded hover:bg-blue-500'
         onClick={toggleSidebar}
