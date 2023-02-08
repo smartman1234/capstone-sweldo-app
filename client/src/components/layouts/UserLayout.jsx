@@ -23,6 +23,11 @@ const UserLayout = () => {
   }, [])
 
   const toggleSidebar = () => {
+    if (!activeSidebar) {
+      setTimeout(() => {
+        document.querySelector('canvas').style.width = '100%'
+      }, 500)
+    }
     setActiveSidebar(!activeSidebar)
   }
 
