@@ -67,60 +67,65 @@ const Login = () => {
   }
 
   return (
-    <div className='bg-black/50 h-screen flex lg:justify-end items-center justify-center  p-5'>
-      <div className='bg-white w-full md:w-96 rounded-lg shadow-lg p-5'>
-        <div className='mb-4'>
-          <h1 className='text-3xl text-center font-bold'>Sweldo App</h1>
-        </div>
-        {/* Input */}
-        <div className='mb-8 space-y-4'>
-          <CustomInput
-            label='Email'
-            id='email'
-            type='email'
-            placeholder='johndoe@gmail.com'
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            error={
-              error !== undefined && error.type === 'email'
-                ? error.message
-                : null
-            }
-          />
-          <CustomInput
-            label='Password'
-            id='password'
-            type='password'
-            placeholder='Strong password'
-            value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-            error={
-              error !== undefined && error.type === 'password'
-                ? error.message
-                : null
-            }
-          />
-          <DangerAlert
-            message={
-              error !== undefined && error.type === undefined
-                ? error.message
-                : null
-            }
-          />
-          <SuccessAlert message={success?.message} />
-        </div>
-        {/* Login */}
-        <div>
-          <CustomButton
-            name='Login'
-            onClick={handleSubmit}
-            loading={loading}
-            fullWidth={true}
-          />
+    <div className='bg-black/50'>
+      <div className='grid grid-cols-1 md:grid-cols-2'>
+        <div className='hidden md:block'></div>
+        <div className='h-screen flex justify-center items-center p-5'>
+          <div className='bg-white w-full md:w-96 rounded-lg shadow-lg p-5'>
+            <div className='mb-4'>
+              <h1 className='text-3xl text-center font-bold'>Sweldo App</h1>
+            </div>
+            {/* Input */}
+            <div className='mb-8 space-y-4'>
+              <CustomInput
+                label='Email'
+                id='email'
+                type='email'
+                placeholder='johndoe@gmail.com'
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                error={
+                  error !== undefined && error.type === 'email'
+                    ? error.message
+                    : null
+                }
+              />
+              <CustomInput
+                label='Password'
+                id='password'
+                type='password'
+                placeholder='Strong password'
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+                error={
+                  error !== undefined && error.type === 'password'
+                    ? error.message
+                    : null
+                }
+              />
+              <DangerAlert
+                message={
+                  error !== undefined && error.type === undefined
+                    ? error.message
+                    : null
+                }
+              />
+              <SuccessAlert message={success?.message} />
+            </div>
+            {/* Login */}
+            <div>
+              <CustomButton
+                name='Login'
+                onClick={handleSubmit}
+                loading={loading}
+                fullWidth={true}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
