@@ -2,8 +2,8 @@ import PageTitle from '../../ui/titles/PageTitle'
 
 const RecentAttendance = ({ recentAttendances }) => {
   return (
-    <div>
-      <PageTitle title='Recent Attendance' />
+    <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
+      <h2 className='text-lg font-bold mb-4'>Recent Attendance</h2>
       <table className='w-full text-left'>
         <thead className='bg-gray-100 uppercase'>
           <tr>

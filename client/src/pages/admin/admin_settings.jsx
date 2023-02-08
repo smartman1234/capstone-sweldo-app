@@ -54,7 +54,7 @@ const AdminSettings = () => {
   return (
     <div>
       <PageTitle title='Settings' />
-      <div className='mb-8 space-y-4'>
+      <div className='mb-8 space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
         <CustomInput
           label='Old Password'
           id='old_password'

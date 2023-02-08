@@ -84,7 +84,7 @@ const AdminProfile = () => {
   return (
     <div>
       <PageTitle title='Profile' />
-      <div className='mb-8 space-y-4'>
+      <div className='mb-8 space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
         <div className='flex flex-col items-center'>
           {formData.avatar === null ? (
             <div className='w-20 h-20 flex justify-center items-center rounded-full bg-gray-500'>

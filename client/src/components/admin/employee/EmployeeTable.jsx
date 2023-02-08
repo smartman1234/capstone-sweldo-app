@@ -22,7 +22,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
 
   return (
     <table className='w-full text-left'>
-      <thead className='bg-gray-100 uppercase'>
+      <thead className='bg-gray-100 uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Email</th>

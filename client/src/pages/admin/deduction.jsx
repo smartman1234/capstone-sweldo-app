@@ -51,7 +51,7 @@ const Deduction = () => {
   return (
     <div>
       <PageTitle title='Deduction' />
-      <div className='space-y-4'>
+      <div className='space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
         <div className='flex space-x-4'>
           <CustomInput
             id='name'

@@ -45,7 +45,7 @@ const AdminLeave = () => {
   return (
     <div>
       <PageTitle title='Leave' />
-      <div className='space-y-4'>
+      <div className='space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
         <CustomInput
           id='name'
           type='text'
