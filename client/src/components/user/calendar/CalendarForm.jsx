@@ -37,22 +37,24 @@ const CalendarForm = () => {
   }
 
   return (
-    <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
-      <Calendar
-        onActiveStartDateChange={onActiveStartDateChange}
-        onChange={onChange}
-        tileContent={({ date, view }) => {
-          return view === 'month' &&
-            month === date.getMonth() &&
-            monthlyTasks[date.getDate()] !== undefined ? (
-            <div className='mt-1 flex justify-center'>
-              <div className='bg-blue-100 text-blue-800 text-xs font-medium p-1 rounded'>
-                {monthlyTasks[date.getDate()]} task(s)
+    <div>
+      <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
+        <Calendar
+          onActiveStartDateChange={onActiveStartDateChange}
+          onChange={onChange}
+          tileContent={({ date, view }) => {
+            return view === 'month' &&
+              month === date.getMonth() &&
+              monthlyTasks[date.getDate()] !== undefined ? (
+              <div className='mt-1 flex justify-center'>
+                <div className='bg-blue-100 text-blue-800 text-xs font-medium p-1 rounded'>
+                  {monthlyTasks[date.getDate()]} task(s)
+                </div>
               </div>
-            </div>
-          ) : null
-        }}
-      />
+            ) : null
+          }}
+        />
+      </div>
       {selectedDate && (
         <TaskForm
           selectedDate={selectedDate}
