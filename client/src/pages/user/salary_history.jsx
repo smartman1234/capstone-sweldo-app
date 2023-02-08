@@ -24,7 +24,7 @@ const SalaryHistory = () => {
   return (
     <div>
       <PageTitle title='Salary History' />
-      <div className='space-y-4'>
+      <div className='space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
         <SalaryTable salaries={salaries} />
         <Pagination pagination={salaries} onClick={getSalaries} />
       </div>

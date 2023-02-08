@@ -24,7 +24,7 @@ const Attendance = () => {
   return (
     <div>
       <PageTitle title='Attendance' />
-      <div className='space-y-4'>
+      <div className='space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
         <AttendanceTable attendances={attendances} />
         <Pagination pagination={attendances} onClick={getAttendances} />
       </div>
