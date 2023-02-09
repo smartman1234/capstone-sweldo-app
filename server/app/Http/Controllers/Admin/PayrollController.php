@@ -57,13 +57,15 @@ class PayrollController extends Controller
     public function getTotalHours($timestamp, User $user)
     {
         $hours = 0;
-        $monthlyAttendances = $user->attendances()->whereBetween(
-            'clock_in',
-            [
-                Carbon::createFromTimestamp($timestamp)->addDay(1)->startOfMonth(),
-                Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
-            ]
-        )->get();
+        $monthlyAttendances = $user->attendances()
+            ->where('clock_out', '!=', null)
+            ->whereBetween(
+                'clock_in',
+                [
+                    Carbon::createFromTimestamp($timestamp)->addDay(1)->startOfMonth(),
+                    Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
+                ]
+            )->get();
         foreach ($monthlyAttendances as $attendance) {
             $hours += Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
         }
