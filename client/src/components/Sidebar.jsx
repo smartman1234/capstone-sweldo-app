@@ -30,7 +30,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
       {/* Toggle */}
       <div className='h-16 flex items-center px-5'>
         <button
-          className='block md:hidden bg-[#4a4e69] text-white font-medium p-2 rounded hover:bg-blue-500'
+          className='block md:hidden bg-[#4a4e69] text-white font-medium p-2 rounded hover:bg-[#161927]'
           onClick={toggleSidebar}
         >
           <svg
