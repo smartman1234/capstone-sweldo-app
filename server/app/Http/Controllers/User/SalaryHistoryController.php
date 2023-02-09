@@ -13,7 +13,7 @@ class SalaryHistoryController extends Controller
         $user = $request->user();
 
         // Get payslips
-        $payslips = $user->payslips()->paginate(10);
+        $payslips = $user->payslips()->orderBy('date', 'desc')->paginate(10);
 
         return response()->json([
             'salaryHistory' => $payslips,
