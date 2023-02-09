@@ -6,8 +6,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
   const navigate = useNavigate()
 
   const [admin, setAdmin] = useState(false)
-  const fullName = localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name');
-
+  const fullName = localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name')
 
   useEffect(() => {
     const isAdmin = localStorage.getItem('is_admin')
@@ -80,10 +79,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
                   className='w-20 h-20 rounded-full'
                 />
               )}
-              <p className='text-center text-white rounded'>
-                 {fullName}
-              </p>
-
+              <p className='text-center text-white rounded'>{fullName}</p>
             </div>
           </li>
           {admin === false ? (
