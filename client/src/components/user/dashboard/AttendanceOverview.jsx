@@ -88,7 +88,7 @@ const AttendanceOverview = ({ clock, setClock }) => {
             {
               label: 'Work Hours',
               data: response.previousAttendances.data.reverse(),
-              backgroundColor: 'rgba(53, 162, 235, 0.5)',
+              backgroundColor: 'rgba(5, 102, 141, 0.9)',
             },
           ],
         })
