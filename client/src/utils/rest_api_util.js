@@ -311,6 +311,11 @@ export const searchAdminLeaves = async (name, page) =>
     method: 'GET',
     headers: getHeaders(),
   })
+export const getAdminLeave = async (id) =>
+  await fetch(baseUrl + `/admin/leave/${id}`, {
+    method: 'GET',
+    headers: getHeaders(),
+  })
 export const approveLeave = async (id) =>
   await fetch(baseUrl + `/admin/leave/${id}/approve`, {
     method: 'POST',
@@ -319,11 +324,6 @@ export const approveLeave = async (id) =>
 export const declineLeave = async (id) =>
   await fetch(baseUrl + `/admin/leave/${id}/decline`, {
     method: 'POST',
-    headers: getHeaders(),
-  })
-export const getAdminLeave = async (id) =>
-  await fetch(baseUrl + `/admin/leave/${id}`, {
-    method: 'GET',
     headers: getHeaders(),
   })
 

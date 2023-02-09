@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class DeductionController extends Controller
 {
+    /**
+     * Get all deductions
+     */
     public function index(Request $request)
     {
         if ($request->name == null) {
@@ -21,12 +24,13 @@ class DeductionController extends Controller
         ]);
     }
 
+    /**
+     * Create new deduction
+     */
     public function store(Request $request)
     {
         $name = $request->name;
         $amount = $request->amount;
-
-        // Validate deduction
         $result = ValidationUtil::validateDeductionName($name);
         if ($result != null) {
             return response()->json([
@@ -34,8 +38,6 @@ class DeductionController extends Controller
                 'type' => 'name'
             ], 400);
         }
-
-        // Validate amount
         $result = ValidationUtil::validateDeductionAmount($amount);
         if ($result != null) {
             return response()->json([
@@ -43,23 +45,21 @@ class DeductionController extends Controller
                 'type' => 'amount'
             ], 400);
         }
-
-        // Create
         Deduction::create([
             'name' => $name,
             'amount' => $amount,
         ]);
-
         return response()->json([
             'message' => 'Successfully added a new Deduction'
         ]);
     }
 
+    /**
+     * Get deduction
+     */
     public function show(Request $request)
     {
         $id = $request->id;
-
-        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -67,29 +67,25 @@ class DeductionController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Get deduction
         $deduction = Deduction::find($id);
-
-        // Not found
         if ($deduction == null) {
             return response()->json([
                 'message' => 'Deduction not found',
             ], 400);
         }
-
         return response()->json([
             'deduction' => $deduction,
         ]);
     }
 
+    /**
+     * Update deduction
+     */
     public function update(Request $request)
     {
         $id = $request->id;
         $name = $request->name;
         $amount = $request->amount;
-
-        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -97,8 +93,6 @@ class DeductionController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Validate deduction
         $result = ValidationUtil::validateDeductionName($name);
         if ($result != null) {
             return response()->json([
@@ -106,8 +100,6 @@ class DeductionController extends Controller
                 'type' => 'name'
             ], 400);
         }
-
-        // Validate amount
         $result = ValidationUtil::validateDeductionAmount($amount);
         if ($result != null) {
             return response()->json([
@@ -115,34 +107,27 @@ class DeductionController extends Controller
                 'type' => 'amount'
             ], 400);
         }
-
-        // Get deduction
         $deduction = Deduction::find($id);
-
-        // Not found
         if ($deduction == null) {
             return response()->json([
                 'message' => 'Deduction not found',
             ], 400);
         }
-
-        // Update
         $deduction->update([
             'name' => $name,
             'amount' => $amount,
         ]);
-
         return response()->json([
             'message' => 'Deduction updated successfully'
         ]);
     }
 
+    /**
+     * Delete deduction
+     */
     public function destroy(Request $request)
-    {
-        // Delete job
+    {        
         $id = $request->id;
-
-        // Validate id 
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -150,20 +135,13 @@ class DeductionController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Get deduction
         $deduction = Deduction::find($id);
-
-        // Not found
         if ($deduction == null) {
             return response()->json([
                 'message' => 'Deduction not found',
             ], 400);
         }
-
-        // Delete
         $deduction->delete();
-
         return response()->json([
             'message' => 'Deduction deleted successfully'
         ]);

@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class AdminAttendanceController extends Controller
 {
+    /**
+     * Get all attendances
+     */
     public function index(Request $request)
     {
         if ($request->name == null) {
@@ -25,8 +28,6 @@ class AdminAttendanceController extends Controller
                 ->orderBy('clock_in', 'desc')
                 ->paginate(10);
         }
-
-        // Modify data
         $employeesName = [];
         foreach ($attendances->items() as $item) {
             $employeesName[] = [
@@ -41,16 +42,17 @@ class AdminAttendanceController extends Controller
         }
         $attendances = $attendances->toArray();
         $attendances['data'] = $employeesName;
-        
         return response()->json([
             'attendances' => $attendances,
         ]);
     }
 
+    /**
+     * Get 10 recent attendances
+     */
     public function getRecentAttendance()
     {
         $attendances = Attendance::orderBy('clock_in', 'desc')->take(10)->get();
-
         $employeesName = [];
         foreach ($attendances as $attendance) {
             $employeesName[] = [
@@ -60,7 +62,6 @@ class AdminAttendanceController extends Controller
                 'status' => $attendance->clock_in >= Carbon::now()->setTime(9, 15, 0) ? 'late' : 'present',
             ];
         }
-
         return response()->json([
             'attendance' => $employeesName,
         ]);

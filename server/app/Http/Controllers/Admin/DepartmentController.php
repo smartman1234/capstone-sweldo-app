@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+    /**
+     * Get all departments
+     */
     public function index(Request $request)
     {
         if ($request->name == null) {
@@ -22,11 +25,12 @@ class DepartmentController extends Controller
         ]);
     }
 
+    /**
+     * Create new department
+     */
     public function store(Request $request)
     {
         $name = $request->name;
-
-        // Validate department 
         $result = ValidationUtil::validateDepartment($name);
         if ($result != null) {
             return response()->json([
@@ -34,22 +38,20 @@ class DepartmentController extends Controller
                 'type' => 'name'
             ], 400);
         }
-
-        // Create department
         Department::create([
             'name' => $name,
         ]);
-
         return response()->json([
             'message' => 'Successfully added a new Department'
         ]);
     }
 
+    /**
+     * Get department
+     */
     public function show(Request $request)
     {
         $id = $request->id;
-
-        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -57,28 +59,24 @@ class DepartmentController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Get department
         $department = Department::find($id);
-
-        // Not found
         if ($department == null) {
             return response()->json([
                 'message' => 'Department not found',
             ], 400);
         }
-
         return response()->json([
             'department' => $department,
         ]);
     }
 
+    /**
+     * Update department
+     */
     public function update(Request $request)
     {
         $id = $request->id;
         $name = $request->name;
-
-        // Validate Id of Department
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -86,8 +84,6 @@ class DepartmentController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Validate Department
         $result = ValidationUtil::validateDepartment($name);
         if ($result != null) {
             return response()->json([
@@ -95,33 +91,26 @@ class DepartmentController extends Controller
                 'type' => 'name'
             ], 400);
         }
-
-        // Get Department
         $department = Department::find($id);
-
-        // Not found
         if ($department == null) {
             return response()->json([
                 'message' => 'Department not found',
             ], 400);
         }
-
-        // Update
         $department->update([
             'name' => $name,
         ]);
-
         return response()->json([
             'message' => 'Department updated successfully'
         ]);
     }
 
+    /**
+     * Delete department
+     */
     public function destroy(Request $request)
     {
-        // Delete department
         $id = $request->id;
-
-        // Validate id 
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -129,28 +118,19 @@ class DepartmentController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Get department
         $department = Department::find($id);
-
-        // Not found
         if ($department == null) {
             return response()->json([
                 'message' => 'Department not found',
             ], 400);
         }
-
-        // Count user with this department
         $count = User::where('department_id', $id)->count();
         if ($count != 0) {
             return response()->json([
                 'message' => 'Please remove all employee in this department first',
             ], 400);
         }
-
-        // Delete
         $department->delete();
-
         return response()->json([
             'message' => 'Department deleted successfully'
         ]);

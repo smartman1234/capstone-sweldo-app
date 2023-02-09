@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
 {
+    /**
+     * Get statistics for admin dashboard
+     */
     public function index(Request $request)
     {
         $totalEmployee = User::where('is_admin', 0)->count();
@@ -39,7 +42,6 @@ class AdminDashboardController extends Controller
                 ]
             )
             ->count();
-
         return response()->json([
             'totalEmployee' => $totalEmployee,
             'totalPresent' => $totalPresent,
