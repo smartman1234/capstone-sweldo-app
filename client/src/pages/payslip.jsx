@@ -108,11 +108,11 @@ const Payslip = () => {
               </div>
               <div className='grid grid-cols-1 md:grid-cols-2'>
                 <h4>Basic</h4>
-                <p>₱ {payslip.earnings}</p>
+                <p>₱ {payslip.earnings.toLocaleString('en-US')}</p>
               </div>
               <div className='pt-2 grid grid-cols-1 md:grid-cols-2'>
                 <h4 className='font-bold'>Gross Earnings</h4>
-                <p className='font-bold'>₱ {payslip.earnings}</p>
+                <p className='font-bold'>₱ {payslip.earnings.toLocaleString('en-US')}</p>
               </div>
             </div>
             <hr className='my-4' />
@@ -128,12 +128,12 @@ const Payslip = () => {
                   className='grid grid-cols-1 md:grid-cols-2'
                 >
                   <h4>{deduction.name}</h4>
-                  <p>₱ {deduction.amount}</p>
+                  <p>₱ {deduction.amount.toLocaleString('en-US')}</p>
                 </div>
               ))}
               <div className='pt-2 grid grid-cols-1 md:grid-cols-2'>
                 <h4 className='font-bold'>Total Deductions</h4>
-                <p className='font-bold'>₱ {payslip.total_deductions}</p>
+                <p className='font-bold'>₱ {payslip.total_deductions.toLocaleString('en-US')}</p>
               </div>
             </div>
             <hr className='my-4' />
@@ -144,7 +144,7 @@ const Payslip = () => {
                   NET PAY (Gross Earnings - Total Deductions)
                 </h4>
                 <p className='text-lg font-bold'>
-                  ₱ {payslip.net_pay < 0 ? 0 : payslip.net_pay}
+                  ₱ {payslip.net_pay.toLocaleString('en-US') < 0 ? 0 : payslip.net_pay.toLocaleString('en-US')}
                 </p>
               </div>
             </div>
