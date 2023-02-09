@@ -9,28 +9,29 @@ use Illuminate\Http\Request;
 
 class LeaveController extends Controller
 {
+    /**
+     * Get all leaves
+     */
     public function index(Request $request)
     {
-        // Get user
         $user = $request->user();
-
         if ($request->name == null) {
             $leaves = $user->leaves()->paginate(10);
         } else {
             $leaves = $user->leaves()->where('name', 'LIKE', "%" . $request->name . "%")->paginate(10);
         }
-
         return response()->json([
             'leaves' => $leaves,
         ]);
     }
 
+    /**
+     * Create new leave
+     */
     public function store(Request $request)
     {
         $date = $request->date;
         $reason = $request->reason;
-
-        // Validate date
         $result = ValidationUtil::validateDate($date);
         if ($result != null) {
             return response()->json([
@@ -38,8 +39,6 @@ class LeaveController extends Controller
                 'type' => 'date'
             ], 400);
         }
-
-        // Validate reason
         $result = ValidationUtil::validateReason($reason);
         if ($result != null) {
             return response()->json([
@@ -47,26 +46,22 @@ class LeaveController extends Controller
                 'type' => 'reason'
             ], 400);
         }
-
-        // Get user
         $user = $request->user();
-
-        // Create
         $user->leaves()->create([
             'date' => $date,
             'reason' => $reason
         ]);
-
         return response()->json([
             'message' => 'Successfully added a new Leave'
         ]);
     }
 
+    /**
+     * Get leave
+     */
     public function show(Request $request)
     {
         $id = $request->id;
-
-        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -74,17 +69,12 @@ class LeaveController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Get leave
         $leave = Leave::find($id);
-
-        // Not found
         if ($leave == null) {
             return response()->json([
                 'message' => 'Leave not found',
             ], 400);
         }
-
         return response()->json([
             'leave' => $leave,
         ]);

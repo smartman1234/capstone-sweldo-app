@@ -7,14 +7,13 @@ use Illuminate\Http\Request;
 
 class SalaryHistoryController extends Controller
 {
+    /**
+     * Get payslips
+     */
     public function index(Request $request)
     {
-        // Get user
         $user = $request->user();
-
-        // Get payslips
         $payslips = $user->payslips()->orderBy('date', 'desc')->paginate(10);
-
         return response()->json([
             'salaryHistory' => $payslips,
         ]);

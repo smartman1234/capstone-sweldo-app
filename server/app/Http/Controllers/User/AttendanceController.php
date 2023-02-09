@@ -10,18 +10,16 @@ use DateTimeZone;
 
 class AttendanceController extends Controller
 {
+    /**
+     * Get all attendances
+     */
     public function index(Request $request)
     {
-        // Get user
         $user = $request->user();
-
-        // Get attendance
         $attendances = $user->attendances()
             ->where('clock_out', '!=', null)
             ->orderBy('clock_in', 'desc')
             ->paginate(10);
-
-        // Modify data
         $employeesName = [];
         foreach ($attendances->items() as $item) {
             $employeesName[] = [
@@ -35,49 +33,43 @@ class AttendanceController extends Controller
         }
         $attendances = $attendances->toArray();
         $attendances['data'] = $employeesName;
-
         return response()->json([
             'attendances' => $attendances
         ]);
     }
 
+    /**
+     * Clock in
+     */
     public function clockIn(Request $request)
     {
-        // Get user
         $user = $request->user();
-
-        // Get attendance today
         $attendance = $user->attendances()->where('clock_in', '>=', Carbon::now()->startOfDay())->first();
         if ($attendance != null) {
             return response()->json([
                 'message' => 'You have already clocked in today'
             ], 400);
         }
-
-        // Create new attendance 
         $user->attendances()->create([
             'clock_in' => Carbon::now(new DateTimeZone('Asia/Singapore'))
         ]);
-
         return response()->json([
             'message' => 'You have clocked in successfully'
         ]);
     }
 
+    /**
+     * Clock out
+     */
     public function clockOut(Request $request)
     {
-        // Get user
         $user = $request->user();
-
-        // Get attendance today
         $attendance = $user->attendances()->where('clock_in', '>=', Carbon::now()->startOfDay())->first();
         if ($attendance != null && $attendance->clock_out !== null) {
             return response()->json([
                 'message' => 'You have already clocked out today'
             ], 400);
         }
-
-        // Update clock out
         $attendance->update([
             'clock_out' => Carbon::now(new DateTimeZone('Asia/Singapore')),
         ]);
@@ -86,23 +78,19 @@ class AttendanceController extends Controller
         ]);
     }
 
+    /**
+     * Get attendance overview
+     */
     public function getAttendanceOverview(Request $request)
     {
         $filter = $request->filter;
-
         if ($filter != 'daily' && $filter != 'weekly' && $filter != 'monthly') {
             return response()->json([
                 'message' => 'Invalid filter'
             ], 400);
         }
-
-        // Get user
         $user = $request->user();
-
-        // Previous attendance
         $previousAttendances = [];
-
-        // Daily
         if ($filter == 'daily') {
             $attendances = $user->attendances()
                 ->where('clock_in', '>', Carbon::now()->startOfWeek())
@@ -110,14 +98,11 @@ class AttendanceController extends Controller
                 ->where('clock_out', '!=', null)
                 ->get()
                 ->sortByDesc('clock_in');
-
             foreach ($attendances as $attendance) {
                 $previousAttendances['labels'][] = Carbon::parse($attendance->clock_in)->rawFormat('D, M d');
                 $previousAttendances['data'][] = Carbon::parse($attendance->clock_in)->diffInHours(Carbon::parse($attendance->clock_out));
             }
         }
-
-        // Weekly
         if ($filter == 'weekly') {
             $weeklyAttendances = $user->attendances()
                 ->where('clock_in', '>', Carbon::now()->subDay(90))
@@ -127,7 +112,6 @@ class AttendanceController extends Controller
                 ->groupBy(function ($attendance) {
                     return Carbon::parse($attendance->clock_in)->format('W');
                 });
-
             $weeklyData = [];
             foreach ($weeklyAttendances as $week => $attendances) {
                 foreach ($attendances as $attendance) {
@@ -138,14 +122,11 @@ class AttendanceController extends Controller
                     }
                 }
             }
-
             foreach ($weeklyData as $week => $hour) {
                 $previousAttendances['labels'][] = 'Week ' . $week;
                 $previousAttendances['data'][] = $hour;
             }
         }
-
-        // Monthly
         if ($filter == 'monthly') {
             $monthlyAttendances = $user->attendances()
                 ->where('clock_out', '!=', null)
@@ -154,7 +135,6 @@ class AttendanceController extends Controller
                 ->groupBy(function ($attendance) {
                     return Carbon::parse($attendance->clock_in)->format('m');
                 });
-
             $monthlyData = [];
             foreach ($monthlyAttendances as $month => $attendances) {
                 foreach ($attendances as $attendance) {
@@ -165,13 +145,11 @@ class AttendanceController extends Controller
                     }
                 }
             }
-
             foreach ($monthlyData as $month => $hour) {
                 $previousAttendances['labels'][] = Carbon::createFromFormat('!m', $month)->format('F');
                 $previousAttendances['data'][] = $hour;
             }
         }
-
         return response()->json([
             'previousAttendances' => $previousAttendances,
         ]);

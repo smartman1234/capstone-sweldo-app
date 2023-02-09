@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\URL;
 
 class LoginController extends Controller
 {
+    /**
+     * Login
+     */
     public function login(Request $request)
     {
         $email = $request->email;
         $password = $request->password;
-
-        // Validate email
         $result = ValidationUtil::validateEmail($email);
         if ($result != null) {
             return response()->json([
@@ -23,8 +24,6 @@ class LoginController extends Controller
                 'type' => 'email'
             ], 400);
         }
-
-        // Validate password
         $result = ValidationUtil::validatePassword($password);
         if ($result != null) {
             return response()->json([
@@ -32,26 +31,17 @@ class LoginController extends Controller
                 'type' => 'password'
             ], 400);
         }
-
-        // Set credentials
         $credentials = [
             'email' => $email,
             'password' => $password
         ];
-
-        // Authenticate user
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'Credentials does not match our records.',
             ], 400);
         }
-
-        // Get authenticated user
         $user = $request->user();
-
-        // Create access token
         $accessToken = $user->createToken('Personal Access Token')->accessToken;
-
         return response()->json([
             'user' => [
                 'id' => $user->id,
