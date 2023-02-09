@@ -12,13 +12,16 @@ class AdminAttendanceController extends Controller
     public function index(Request $request)
     {
         if ($request->name == null) {
-            $attendances = Attendance::orderBy('clock_in', 'desc')->paginate(10);
+            $attendances = Attendance::where('clock_out', '!=', null)
+                ->orderBy('clock_in', 'desc')
+                ->paginate(10);
         } else {
             $attendances = Attendance::with('user')
                 ->whereHas('user', function ($query) use ($request) {
                     $query->where('first_name', 'LIKE', "%" . $request->name . "%")
                         ->orWhere('last_name', 'LIKE', "%" . $request->name . "%");
                 })
+                ->where('clock_out', '!=', null)
                 ->orderBy('clock_in', 'desc')
                 ->paginate(10);
         }

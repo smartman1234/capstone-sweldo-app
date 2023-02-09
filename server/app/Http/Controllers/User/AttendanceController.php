@@ -15,7 +15,10 @@ class AttendanceController extends Controller
         $user = $request->user();
 
         // Get attendance
-        $attendances = $user->attendances()->orderBy('clock_in', 'desc')->paginate(10);
+        $attendances = $user->attendances()
+            ->where('clock_out', '!=', null)
+            ->orderBy('clock_in', 'desc')
+            ->paginate(10);
 
         // Modify data
         $employeesName = [];
