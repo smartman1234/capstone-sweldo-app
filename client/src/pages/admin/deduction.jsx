@@ -64,7 +64,7 @@ const Deduction = () => {
             }}
           />
           <button
-            className='bg-blue-600 text-white font-medium px-5 py-2.5 rounded hover:bg-blue-700'
+            className='bg-indigo-400 text-white font-medium px-5 py-2.5 rounded-full hover:bg-indigo-700 w-24'
             onClick={toggleAddForm}
           >
             Add
