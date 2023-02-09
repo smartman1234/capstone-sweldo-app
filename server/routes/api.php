@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminAttendanceController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
 
-// User
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\AttendanceController;
 use App\Http\Controllers\User\TaskController;
@@ -14,10 +12,10 @@ use App\Http\Controllers\User\SalaryHistoryController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\SettingsController;
 
-// Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\AdminAttendanceController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\DeductionController;
 use App\Http\Controllers\Admin\AdminLeaveController;
@@ -25,12 +23,14 @@ use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 
+/**
+ * Login route
+ */
 Route::post('/login', [LoginController::class, 'login']);
 
-/*
-    User routes
-*/
-
+/**
+ * User routes
+ */
 Route::group([
     'prefix' => '/user',
     'middleware' => [
@@ -70,10 +70,9 @@ Route::group([
     Route::post('/settings', [SettingsController::class, 'update']);
 });
 
-/*
-    Admin routes
-*/
-
+/**
+ * Admin routes
+ */
 Route::group([
     'prefix' => '/admin',
     'middleware' => [
