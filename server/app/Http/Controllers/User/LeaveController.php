@@ -15,7 +15,7 @@ class LeaveController extends Controller
         $user = $request->user();
 
         if ($request->name == null) {
-            $leaves =  $user->leaves()->paginate(10);
+            $leaves = $user->leaves()->paginate(10);
         } else {
             $leaves = $user->leaves()->where('name', 'LIKE', "%" . $request->name . "%")->paginate(10);
         }
