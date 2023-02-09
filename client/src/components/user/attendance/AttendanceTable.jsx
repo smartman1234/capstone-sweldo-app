@@ -1,7 +1,7 @@
 const AttendanceTable = ({ attendances }) => {
   return (
     <table className='w-full text-left'>
-      <thead className='bg-indigo-500 uppercase rounded-lg'>
+      <thead className='bg-indigo-400 uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Date</th>
