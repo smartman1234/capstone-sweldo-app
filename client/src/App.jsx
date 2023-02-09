@@ -44,12 +44,16 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: 'payslip',
+    element: <Payslip />,
+  },
+  /*
+    User
+  */
+  {
     path: 'user',
     element: <UserLayout />,
     children: [
-      /*
-        User
-      */
       {
         path: 'dashboard',
         element: <UserDashboard />,
@@ -128,10 +132,6 @@ const router = createBrowserRouter([
         element: <AdminSettings />,
       },
     ],
-  },
-  {
-    path: 'payslip',
-    element: <Payslip />,
   },
   // 404
   {
