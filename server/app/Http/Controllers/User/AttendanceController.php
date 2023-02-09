@@ -10,7 +10,8 @@ use DateTimeZone;
 
 class AttendanceController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         // Get user
         $user = $request->user();
 
@@ -39,7 +40,7 @@ class AttendanceController extends Controller
             'attendances' => $attendances
         ]);
     }
-    
+
     public function clockIn(Request $request)
     {
         // Get user
@@ -120,6 +121,7 @@ class AttendanceController extends Controller
         if ($filter == 'weekly') {
             $weeklyAttendances = $user->attendances()
                 ->where('clock_in', '>', Carbon::now()->subDay(90))
+                ->where('clock_out', '!=', null)
                 ->get()
                 ->sortByDesc('clock_in')
                 ->groupBy(function ($attendance) {
@@ -145,9 +147,13 @@ class AttendanceController extends Controller
 
         // Monthly
         if ($filter == 'monthly') {
-            $monthlyAttendances = $user->attendances()->get()->sortByDesc('clock_in')->groupBy(function ($attendance) {
-                return Carbon::parse($attendance->clock_in)->format('m');
-            });
+            $monthlyAttendances = $user->attendances()
+                ->where('clock_out', '!=', null)
+                ->get()
+                ->sortByDesc('clock_in')
+                ->groupBy(function ($attendance) {
+                    return Carbon::parse($attendance->clock_in)->format('m');
+                });
 
             $monthlyData = [];
             foreach ($monthlyAttendances as $month => $attendances) {
