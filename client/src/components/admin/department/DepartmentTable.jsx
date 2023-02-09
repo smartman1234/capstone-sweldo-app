@@ -31,7 +31,7 @@ const DepartmentTable = ({
 
   return (
     <table className='w-full text-left'>
-      <thead className='bg-gray-100 uppercase rounded-lg'>
+      <thead className='bg-indigo-400 uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Name</th>
@@ -42,7 +42,7 @@ const DepartmentTable = ({
         {departments !== undefined &&
           (departments.data.length !== 0 ? (
             departments.data.map((department, index) => (
-              <tr key={index} className='border-b'>
+              <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
                 <th className='p-2.5'>{departments.from + index}</th>
                 <td className='p-2.5'>{department.name}</td>
                 <td className='p-2.5 space-x-4'>
