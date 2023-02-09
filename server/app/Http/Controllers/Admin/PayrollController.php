@@ -99,6 +99,8 @@ class PayrollController extends Controller
         $users = User::where('is_admin', 0)->get();
 
         foreach ($users as $user) {
+
+            // Get payslip in selected month
             $payslip = $user->payslips()->whereBetween(
                 'date',
                 [
@@ -110,8 +112,8 @@ class PayrollController extends Controller
             // Get total hours
             $totalHours = $this->getTotalHours($timestamp, $user);
 
-            // Create or update payslip
             if ($payslip == null) {
+                // Create new payslip
                 $user->payslips()->create([
                     'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
@@ -121,7 +123,8 @@ class PayrollController extends Controller
                     'net_pay' => ($totalHours * $user->job->salary) - $totalDeductions
                 ]);
             } else {
-                $user->payslips()->update([
+                // Update existing payslip in selected month
+                $payslip->update([
                     'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
                     'earnings' => $totalHours * $user->job->salary,
