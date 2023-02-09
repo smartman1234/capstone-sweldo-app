@@ -42,9 +42,9 @@ const UserDashboard = () => {
       <PageTitle title='Dashboard' />
       <div className='space-y-4'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-          <StatisticCard name='Monthly' value={stats.monthly} />
-          <StatisticCard name='Rate' value={stats.rate} />
-          <StatisticCard name='Leave' value={stats.leave} />
+          <StatisticCard name='Total Hours (Monthly)' value={stats.monthly} />
+          <StatisticCard name='Rate per hour' value={stats.rate} />
+          <StatisticCard name='Total Leave' value={stats.leave} />
           <StatisticCard name='Expected Salary' value={stats.expectedSalary} />
         </div>
         <AttendanceOverview clock={clock} setClock={setClock} />

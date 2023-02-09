@@ -23,14 +23,14 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
     <aside
       className={
         activeSidebar
-          ? 'bg-[#03C988] fixed z-10 w-full md:w-64 h-screen transition-all duration-300 overflow-auto pb-5'
+          ? 'bg-[#22223b] fixed z-10 w-full md:w-64 h-screen transition-all duration-300 overflow-auto pb-5'
           : 'bg-white fixed z-10 w-64 h-screen transition-all duration-300 -ml-64'
       }
     >
       {/* Toggle */}
       <div className='h-16 flex items-center px-5'>
         <button
-          className='block md:hidden bg-blue-600 text-white font-medium p-2 rounded hover:bg-blue-500'
+          className='block md:hidden bg-[#4a4e69] text-white font-medium p-2 rounded hover:bg-blue-500'
           onClick={toggleSidebar}
         >
           <svg
