@@ -27,7 +27,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
 
   return (
     <table className='w-full text-left'>
-      <thead className='bg-gray-100 uppercase rounded-lg'>
+      <thead className='bg-indigo-400 uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Name</th>
@@ -39,7 +39,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
         {jobs !== undefined &&
           (jobs.data.length !== 0 ? (
             jobs.data.map((job, index) => (
-              <tr key={index} className='border-b'>
+              <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
                 <th className='p-2.5'>{jobs.from + index}</th>
                 <td className='p-2.5'>{job.name}</td>
                 <td className='p-2.5'>{job.salary}</td>
