@@ -1,7 +1,7 @@
 const AdminAttendanceTable = ({ attendances }) => {
   return (
     <table className='w-full text-left'>
-      <thead className='bg-gray-100 uppercase rounded-lg'>
+      <thead className='bg-indigo-400 uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Name</th>
@@ -16,7 +16,7 @@ const AdminAttendanceTable = ({ attendances }) => {
         {attendances !== undefined &&
           (attendances.data.length !== 0 ? (
             attendances.data.map((attendance, index) => (
-              <tr key={index} className='border-b'>
+              <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
                 <th className='p-2.5'>{attendances.from + index}</th>
                 <td className='p-2.5'>{attendance.name}</td>
                 <td className='p-2.5'>
@@ -35,14 +35,14 @@ const AdminAttendanceTable = ({ attendances }) => {
                 <td className='p-2.5'>{attendance.total_hours}</td>
                 <td className='p-2.5'>
                   {attendance.status === 'present' && (
-                    <span className='bg-green-500 text-white text-sm capitalize rounded px-2 py-1'>
+                    <div className='bg-emerald-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24'>
                       {attendance.status}
-                    </span>
+                    </div>
                   )}
                   {attendance.status === 'late' && (
-                    <span className='bg-red-500 text-white text-sm capitalize rounded px-2 py-1'>
+                    <div className='bg-red-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24'>
                       {attendance.status}
-                    </span>
+                    </div>
                   )}
                 </td>
               </tr>
