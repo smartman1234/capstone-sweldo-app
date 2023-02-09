@@ -1,4 +1,4 @@
-import ViewButton from '../../ui/buttons/ViewButton'
+import EditButton from '../../ui/buttons/EditButton'
 
 const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
   return (
@@ -42,8 +42,7 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                   )}
                 </td>
                 <td className='p-2.5 space-x-4'>
-                  <ViewButton
-                    name='View'
+                  <EditButton
                     onClick={() => setSelectedLeaveId(leave.id)}
                   />
                 </td>

@@ -1,4 +1,4 @@
-import ViewButton from '../../ui/buttons/ViewButton'
+import EditButton from '../../ui/buttons/EditButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import DeleteButton from '../../ui/buttons/DeleteButton'
 import { toast } from 'react-toastify'
@@ -45,8 +45,7 @@ const DeductionTable = ({
                 <td className='p-2.5'>{deduction.name}</td>
                 <td className='p-2.5'>{deduction.amount}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ViewButton
-                    name='View'
+                  <EditButton
                     onClick={() => setSelectedDeductionId(deduction.id)}
                   />
                   <DeleteButton

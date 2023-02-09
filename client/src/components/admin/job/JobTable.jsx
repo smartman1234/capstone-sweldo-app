@@ -1,4 +1,4 @@
-import ViewButton from '../../ui/buttons/ViewButton'
+import EditButton from '../../ui/buttons/EditButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 import DeleteButton from '../../ui/buttons/DeleteButton'
@@ -44,8 +44,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
                 <td className='p-2.5'>{job.name}</td>
                 <td className='p-2.5'>{job.salary}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ViewButton
-                    name='View'
+                  <EditButton
                     onClick={() => setSelectedJobId(job.id)}
                   />
                   <DeleteButton

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ViewButton from '../../ui/buttons/ViewButton'
+import EditButton from '../../ui/buttons/EditButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { toast } from 'react-toastify'
 import DeleteButton from '../../ui/buttons/DeleteButton'
@@ -46,8 +46,7 @@ const DepartmentTable = ({
                 <th className='p-2.5'>{departments.from + index}</th>
                 <td className='p-2.5'>{department.name}</td>
                 <td className='p-2.5 space-x-4'>
-                  <ViewButton
-                    name='View'
+                  <EditButton
                     onClick={() => setSelectedDepartmentId(department.id)}
                   />
                   <DeleteButton
