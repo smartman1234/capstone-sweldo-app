@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 
 class AdminLeaveController extends Controller
 {
+    /**
+     * Get all leaves
+     */
     public function index(Request $request)
     {
-
         if ($request->name == null) {
             $leaves = Leave::paginate(10);
         } else {
@@ -23,7 +25,6 @@ class AdminLeaveController extends Controller
                 })
                 ->paginate(10);
         }
-
         $employeesName = [];
         foreach ($leaves->items() as $item) {
             $employeesName[] = [
@@ -34,7 +35,6 @@ class AdminLeaveController extends Controller
                 'status' => $item->status,
             ];
         }
-
         $leaves = $leaves->toArray();
         $leaves['data'] = $employeesName;
         return response()->json([
@@ -42,12 +42,12 @@ class AdminLeaveController extends Controller
         ]);
     }
 
-    public function approve(Request $request)
+    /**
+     * Get leave
+     */
+    public function show(Request $request)
     {
-
         $id = $request->id;
-
-        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -55,33 +55,50 @@ class AdminLeaveController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Get leave
         $leave = Leave::find($id);
-
-        // Not found
         if ($leave == null) {
             return response()->json([
                 'message' => 'Leave not found',
             ], 400);
         }
+        return response()->json([
+            'leave' => $leave,
+        ]);
+    }
 
-        // Update
+    /**
+     * Approve leave
+     */
+    public function approve(Request $request)
+    {
+        $id = $request->id;
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+        $leave = Leave::find($id);
+        if ($leave == null) {
+            return response()->json([
+                'message' => 'Leave not found',
+            ], 400);
+        }
         $leave->update([
             'status' => 'approved'
         ]);
-
         return response()->json([
             'message' => 'Leave has been approved'
         ]);
     }
 
+    /**
+     * Decline leave
+     */
     public function decline(Request $request)
     {
-        
         $id = $request->id;
-
-        // Validate id
         $result = ValidationUtil::validateId($id);
         if ($result != null) {
             return response()->json([
@@ -89,52 +106,17 @@ class AdminLeaveController extends Controller
                 'type' => 'id'
             ], 400);
         }
-
-        // Get leave
         $leave = Leave::find($id);
-
-        // Not found
         if ($leave == null) {
             return response()->json([
                 'message' => 'Leave not found',
             ], 400);
         }
-
-        // Update
         $leave->update([
             'status' => 'declined'
         ]);
-
         return response()->json([
             'message' => 'Leave has been declined'
-        ]);
-    }
-    
-    public function show(Request $request)
-    {
-        $id = $request->id;
-
-        // Validate id
-        $result = ValidationUtil::validateId($id);
-        if ($result != null) {
-            return response()->json([
-                'message' => $result,
-                'type' => 'id'
-            ], 400);
-        }
-
-        // Get department
-        $leave = Leave::find($id);
-
-        // Not found
-        if ($leave == null) {
-            return response()->json([
-                'message' => 'Leave not found',
-            ], 400);
-        }
-
-        return response()->json([
-            'leave' => $leave,
         ]);
     }
 }

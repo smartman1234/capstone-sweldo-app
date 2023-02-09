@@ -12,30 +12,23 @@ use Illuminate\Http\Request;
 
 class PayrollController extends Controller
 {
+    /**
+     * Get all payrolls
+     */
     public function index(Request $request)
     {
         $timestamp = $request->timestamp;
-
-        // Validate date
         $result = ValidationUtil::validateTimestamp($timestamp);
         if ($result != null) {
             return response()->json([
                 'message' => $result,
             ], 400);
         }
-
-        // Get all deductions
         $totalDeductions = Deduction::sum('amount');
-
-        // Get all users
         $users = User::where('is_admin', 0)->paginate(10);
-
         $employeesData = [];
         foreach ($users->items() as $user) {
-
-            // Get total hours per user
             $totalHours = $this->getTotalHours($timestamp, $user);
-
             $employeesData[] = [
                 'id' => $user->id,
                 'name' => $user->first_name . ' ' . $user->last_name,
@@ -45,15 +38,16 @@ class PayrollController extends Controller
                 'net_pay' => ($totalHours * $user->job->salary) - $totalDeductions
             ];
         }
-
         $users = $users->toArray();
         $users['data'] = $employeesData;
-
         return response()->json([
             'payrolls' => $users,
         ]);
     }
 
+    /**
+     * Get total hours
+     */
     public function getTotalHours($timestamp, User $user)
     {
         $hours = 0;
@@ -72,19 +66,18 @@ class PayrollController extends Controller
         return $hours;
     }
 
+    /**
+     * Generate payslips
+     */
     public function generatePayslips(Request $request)
     {
         $timestamp = $request->timestamp;
-
-        // Validate date
         $result = ValidationUtil::validateTimestamp($timestamp);
         if ($result != null) {
             return response()->json([
                 'message' => $result,
             ], 400);
         }
-
-        // Get deduction list
         $totalDeductions = 0;
         $deductionList = [];
         $deductions = Deduction::get();
@@ -95,12 +88,8 @@ class PayrollController extends Controller
                 'amount' => $deduction->amount
             ];
         }
-
         $users = User::where('is_admin', 0)->get();
-
         foreach ($users as $user) {
-
-            // Get payslip in selected month
             $payslip = $user->payslips()->whereBetween(
                 'date',
                 [
@@ -108,12 +97,8 @@ class PayrollController extends Controller
                     Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
                 ]
             )->first();
-
-            // Get total hours
             $totalHours = $this->getTotalHours($timestamp, $user);
-
             if ($payslip == null) {
-                // Create new payslip
                 $user->payslips()->create([
                     'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
@@ -123,7 +108,6 @@ class PayrollController extends Controller
                     'net_pay' => ($totalHours * $user->job->salary) - $totalDeductions
                 ]);
             } else {
-                // Update existing payslip in selected month
                 $payslip->update([
                     'date' => Carbon::createFromTimestamp($timestamp),
                     'total_hours' => $totalHours,
@@ -134,25 +118,23 @@ class PayrollController extends Controller
                 ]);
             }
         }
-
         return response()->json([
             'message' => 'Done',
         ]);
     }
 
+    /**
+     * Get payslips
+     */
     public function getPayslips(Request $request)
     {
         $timestamp = $request->timestamp;
-
-        // Validate date
         $result = ValidationUtil::validateTimestamp($timestamp);
         if ($result != null) {
             return response()->json([
                 'message' => $result,
             ], 400);
         }
-
-        // Get all payslips
         $payslips = Payslip::with('user')
             ->whereBetween(
                 'date',
@@ -161,7 +143,6 @@ class PayrollController extends Controller
                     Carbon::createFromTimestamp($timestamp)->addDay(1)->endOfMonth()
                 ]
             )->get();
-
         $newPayslips = [];
         foreach ($payslips as $payslip) {
             $newPayslips[] = [
@@ -177,7 +158,6 @@ class PayrollController extends Controller
                 'created_at' => $payslip->created_at,
             ];
         }
-
         return response()->json([
             'payslips' => $newPayslips,
         ]);
