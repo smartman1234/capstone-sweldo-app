@@ -50,7 +50,6 @@ const DeductionTable = ({
                     onClick={() => setSelectedDeductionId(deduction.id)}
                   />
                   <DeleteButton
-                    name='Delete'
                     onClick={() => handleSubmit(deduction.id)}
                     loading={deletingId === deduction.id}
                   />

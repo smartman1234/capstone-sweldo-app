@@ -55,7 +55,6 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
                     onClick={() => setSelectedEmployeeId(employee.id)}
                   />
                   <DeleteButton
-                    name='Delete'
                     onClick={() => handleSubmit(employee.id)}
                     loading={deletingId === employee.id}
                   />

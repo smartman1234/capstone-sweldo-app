@@ -49,7 +49,6 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
                     onClick={() => setSelectedJobId(job.id)}
                   />
                   <DeleteButton
-                    name='Delete'
                     onClick={() => handleSubmit(job.id)}
                     loading={deletingId === job.id}
                   />

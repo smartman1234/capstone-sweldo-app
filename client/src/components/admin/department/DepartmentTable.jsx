@@ -51,7 +51,6 @@ const DepartmentTable = ({
                     onClick={() => setSelectedDepartmentId(department.id)}
                   />
                   <DeleteButton
-                    name='Delete'
                     onClick={() => handleSubmit(department.id)}
                     loading={deletingId === department.id}
                   />
