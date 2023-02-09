@@ -20,7 +20,9 @@ const getCustomHeaders = () => {
   return headers
 }
 
-// Login
+/**
+ * Login
+ */
 export const login = async (data) =>
   await fetch(baseUrl + '/login', {
     method: 'POST',
@@ -28,9 +30,9 @@ export const login = async (data) =>
     body: JSON.stringify(data),
   })
 
-/*
-  User
-*/
+/**
+ * User routes
+ */
 
 // Dashboard
 export const getDashboardStats = async () =>
@@ -136,9 +138,9 @@ export const updateSettings = async (data) =>
     body: JSON.stringify(data),
   })
 
-/*
-  Admin
-*/
+/**
+ * Admin routes
+ */
 
 // Dashboard
 export const getAdminDashboardStats = async () =>
