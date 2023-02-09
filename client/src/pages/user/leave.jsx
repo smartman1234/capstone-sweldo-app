@@ -34,7 +34,7 @@ const Leave = () => {
       <PageTitle title='Leave' />
       <div className='space-y-4 bg-white p-5 rounded-lg drop-shadow-xl'>
         <LeaveTable leaves={leaves} setSelectedLeaveId={setSelectedLeaveId} />
-        <div className='flex justify-end space-x-4'>
+        <div className='flex justify-between space-x-4'>
         <Pagination pagination={leaves} onClick={getLeaves} />
           <button
             className='bg-indigo-500 text-white font-medium px-5 py-2.5 rounded-full w-24 hover:bg-indigo-800'
