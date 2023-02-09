@@ -5,7 +5,7 @@ const RecentAttendance = ({ recentAttendances }) => {
     <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
       <h2 className='text-lg font-bold mb-4'>Recent Attendance</h2>
       <table className='w-full text-left'>
-        <thead className='bg-gray-100 uppercase'>
+        <thead className='bg-indigo-400 uppercase'>
           <tr>
             <th className='p-2.5'>#</th>
             <th className='p-2.5'>Name</th>
@@ -17,7 +17,7 @@ const RecentAttendance = ({ recentAttendances }) => {
           {recentAttendances !== undefined &&
             (recentAttendances.length !== 0 ? (
               recentAttendances.map((recentAttendance, index) => (
-                <tr key={index} className='border-b'>
+                <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
                   <th className='p-2.5'>{index + 1}</th>
                   <td className='p-2.5'>{recentAttendance.name}</td>
                   <td className='p-2.5'>
@@ -32,14 +32,14 @@ const RecentAttendance = ({ recentAttendances }) => {
                   </td>
                   <td className='p-2.5'>
                     {recentAttendance.status === 'present' && (
-                      <span className='bg-green-500 text-white text-sm capitalize rounded px-2 py-1'>
+                      <div className='bg-emerald-400 text-center text-white text-sm capitalize rounded-full px-2 py-1 w-24'>
                         {recentAttendance.status}
-                      </span>
+                      </div>
                     )}
                     {recentAttendance.status === 'late' && (
-                      <span className='bg-red-500 text-white text-sm capitalize rounded px-2 py-1'>
+                      <div className='bg-red-400 text-center text-white text-sm capitalize rounded-full px-2 py-1 w-24'>
                         {recentAttendance.status}
-                      </span>
+                      </div>
                     )}
                   </td>
                 </tr>
