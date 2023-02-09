@@ -26,7 +26,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
       if (result.status === 200) {
         setDailyTasks(response.tasks)
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   const addTask = async () => {
@@ -44,7 +44,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
         setDailyTasks((prevData) => [...prevData, response.task])
         getMonthlyTasks(selectedDate)
       }
-    } catch (error) {}
+    } catch (error) { }
     setLoading(false)
     setShowInput(false)
   }
@@ -57,7 +57,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
         setDailyTasks(dailyTasks.filter((task) => task.id !== id))
         getMonthlyTasks(selectedDate)
       }
-    } catch (error) {}
+    } catch (error) { }
     setDeletingId(undefined)
   }
 
@@ -111,9 +111,9 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
             ))}
             {/* Add form */}
             {showInput ? (
-              <>
+              <div className='flex justify-between'>
                 <CustomInput
-                  id='name'
+                  id='name'   
                   type='text'
                   placeholder='Task name'
                   value={formData.name}
@@ -121,8 +121,9 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                 />
-                <CustomButton name='Add' onClick={addTask} loading={loading} />
-              </>
+                
+                <CustomButton name='+' onClick={addTask} loading={loading}/>
+              </div>
             ) : (
               <CustomButton
                 name='Add a task'
