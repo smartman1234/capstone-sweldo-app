@@ -3,7 +3,7 @@ import EditButton from '../../ui/buttons/EditButton'
 const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
   return (
     <table className='w-full text-left'>
-      <thead className='bg-gray-100 uppercase rounded-lg'>
+      <thead className='bg-indigo-400 uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Email</th>
@@ -17,7 +17,7 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
         {leaves !== undefined &&
           (leaves.data.length !== 0 ? (
             leaves.data.map((leave, index) => (
-              <tr key={index} className='border-b'>
+              <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
                 <th className='p-2.5'>{leaves.from + index}</th>
                 <td className='p-2.5'>{leave.email}</td>
                 <td className='p-2.5'>{leave.name}</td>
@@ -30,19 +30,19 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                 </td>
                 <td className='p-2.5'>
                   {leave.status === 'pending' && (
-                    <span className='bg-yellow-500 text-white text-sm capitalize rounded px-2 py-1'>
+                    <div className='bg-yellow-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24'>
                       {leave.status}
-                    </span>
+                    </div>
                   )}
                   {leave.status === 'approved' && (
-                    <span className='bg-green-500 text-white text-sm capitalize rounded px-2 py-1'>
+                    <div className='bg-emerald-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24'>
                       {leave.status}
-                    </span>
+                    </div>
                   )}
                   {leave.status === 'declined' && (
-                    <span className='bg-red-500 text-white text-sm capitalize rounded px-2 py-1'>
+                    <div className='bg-red-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24'>
                       {leave.status}
-                    </span>
+                    </div>
                   )}
                 </td>
                 <td className='p-2.5 space-x-4'>
