@@ -24,7 +24,7 @@ const Sidebar = ({ activeSidebar, toggleSidebar }) => {
       className={
         activeSidebar
           ? 'bg-[#22223b] fixed z-10 w-full md:w-64 h-screen transition-all duration-300 overflow-auto pb-5'
-          : 'bg-white fixed z-10 w-64 h-screen transition-all duration-300 -ml-64'
+          : 'bg-[#22223b] fixed z-10 w-64 h-screen transition-all duration-300 -ml-64'
       }
     >
       {/* Toggle */}
