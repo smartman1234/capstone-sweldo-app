@@ -111,7 +111,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
             ))}
             {/* Add form */}
             {showInput ? (
-              <div className='flex justify-between'>
+              <div className='flex space-x-4'>
                 <CustomInput
                   id='name'   
                   type='text'
@@ -121,7 +121,6 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                 />
-                
                 <CustomButton name='+' onClick={addTask} loading={loading}/>
               </div>
             ) : (
