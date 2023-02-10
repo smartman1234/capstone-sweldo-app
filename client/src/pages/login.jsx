@@ -69,7 +69,7 @@ const Login = () => {
   return (
     <div className='img overflow-auto scrollbar-hide '>
       <div className='h-screen flex justify-center items-center p-5'>
-        <div className='bg-slate-700 w-full md:w-96 rounded-lg shadow-lg p-5'>
+        <div className='bg-white w-full md:w-96 rounded-lg shadow-lg p-9'>
           <div className='mb-4'>
             <h1 className='text-3xl text-center font-bold'>Sweldo App</h1>
           </div>
