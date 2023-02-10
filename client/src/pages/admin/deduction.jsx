@@ -6,6 +6,7 @@ import * as RestApi from '../../utils/rest_api_util'
 import DeductionTable from '../../components/admin/deduction/DeductionTable'
 import AddDeductionForm from '../../components/admin/deduction/AddDeductionForm'
 import EditDeductionForm from '../../components/admin/deduction/EditDeductionForm'
+import CustomButton from '../../components/ui/buttons/CustomButton'
 
 const Deduction = () => {
   const [formData, setFormData] = useState({
@@ -63,12 +64,7 @@ const Deduction = () => {
               searchDeductions(e.target.value)
             }}
           />
-          <button
-            className='bg-indigo-400 text-white font-medium px-5 py-2.5 rounded-full hover:bg-indigo-700 w-24'
-            onClick={toggleAddForm}
-          >
-            Add
-          </button>
+          <CustomButton name='Add' onClick={toggleAddForm} />
         </div>
         <DeductionTable
           deductions={deductions}

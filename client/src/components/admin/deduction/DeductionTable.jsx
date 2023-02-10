@@ -28,7 +28,7 @@ const DeductionTable = ({
 
   return (
     <table className='w-full text-left'>
-      <thead className='bg-indigo-400 uppercase rounded-lg'>
+      <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Name</th>
@@ -40,7 +40,7 @@ const DeductionTable = ({
         {deductions !== undefined &&
           (deductions.data.length !== 0 ? (
             deductions.data.map((deduction, index) => (
-              <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
+              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
                 <th className='p-2.5'>{deductions.from + index}</th>
                 <td className='p-2.5'>{deduction.name}</td>
                 <td className='p-2.5'>{deduction.amount}</td>
