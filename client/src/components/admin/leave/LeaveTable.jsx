@@ -48,7 +48,7 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                     </div>
                   )}
                 </td>
-                <td className='p-2.5 space-x-4'>
+                <td className='space-x-4'>
                   <EditButton onClick={() => setSelectedLeaveId(leave.id)} />
                 </td>
               </tr>

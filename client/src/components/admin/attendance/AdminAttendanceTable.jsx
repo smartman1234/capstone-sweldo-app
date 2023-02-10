@@ -74,7 +74,7 @@ const AdminAttendanceTable = ({ attendances, getAdminAttendances }) => {
                     </div>
                   )}
                 </td>
-                <td className='p-2.5'>
+                <td className=''>
                   <DeleteButton
                     onClick={() => handleSubmit(attendance.id)}
                     loading={deletingId === attendance.id}

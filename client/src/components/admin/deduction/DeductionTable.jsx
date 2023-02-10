@@ -47,7 +47,7 @@ const DeductionTable = ({
                 <th className='p-2.5'>{deductions.from + index}</th>
                 <td className='p-2.5'>{deduction.name}</td>
                 <td className='p-2.5'>{deduction.amount}</td>
-                <td className='p-2.5 space-x-4'>
+                <td className='space-x-4'>
                   <EditButton
                     onClick={() => setSelectedDeductionId(deduction.id)}
                   />

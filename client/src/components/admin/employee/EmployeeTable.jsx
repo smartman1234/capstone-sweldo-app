@@ -52,7 +52,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
                 </td>
                 <td className='p-2.5'>{employee.department.name}</td>
                 <td className='p-2.5'>{employee.job.name}</td>
-                <td className='p-2.5 space-x-4'>
+                <td className='space-x-4'>
                   <EditButton
                     onClick={() => setSelectedEmployeeId(employee.id)}
                   />

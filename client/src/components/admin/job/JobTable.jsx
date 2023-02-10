@@ -46,7 +46,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
                 <th className='p-2.5'>{jobs.from + index}</th>
                 <td className='p-2.5'>{job.name}</td>
                 <td className='p-2.5'>{job.salary}</td>
-                <td className='p-2.5 space-x-4'>
+                <td className='space-x-4'>
                   <EditButton onClick={() => setSelectedJobId(job.id)} />
                   <DeleteButton
                     onClick={() => handleSubmit(job.id)}
