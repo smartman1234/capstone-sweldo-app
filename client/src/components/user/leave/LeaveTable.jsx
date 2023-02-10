@@ -29,17 +29,17 @@ const LeaveTable = ({ leaves, setSelectedLeaveId, getLeaves }) => {
                 </td>
                 <td className='p-2.5'>
                   {leave.status === 'pending' && (
-                    <div className='bg-yellow-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold hover:font-extrabold'>
+                    <div className='bg-yellow-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold'>
                       {leave.status}
                     </div>
                   )}
                   {leave.status === 'approved' && (
-                    <div className='bg-emerald-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold hover:font-extrabold'>
+                    <div className='bg-emerald-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold'>
                       {leave.status}
                     </div>
                   )}
                   {leave.status === 'declined' && (
-                    <div className='bg-red-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold hover:font-extrabold'>
+                    <div className='bg-red-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold'>
                       {leave.status}
                     </div>
                   )}
