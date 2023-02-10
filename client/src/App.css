@@ -62,3 +62,9 @@
 body{
   background-color: #EEEEEE;
 }
+
+.img{
+  background-image: url('../src/assets/bg-image.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
