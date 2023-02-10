@@ -26,7 +26,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
       if (result.status === 200) {
         setDailyTasks(response.tasks)
       }
-    } catch (error) { }
+    } catch (error) {}
   }
 
   const addTask = async () => {
@@ -44,7 +44,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
         setDailyTasks((prevData) => [...prevData, response.task])
         getMonthlyTasks(selectedDate)
       }
-    } catch (error) { }
+    } catch (error) {}
     setLoading(false)
     setShowInput(false)
   }
@@ -57,7 +57,7 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
         setDailyTasks(dailyTasks.filter((task) => task.id !== id))
         getMonthlyTasks(selectedDate)
       }
-    } catch (error) { }
+    } catch (error) {}
     setDeletingId(undefined)
   }
 
@@ -67,12 +67,12 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
         <div className='bg-white w-full lg:w-1/2 rounded flex flex-col p-5'>
           {/* Form title */}
           <div className='flex justify-between'>
-            <div className='mb-4'>
+            <div className='mb-8'>
               <h1 className='text-3xl font-bold'>Task</h1>
             </div>
             <div>
               <button
-                className='bg-blue-600 text-white font-medium p-2 rounded hover:bg-blue-500'
+                className='font-medium p-2 rounded'
                 onClick={() => setSelectedDate(undefined)}
               >
                 <svg
@@ -105,15 +105,14 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
                   className='bg-red-600 text-white font-medium p-2 rounded hover:bg-red-500'
                   onClick={() => deleteTask(task.id)}
                   loading={deletingId == task.id}
-                >
-                </DeleteButton>
+                ></DeleteButton>
               </div>
             ))}
             {/* Add form */}
             {showInput ? (
               <div className='flex space-x-4'>
                 <CustomInput
-                  id='name'   
+                  id='name'
                   type='text'
                   placeholder='Task name'
                   value={formData.name}
@@ -121,7 +120,26 @@ const TaskForm = ({ selectedDate, setSelectedDate, getMonthlyTasks }) => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                 />
-                <CustomButton name='+' onClick={addTask} loading={loading}/>
+                <CustomButton
+                  name={
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth='1.5'
+                      stroke='currentColor'
+                      className='w-6 h-6'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M12 4.5v15m7.5-7.5h-15'
+                      />
+                    </svg>
+                  }
+                  onClick={addTask}
+                  loading={loading}
+                />
               </div>
             ) : (
               <CustomButton
