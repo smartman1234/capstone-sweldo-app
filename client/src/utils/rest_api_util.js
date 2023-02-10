@@ -333,6 +333,11 @@ export const declineLeave = async (id) =>
     method: 'POST',
     headers: getHeaders(),
   })
+export const deleteLeave = async (id) =>
+  await fetch(baseUrl + `/admin/leave/${id}/destroy`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Payroll
 export const getPayrolls = async (timestamp, page) =>

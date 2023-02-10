@@ -1,6 +1,30 @@
 import EditButton from '../../ui/buttons/EditButton'
+import DeleteButton from '../../ui/buttons/DeleteButton'
+import * as RestApi from '../../../utils/rest_api_util'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
-const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
+const LeaveTable = ({ leaves, setSelectedLeaveId, getLeaves }) => {
+  const [deletingId, setDeletingId] = useState()
+
+  const handleSubmit = async (id) => {
+    setDeletingId(id)
+    try {
+      const result = await RestApi.deleteLeave(id)
+      const response = await result.json()
+      if (result.status === 200) {
+        getLeaves()
+        toast.success(response.message)
+      }
+      if (result.status === 400) {
+        if (response.type === undefined) {
+          toast.error(response.message)
+        }
+      }
+    } catch (error) {}
+    setDeletingId(undefined)
+  }
+
   return (
     <table className='w-full text-left'>
       <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
@@ -50,6 +74,10 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                 </td>
                 <td className='space-x-4'>
                   <EditButton onClick={() => setSelectedLeaveId(leave.id)} />
+                  <DeleteButton
+                    onClick={() => handleSubmit(leave.id)}
+                    loading={deletingId === leave.id}
+                  />
                 </td>
               </tr>
             ))

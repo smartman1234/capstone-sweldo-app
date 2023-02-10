@@ -1,6 +1,6 @@
 import EditButton from '../../ui/buttons/EditButton'
 
-const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
+const LeaveTable = ({ leaves, setSelectedLeaveId, getLeaves }) => {
   return (
     <table className='w-full text-left'>
       <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
@@ -15,7 +15,10 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
         {leaves !== undefined &&
           (leaves.data.length !== 0 ? (
             leaves.data.map((leave, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{leaves.from + index}</th>
                 <td className='p-2.5'>
                   {new Date(leave.date).toLocaleDateString('default', {
@@ -42,9 +45,7 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                   )}
                 </td>
                 <td className='space-x-4'>
-                  <EditButton
-                    onClick={() => setSelectedLeaveId(leave.id)}
-                  />
+                  <EditButton onClick={() => setSelectedLeaveId(leave.id)} />
                 </td>
               </tr>
             ))
