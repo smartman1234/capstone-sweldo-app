@@ -48,10 +48,10 @@ const EditJobForm = ({ selectedJobId, setSelectedJobId, getJobs }) => {
   return (
     <div className='bg-black/75 fixed top-0 left-0 z-10 w-full h-screen p-5'>
       <div className='w-full h-full flex justify-center items-center'>
-        <div className='bg-white w-full lg:w-1/2 rounded flex flex-col p-5'>
+        <div className='bg-white w-full lg:w-1/2 rounded flex flex-col p-8'>
           {/* Form title */}
           <div className='flex justify-between'>
-            <div className='mb-4'>
+            <div className='mb-8'>
               <h1 className='text-3xl font-bold'>Edit Job</h1>
             </div>
             <div>

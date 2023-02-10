@@ -27,7 +27,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
 
   return (
     <table className='w-full text-left'>
-      <thead className='bg-indigo-400 uppercase rounded-lg'>
+      <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
         <tr>
           <th className='p-2.5'>#</th>
           <th className='p-2.5'>Name</th>
@@ -39,14 +39,15 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
         {jobs !== undefined &&
           (jobs.data.length !== 0 ? (
             jobs.data.map((job, index) => (
-              <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{jobs.from + index}</th>
                 <td className='p-2.5'>{job.name}</td>
                 <td className='p-2.5'>{job.salary}</td>
                 <td className='p-2.5 space-x-4'>
-                  <EditButton
-                    onClick={() => setSelectedJobId(job.id)}
-                  />
+                  <EditButton onClick={() => setSelectedJobId(job.id)} />
                   <DeleteButton
                     onClick={() => handleSubmit(job.id)}
                     loading={deletingId === job.id}

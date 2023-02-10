@@ -44,7 +44,7 @@ const DepartmentTable = ({
             departments.data.map((department, index) => (
               <tr
                 key={index}
-                className='hover:bg-[#22223b]/40 hover:text-white'
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
               >
                 <th className='p-2.5'>{departments.from + index}</th>
                 <td className='p-2.5'>{department.name}</td>
