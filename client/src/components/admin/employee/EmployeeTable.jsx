@@ -43,7 +43,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
             employees.data.map((employee, index) => (
               <tr
                 key={index}
-                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+                className='hover:bg-[#22223b]/40 hover:text-white'
               >
                 <th className='p-2.5'>{employees.from + index}</th>
                 <td className='p-2.5'>{employee.email}</td>

@@ -6,6 +6,7 @@ import * as RestApi from '../../utils/rest_api_util'
 import DepartmentTable from '../../components/admin/department/DepartmentTable'
 import AddDepartmentForm from '../../components/admin/department/AddDepartmentForm'
 import EditDepartmentForm from '../../components/admin/department/EditDepartmentForm'
+import CustomButton from '../../components/ui/buttons/CustomButton'
 
 const Department = () => {
   const [formData, setFormData] = useState({
@@ -63,12 +64,7 @@ const Department = () => {
               searchDepartments(e.target.value)
             }}
           />
-          <button
-            className='bg-indigo-400 text-white font-medium px-5 py-2.5 rounded-full hover:bg-indigo-700 w-24'
-            onClick={toggleAddForm}
-          >
-            Add
-          </button>
+          <CustomButton name='Add' onClick={toggleAddForm} />
         </div>
         <DepartmentTable
           departments={departments}

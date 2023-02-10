@@ -73,7 +73,7 @@ const AddEmployeeForm = ({ toggleAddForm, getEmployees }) => {
         <div className='bg-white w-full lg:w-1/2 rounded flex flex-col p-8'>
           {/* Form title */}
           <div className='flex justify-between'>
-            <div className='mb-4'>
+            <div className='mb-8'>
               <h1 className='text-3xl font-bold'>Create Employee</h1>
             </div>
             <div>
