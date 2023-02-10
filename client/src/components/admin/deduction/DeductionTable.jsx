@@ -40,7 +40,10 @@ const DeductionTable = ({
         {deductions !== undefined &&
           (deductions.data.length !== 0 ? (
             deductions.data.map((deduction, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{deductions.from + index}</th>
                 <td className='p-2.5'>{deduction.name}</td>
                 <td className='p-2.5'>{deduction.amount}</td>

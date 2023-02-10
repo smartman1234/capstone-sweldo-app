@@ -17,7 +17,10 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
         {leaves !== undefined &&
           (leaves.data.length !== 0 ? (
             leaves.data.map((leave, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{leaves.from + index}</th>
                 <td className='p-2.5'>{leave.email}</td>
                 <td className='p-2.5'>{leave.name}</td>
@@ -46,16 +49,14 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                   )}
                 </td>
                 <td className='p-2.5 space-x-4'>
-                  <EditButton
-                    onClick={() => setSelectedLeaveId(leave.id)}
-                  />
+                  <EditButton onClick={() => setSelectedLeaveId(leave.id)} />
                 </td>
               </tr>
             ))
           ) : (
             <tr>
               <td colSpan='6' className='text-center p-2.5'>
-                No leave available
+                No data available
               </td>
             </tr>
           ))}
