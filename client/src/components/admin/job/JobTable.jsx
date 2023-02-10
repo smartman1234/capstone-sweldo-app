@@ -57,7 +57,7 @@ const JobTable = ({ jobs, setSelectedJobId, getJobs }) => {
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
+              <td colSpan='4' className='text-center p-2.5'>
                 No data available
               </td>
             </tr>
