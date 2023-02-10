@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: #EEEEEE;
+}
+
+.img{
+  background-image: url('../src/assets/bg-image.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .navigation ul li {
   position: relative;
 }
@@ -57,14 +67,4 @@
 .sidebarBtn.active::after {
   right: 0px;
   transform: scale(1);
-}
-
-body{
-  background-color: #EEEEEE;
-}
-
-.img{
-  background-image: url('../src/assets/bg-image.jpeg');
-  background-repeat: no-repeat;
-  background-size: cover;
 }

@@ -10,8 +10,8 @@ const Pagination = ({ pagination, onClick }) => {
                 <button
                   className={
                     link.url !== null
-                      ? 'bg-[#38384E] text-white font-medium p-2.5 rounded'
-                      : 'bg-slate-200 text-white font-medium p-2.5 rounded'
+                      ? 'font-medium p-2.5 rounded'
+                      : 'text-slate-500 font-medium p-2.5 rounded'
                   }
                   onClick={() => onClick(pagination.current_page - 1)}
                   disabled={link.url === null}
@@ -40,8 +40,8 @@ const Pagination = ({ pagination, onClick }) => {
                 <button
                   className={
                     link.url !== null
-                      ? 'bg-[#38384E] text-white font-medium p-2.5 rounded'
-                      : 'bg-slate-200 text-white font-medium p-2.5 rounded'
+                      ? 'font-medium p-2.5 rounded'
+                      : 'text-slate-500 font-medium p-2.5 rounded'
                   }
                   onClick={() => onClick(pagination.current_page + 1)}
                   disabled={link.url === null}
@@ -69,8 +69,8 @@ const Pagination = ({ pagination, onClick }) => {
               <button
                 className={
                   link.active
-                    ? 'bg-indigo-200 text-white font-medium px-5 py-2.5 rounded'
-                    : 'bg-[#4A4E69] text-white font-medium px-5 py-2.5 rounded hover:bg-indigo-500'
+                    ? 'bg-[#22223b] text-white font-medium px-5 py-2.5 rounded'
+                    : 'font-medium px-5 py-2.5 rounded hover:bg-[#22223b] hover:text-white'
                 }
                 onClick={() => onClick(link.label)}
                 disabled={link.active}

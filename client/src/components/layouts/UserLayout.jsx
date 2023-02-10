@@ -42,7 +42,7 @@ const UserLayout = () => {
         }
       >
         <Navbar activeSidebar={activeSidebar} toggleSidebar={toggleSidebar} />
-        <div className='p-5'>
+        <div className='py-8 px-5'>
           <Outlet />
         </div>
       </div>
