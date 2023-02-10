@@ -6,6 +6,7 @@ import AddEmployeeForm from '../../components/admin/employee/AddEmployeeForm'
 import * as RestApi from '../../utils/rest_api_util'
 import EmployeeTable from '../../components/admin/employee/EmployeeTable'
 import EditEmployeeForm from '../../components/admin/employee/EditEmployeeForm'
+import CustomButton from '../../components/ui/buttons/CustomButton'
 
 const Employee = () => {
   const [formData, setFormData] = useState({
@@ -63,12 +64,7 @@ const Employee = () => {
               searchEmployee(e.target.value)
             }}
           />
-          <button
-            className='bg-indigo-400 text-white font-medium px-5 py-2.5 rounded-full hover:bg-indigo-700 w-24'
-            onClick={toggleAddForm}
-          >
-            Add
-          </button>
+          <CustomButton name='Add' onClick={toggleAddForm} />
         </div>
         <EmployeeTable
           employees={employees}

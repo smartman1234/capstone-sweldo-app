@@ -5,7 +5,7 @@ const RecentAttendance = ({ recentAttendances }) => {
     <div className='bg-white p-5 rounded-lg drop-shadow-xl'>
       <h2 className='text-lg font-bold mb-4'>Recent Attendance</h2>
       <table className='w-full text-left'>
-        <thead className='bg-indigo-400 uppercase'>
+        <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
           <tr>
             <th className='p-2.5'>#</th>
             <th className='p-2.5'>Name</th>
@@ -17,7 +17,10 @@ const RecentAttendance = ({ recentAttendances }) => {
           {recentAttendances !== undefined &&
             (recentAttendances.length !== 0 ? (
               recentAttendances.map((recentAttendance, index) => (
-                <tr key={index} className='border-b odd:bg-blue-200 even:bg-slate-100 hover:bg-indigo-300'>
+                <tr
+                  key={index}
+                  className='border-b hover:bg-[#22223b]/40 hover:text-white'
+                >
                   <th className='p-2.5'>{index + 1}</th>
                   <td className='p-2.5'>{recentAttendance.name}</td>
                   <td className='p-2.5'>
