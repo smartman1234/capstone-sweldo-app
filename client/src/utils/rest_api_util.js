@@ -31,7 +31,7 @@ export const login = async (data) =>
   })
 
 /**
- * User routes
+ * User
  */
 
 // Dashboard
@@ -139,7 +139,7 @@ export const updateSettings = async (data) =>
   })
 
 /**
- * Admin routes
+ * Admin
  */
 
 // Dashboard
