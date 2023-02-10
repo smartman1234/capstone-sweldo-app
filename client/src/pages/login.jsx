@@ -68,8 +68,8 @@ const Login = () => {
 
   return (
     <div className='img overflow-auto scrollbar-hide'>
-      <div className='grid grid-cols-1 md:grid-cols-2'>
-        <div className='hidden md:block'></div>
+
+
         <div className='h-screen flex justify-center items-center p-5'>
           <div className='bg-white w-full md:w-96 rounded-lg shadow-lg p-5'>
             <div className='mb-4'>
@@ -127,7 +127,6 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </div>
     </div>
   )
 }
