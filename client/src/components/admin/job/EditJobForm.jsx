@@ -56,7 +56,7 @@ const EditJobForm = ({ selectedJobId, setSelectedJobId, getJobs }) => {
             </div>
             <div>
               <button
-                className='bg-blue-600 text-white font-medium p-2 rounded hover:bg-blue-500'
+                className='font-medium p-2 rounded'
                 onClick={() => setSelectedJobId(undefined)}
               >
                 <svg
