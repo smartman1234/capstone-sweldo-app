@@ -94,6 +94,7 @@ Route::group([
     // Attendance
     Route::get('/attendance', [AdminAttendanceController::class, 'index']);
     Route::get('/attendance/recent', [AdminAttendanceController::class, 'getRecentAttendance']);
+    Route::post('/attendance/{id}/destroy', [AdminAttendanceController::class, 'destroy']);
     
     // Department
     Route::get('/department', [DepartmentController::class, 'index']);

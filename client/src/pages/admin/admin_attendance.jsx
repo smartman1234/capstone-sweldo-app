@@ -55,7 +55,7 @@ const AdminAttendance = () => {
             }}
           />
         </div>
-        <AdminAttendanceTable attendances={attendances} />
+        <AdminAttendanceTable attendances={attendances} getAdminAttendances={getAdminAttendances} />
         <Pagination pagination={attendances} onClick={getAdminAttendances} />
       </div>
     </div>

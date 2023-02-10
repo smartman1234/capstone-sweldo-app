@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Utils\ValidationUtil;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -64,6 +65,31 @@ class AdminAttendanceController extends Controller
         }
         return response()->json([
             'attendance' => $employeesName,
+        ]);
+    }
+
+    /**
+     * Delete attendance
+     */
+    public function destroy(Request $request)
+    {
+        $id = $request->id;
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+        $attendance = Attendance::find($id);
+        if ($attendance == null) {
+            return response()->json([
+                'message' => 'Attendance not found',
+            ], 400);
+        }
+        $attendance->delete();
+        return response()->json([
+            'message' => 'Attendance deleted successfully'
         ]);
     }
 }

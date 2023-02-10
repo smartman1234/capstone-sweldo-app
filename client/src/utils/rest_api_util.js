@@ -165,6 +165,11 @@ export const getRecentAttendance = async () =>
     method: 'GET',
     headers: getHeaders(),
   })
+export const deleteAttendance = async (id) =>
+  await fetch(baseUrl + `/admin/attendance/${id}/destroy`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Employee
 export const getEmployees = async (page) =>
