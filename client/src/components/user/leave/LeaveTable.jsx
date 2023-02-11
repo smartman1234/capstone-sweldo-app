@@ -1,6 +1,6 @@
 import EditButton from '../../ui/buttons/EditButton'
 
-const LeaveTable = ({ leaves, setSelectedLeaveId, getLeaves }) => {
+const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
   return (
     <table className='w-full text-left'>
       <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
