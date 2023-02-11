@@ -33,7 +33,7 @@ const SalaryTable = ({ salaries }) => {
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
+              <td colSpan='6' className='text-center p-2.5'>
                 No data available
               </td>
             </tr>

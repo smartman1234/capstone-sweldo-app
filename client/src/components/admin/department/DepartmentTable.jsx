@@ -48,7 +48,7 @@ const DepartmentTable = ({
               >
                 <th className='p-2.5'>{departments.from + index}</th>
                 <td className='p-2.5'>{department.name}</td>
-                <td className='p-2.5 space-x-4'>
+                <td className='space-x-4'>
                   <EditButton
                     onClick={() => setSelectedDepartmentId(department.id)}
                   />
@@ -61,7 +61,7 @@ const DepartmentTable = ({
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
+              <td colSpan='3' className='text-center p-2.5'>
                 No data available
               </td>
             </tr>

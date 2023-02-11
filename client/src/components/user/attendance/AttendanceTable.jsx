@@ -15,7 +15,10 @@ const AttendanceTable = ({ attendances }) => {
         {attendances !== undefined &&
           (attendances.data.length !== 0 ? (
             attendances.data.map((attendance, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{attendances.from + index}</th>
                 <td className='p-2.5'>
                   {new Date(attendance.clock_in).toLocaleDateString('default', {
@@ -38,7 +41,7 @@ const AttendanceTable = ({ attendances }) => {
                     </div>
                   )}
                   {attendance.status === 'late' && (
-                    <div className='bg-red-400 text-center text-white text-sm capitalize rounded-full px-2 py-1 w-20 font-semibold hover:font-extrabold'>
+                    <div className='bg-red-400 text-center text-white text-sm capitalize rounded-full px-2 py-1 w-20 font-semibold'>
                       {attendance.status}
                     </div>
                   )}
@@ -47,8 +50,8 @@ const AttendanceTable = ({ attendances }) => {
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
-                No attendance available
+              <td colSpan='6' className='text-center p-2.5'>
+                No data available
               </td>
             </tr>
           ))}

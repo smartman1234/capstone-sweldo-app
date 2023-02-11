@@ -119,4 +119,29 @@ class AdminLeaveController extends Controller
             'message' => 'Leave has been declined'
         ]);
     }
+
+    /**
+     * Delete leave
+     */
+    public function destroy(Request $request)
+    {
+        $id = $request->id;
+        $result = ValidationUtil::validateId($id);
+        if ($result != null) {
+            return response()->json([
+                'message' => $result,
+                'type' => 'id'
+            ], 400);
+        }
+        $leave = Leave::find($id);
+        if ($leave == null) {
+            return response()->json([
+                'message' => 'Leave not found',
+            ], 400);
+        }
+        $leave->delete();
+        return response()->json([
+            'message' => 'Leave deleted successfully'
+        ]);
+    }
 }

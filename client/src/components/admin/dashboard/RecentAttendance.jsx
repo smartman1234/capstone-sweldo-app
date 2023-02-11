@@ -50,7 +50,7 @@ const RecentAttendance = ({ recentAttendances }) => {
             ) : (
               <tr>
                 <td colSpan='5' className='text-center p-2.5'>
-                  No leave available
+                  No data available
                 </td>
               </tr>
             ))}

@@ -40,11 +40,14 @@ const DeductionTable = ({
         {deductions !== undefined &&
           (deductions.data.length !== 0 ? (
             deductions.data.map((deduction, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{deductions.from + index}</th>
                 <td className='p-2.5'>{deduction.name}</td>
                 <td className='p-2.5'>{deduction.amount}</td>
-                <td className='p-2.5 space-x-4'>
+                <td className='space-x-4'>
                   <EditButton
                     onClick={() => setSelectedDeductionId(deduction.id)}
                   />
@@ -57,7 +60,7 @@ const DeductionTable = ({
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
+              <td colSpan='4' className='text-center p-2.5'>
                 No data available
               </td>
             </tr>

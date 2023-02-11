@@ -1,6 +1,30 @@
 import EditButton from '../../ui/buttons/EditButton'
+import DeleteButton from '../../ui/buttons/DeleteButton'
+import * as RestApi from '../../../utils/rest_api_util'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
-const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
+const LeaveTable = ({ leaves, setSelectedLeaveId, getLeaves }) => {
+  const [deletingId, setDeletingId] = useState()
+
+  const handleSubmit = async (id) => {
+    setDeletingId(id)
+    try {
+      const result = await RestApi.deleteLeave(id)
+      const response = await result.json()
+      if (result.status === 200) {
+        getLeaves()
+        toast.success(response.message)
+      }
+      if (result.status === 400) {
+        if (response.type === undefined) {
+          toast.error(response.message)
+        }
+      }
+    } catch (error) {}
+    setDeletingId(undefined)
+  }
+
   return (
     <table className='w-full text-left'>
       <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
@@ -17,7 +41,10 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
         {leaves !== undefined &&
           (leaves.data.length !== 0 ? (
             leaves.data.map((leave, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{leaves.from + index}</th>
                 <td className='p-2.5'>{leave.email}</td>
                 <td className='p-2.5'>{leave.name}</td>
@@ -45,17 +72,19 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                     </div>
                   )}
                 </td>
-                <td className='p-2.5 space-x-4'>
-                  <EditButton
-                    onClick={() => setSelectedLeaveId(leave.id)}
+                <td className='space-x-4'>
+                  <EditButton onClick={() => setSelectedLeaveId(leave.id)} />
+                  <DeleteButton
+                    onClick={() => handleSubmit(leave.id)}
+                    loading={deletingId === leave.id}
                   />
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
-                No leave available
+              <td colSpan='6' className='text-center p-2.5'>
+                No data available
               </td>
             </tr>
           ))}

@@ -165,6 +165,11 @@ export const getRecentAttendance = async () =>
     method: 'GET',
     headers: getHeaders(),
   })
+export const deleteAttendance = async (id) =>
+  await fetch(baseUrl + `/admin/attendance/${id}/destroy`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
 
 // Employee
 export const getEmployees = async (page) =>
@@ -325,6 +330,11 @@ export const approveLeave = async (id) =>
   })
 export const declineLeave = async (id) =>
   await fetch(baseUrl + `/admin/leave/${id}/decline`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
+export const deleteLeave = async (id) =>
+  await fetch(baseUrl + `/admin/leave/${id}/destroy`, {
     method: 'POST',
     headers: getHeaders(),
   })

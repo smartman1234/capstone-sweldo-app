@@ -94,6 +94,7 @@ Route::group([
     // Attendance
     Route::get('/attendance', [AdminAttendanceController::class, 'index']);
     Route::get('/attendance/recent', [AdminAttendanceController::class, 'getRecentAttendance']);
+    Route::post('/attendance/{id}/destroy', [AdminAttendanceController::class, 'destroy']);
     
     // Department
     Route::get('/department', [DepartmentController::class, 'index']);
@@ -121,6 +122,7 @@ Route::group([
     Route::get('/leave/{id}', [AdminLeaveController::class, 'show']);
     Route::post('/leave/{id}/approve', [AdminLeaveController::class, 'approve']);
     Route::post('/leave/{id}/decline', [AdminLeaveController::class, 'decline']);
+    Route::post('/leave/{id}/destroy', [AdminLeaveController::class, 'destroy']);
 
     // Payroll
     Route::get('/payroll', [PayrollController::class, 'index']);

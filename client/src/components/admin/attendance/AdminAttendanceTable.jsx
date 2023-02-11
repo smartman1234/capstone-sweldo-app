@@ -1,4 +1,29 @@
-const AdminAttendanceTable = ({ attendances }) => {
+import DeleteButton from '../../ui/buttons/DeleteButton'
+import * as RestApi from '../../../utils/rest_api_util'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
+
+const AdminAttendanceTable = ({ attendances, getAdminAttendances }) => {
+  const [deletingId, setDeletingId] = useState()
+
+  const handleSubmit = async (id) => {
+    setDeletingId(id)
+    try {
+      const result = await RestApi.deleteAttendance(id)
+      const response = await result.json()
+      if (result.status === 200) {
+        getAdminAttendances()
+        toast.success(response.message)
+      }
+      if (result.status === 400) {
+        if (response.type === undefined) {
+          toast.error(response.message)
+        }
+      }
+    } catch (error) {}
+    setDeletingId(undefined)
+  }
+
   return (
     <table className='w-full text-left'>
       <thead className='bg-[#22223b]/80 text-white uppercase rounded-lg'>
@@ -10,13 +35,17 @@ const AdminAttendanceTable = ({ attendances }) => {
           <th className='p-2.5'>Clock Out</th>
           <th className='p-2.5'>Total Hours</th>
           <th className='p-2.5'>Status</th>
+          <th className='p-2.5'>Action</th>
         </tr>
       </thead>
       <tbody>
         {attendances !== undefined &&
           (attendances.data.length !== 0 ? (
             attendances.data.map((attendance, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{attendances.from + index}</th>
                 <td className='p-2.5'>{attendance.name}</td>
                 <td className='p-2.5'>
@@ -45,12 +74,18 @@ const AdminAttendanceTable = ({ attendances }) => {
                     </div>
                   )}
                 </td>
+                <td className=''>
+                  <DeleteButton
+                    onClick={() => handleSubmit(attendance.id)}
+                    loading={deletingId === attendance.id}
+                  />
+                </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
-                No attendance available
+              <td colSpan='8' className='text-center p-2.5'>
+                No data available
               </td>
             </tr>
           ))}

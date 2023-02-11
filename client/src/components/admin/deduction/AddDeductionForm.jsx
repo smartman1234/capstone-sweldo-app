@@ -38,11 +38,11 @@ const AddDeductionForm = ({ toggleAddForm, getDeductions }) => {
           {/* Form title */}
           <div className='flex justify-between'>
             <div className='mb-8'>
-              <h1 className='text-3xl font-bold'>Create Job</h1>
+              <h1 className='text-3xl font-bold'>Create Deduction</h1>
             </div>
             <div>
               <button
-                className='bg-blue-600 text-white font-medium p-2 rounded hover:bg-blue-500'
+                className='font-medium p-2 rounded'
                 onClick={toggleAddForm}
               >
                 <svg

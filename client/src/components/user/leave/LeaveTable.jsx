@@ -15,7 +15,10 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
         {leaves !== undefined &&
           (leaves.data.length !== 0 ? (
             leaves.data.map((leave, index) => (
-              <tr key={index} className='border-b hover:bg-[#22223b]/40 hover:text-white'>
+              <tr
+                key={index}
+                className='border-b hover:bg-[#22223b]/40 hover:text-white'
+              >
                 <th className='p-2.5'>{leaves.from + index}</th>
                 <td className='p-2.5'>
                   {new Date(leave.date).toLocaleDateString('default', {
@@ -26,31 +29,29 @@ const LeaveTable = ({ leaves, setSelectedLeaveId }) => {
                 </td>
                 <td className='p-2.5'>
                   {leave.status === 'pending' && (
-                    <div className='bg-yellow-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold hover:font-extrabold'>
+                    <div className='bg-yellow-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold'>
                       {leave.status}
                     </div>
                   )}
                   {leave.status === 'approved' && (
-                    <div className='bg-emerald-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold hover:font-extrabold'>
+                    <div className='bg-emerald-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold'>
                       {leave.status}
                     </div>
                   )}
                   {leave.status === 'declined' && (
-                    <div className='bg-red-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold hover:font-extrabold'>
+                    <div className='bg-red-400 text-white text-center text-sm capitalize rounded-full px-2 py-1 w-24 font-semibold'>
                       {leave.status}
                     </div>
                   )}
                 </td>
-                <td className='p-2.5 space-x-4'>
-                  <EditButton
-                    onClick={() => setSelectedLeaveId(leave.id)}
-                  />
+                <td className='space-x-4'>
+                  <EditButton onClick={() => setSelectedLeaveId(leave.id)} />
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
+              <td colSpan='4' className='text-center p-2.5'>
                 No data available
               </td>
             </tr>

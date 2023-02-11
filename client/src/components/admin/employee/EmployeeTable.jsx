@@ -52,7 +52,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
                 </td>
                 <td className='p-2.5'>{employee.department.name}</td>
                 <td className='p-2.5'>{employee.job.name}</td>
-                <td className='p-2.5 space-x-4'>
+                <td className='space-x-4'>
                   <EditButton
                     onClick={() => setSelectedEmployeeId(employee.id)}
                   />
@@ -65,7 +65,7 @@ const EmployeeTable = ({ employees, setSelectedEmployeeId, getEmployees }) => {
             ))
           ) : (
             <tr>
-              <td colSpan='5' className='text-center p-2.5'>
+              <td colSpan='6' className='text-center p-2.5'>
                 No data available
               </td>
             </tr>
