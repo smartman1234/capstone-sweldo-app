@@ -33,7 +33,7 @@ const AttendanceTable = ({ attendances }) => {
                 <td className='p-2.5'>{attendance.total_hours}</td>
                 <td className='p-2.5'>
                   {attendance.status === 'present' && (
-                    <div className='bg-emerald-400 text-center text-white text-sm capitalize rounded-full px-2 py-1 w-20 font-semibold hover:font-extrabold'>
+                    <div className='bg-emerald-400 text-center text-white text-sm capitalize rounded-full px-2 py-1 w-20 font-semibold '>
                       {attendance.status}
                     </div>
                   )}
