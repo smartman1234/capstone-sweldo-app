@@ -1,8 +1,9 @@
-import EditButton from '../../ui/buttons/EditButton'
+
 import DeleteButton from '../../ui/buttons/DeleteButton'
 import * as RestApi from '../../../utils/rest_api_util'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import ViewButton from '../../ui/buttons/ViewButton'
 
 const LeaveTable = ({ leaves, setSelectedLeaveId, getLeaves }) => {
   const [deletingId, setDeletingId] = useState()
@@ -73,7 +74,7 @@ const LeaveTable = ({ leaves, setSelectedLeaveId, getLeaves }) => {
                   )}
                 </td>
                 <td className='space-x-4'>
-                  <EditButton onClick={() => setSelectedLeaveId(leave.id)} />
+                  <ViewButton onClick={() => setSelectedLeaveId(leave.id)} />
                   <DeleteButton
                     onClick={() => handleSubmit(leave.id)}
                     loading={deletingId === leave.id}
