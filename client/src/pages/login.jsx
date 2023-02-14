@@ -54,7 +54,8 @@ const Login = () => {
         localStorage.setItem('last_name', response.user.last_name)
         localStorage.setItem('is_admin', response.user.is_admin)
         localStorage.setItem('token', response.user.access_token)
-        if (response.user.is_admin === 0) {
+        // Live server return a string not int ???
+        if (response.user.is_admin.toString() === '0') {
           navigate('/user/dashboard')
           return
         }
